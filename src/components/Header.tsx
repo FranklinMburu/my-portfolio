@@ -50,17 +50,15 @@ const Header = ({ theme, toggleTheme }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-gray-900/95 backdrop-blur-lg shadow-lg shadow-cyan-500/10'
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-lg shadow-lg shadow-cyan-500/10 ${
+        isScrolled ? 'bg-background-dark/95' : 'bg-transparent'
       }`}
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <button
             onClick={() => scrollToSection('home')}
-            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent hover:scale-105 transition-transform"
+            className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent hover:scale-105 transition-transform"
           >
             FK
           </button>
@@ -72,13 +70,13 @@ const Header = ({ theme, toggleTheme }: HeaderProps) => {
                 onClick={() => scrollToSection(item.id)}
                 className={`relative text-sm font-medium transition-colors ${
                   activeSection === item.id
-                    ? 'text-cyan-400'
-                    : 'text-gray-300 hover:text-white'
+                    ? 'text-primary-cyan'
+                    : 'text-text-gray hover:text-text-white'
                 }`}
               >
                 {item.label}
                 {activeSection === item.id && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500"></span>
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-hero"></span>
                 )}
               </button>
             ))}
@@ -87,40 +85,40 @@ const Header = ({ theme, toggleTheme }: HeaderProps) => {
           <div className="flex items-center space-x-4">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors"
+              className="p-2 rounded-lg bg-background-dark/50 hover:bg-background-dark/70 transition-colors"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
-                <Sun className="w-5 h-5 text-yellow-400" />
+                <Sun className="w-5 h-5 text-primary-cyan" />
               ) : (
-                <Moon className="w-5 h-5 text-gray-300" />
+                <Moon className="w-5 h-5 text-text-gray" />
               )}
             </button>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors"
+              className="md:hidden p-2 rounded-lg bg-background-dark/50 hover:bg-background-dark/70 transition-colors"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-gray-300" />
+                <X className="w-6 h-6 text-text-gray" />
               ) : (
-                <Menu className="w-6 h-6 text-gray-300" />
+                <Menu className="w-6 h-6 text-text-gray" />
               )}
             </button>
           </div>
         </div>
 
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 space-y-3 bg-gray-800/95 backdrop-blur-lg rounded-lg">
+          <div className="md:hidden mt-4 py-4 space-y-3 bg-background-dark/95 backdrop-blur-lg rounded-lg">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={`block w-full text-left px-4 py-2 text-sm font-medium transition-colors ${
                   activeSection === item.id
-                    ? 'text-cyan-400 bg-gray-700/50'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-700/30'
+                    ? 'text-primary-cyan bg-background-dark/70'
+                    : 'text-text-gray hover:text-text-white hover:bg-background-dark/30'
                 }`}
               >
                 {item.label}

@@ -1,57 +1,176 @@
-import { Brain, Server, Wrench } from 'lucide-react';
-import { skills } from '../data/skills';
+import { Brain, Server, Wrench } from "lucide-react";
+import { skills } from "../data/skills";
 
 const iconMap = {
   Brain,
   Server,
-  Wrench
+  Wrench,
 };
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-24 bg-gray-900">
+    <section
+      id="skills"
+      className="py-28 bg-gradient-to-b from-[#020617] via-[#030712] to-[#000000]"
+    >
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Technical Skills
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6"></div>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              A comprehensive toolkit for building intelligent, scalable systems
-            </p>
-          </div>
+        {/* Heading */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            Technologies{" "}
+            <span className="bg-gradient-to-r from-[#00E0FF] to-[#007BFF] bg-clip-text text-transparent">
+              & Skills
+            </span>
+          </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {skills.map((skillGroup, index) => {
-              const IconComponent = iconMap[skillGroup.icon as keyof typeof iconMap];
+          {/* Small Top Bar */}
+          <div className="w-40 h-2 mx-auto rounded-full bg-gradient-to-r from-[#00E0FF] to-[#007BFF] mb-6"></div>
 
-              return (
-                <div
-                  key={index}
-                  className="group p-8 rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105"
-                >
-                  <div className="flex items-center space-x-4 mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <IconComponent className="w-6 h-6 text-cyan-400" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-white">{skillGroup.category}</h3>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            A comprehensive toolkit spanning AI/ML, full-stack development, and
+            production deployment
+          </p>
+        </div>
+
+        {/* SKILL CARDS */}
+        <div className="grid md:grid-cols-3 gap-10">
+          {skills.map((group, idx) => {
+            const Icon = iconMap[group.icon as keyof typeof iconMap];
+
+            return (
+              <div
+                key={idx}
+                className="
+                  p-8 rounded-3xl
+                  bg-[#0A0F1F]/70
+                  border border-white/10
+                  shadow-[0_0_40px_-10px_rgba(0,100,255,0.3)]
+                  hover:shadow-[0_0_60px_-6px_rgba(0,150,255,0.45)]
+                  backdrop-blur-xl
+                  transition-all duration-500
+                  hover:-translate-y-2
+                "
+              >
+                {/* Icon + Title */}
+                <div className="flex items-center mb-6 space-x-5">
+                  <div
+                    className="
+                      w-14 h-14 flex items-center justify-center rounded-xl
+                      bg-gradient-to-br from-[#00E0FF] to-[#007BFF]
+                      shadow-[0_0_20px_rgba(0,150,255,0.6)]
+                      scale-100 group-hover:scale-110 transition-all
+                    "
+                  >
+                    <Icon className="w-7 h-7 text-white" />
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
-                    {skillGroup.items.map((skill, skillIndex) => (
-                      <span
-                        key={skillIndex}
-                        className="px-3 py-1.5 text-sm bg-gray-700/50 text-gray-300 rounded-lg border border-gray-600 hover:border-cyan-500/50 hover:text-cyan-400 transition-all"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                  <h3 className="text-xl font-semibold text-white">
+                    {group.category}
+                  </h3>
                 </div>
-              );
-            })}
+
+                {/* Pills */}
+                <div className="flex flex-wrap gap-3">
+                  {group.items.map((skill: string, i: number) => (
+                    <span
+                      key={i}
+                      className="
+                        px-3 py-1.5 text-sm rounded-xl
+                        text-white/90
+                        bg-[#111827]/60
+                        border border-white/10
+                        hover:text-white
+                        hover:bg-gradient-to-r hover:from-[#00E0FF] hover:to-[#007BFF]
+                        hover:shadow-[0_0_18px_rgba(0,150,255,0.55)]
+                        transition-all duration-300
+                      "
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* STATS SECTION */}
+        <div className="grid md:grid-cols-4 gap-6 mt-20">
+          {/* Projects */}
+          <div
+            className="
+              text-center py-8 rounded-2xl
+              bg-gradient-to-r from-[#00E0FF] to-[#007BFF]
+              shadow-[0_0_30px_rgba(0,150,255,0.4)]
+              border border-white/10
+              transition-all duration-500
+              hover:scale-[1.03]
+            "
+          >
+            <p className="text-3xl font-bold text-white">8+</p>
+            <p className="text-white/90">Production Projects</p>
           </div>
+
+          {/* Technologies */}
+          <div
+            className="
+              text-center py-8 rounded-2xl
+              bg-gradient-to-r from-[#8A2BE2] to-[#EC4899]
+              shadow-[0_0_30px_rgba(236,72,153,0.4)]
+              border border-white/10
+              transition-all duration-500
+              hover:scale-[1.03]
+            "
+          >
+            <p className="text-3xl font-bold text-white">25+</p>
+            <p className="text-white/90">Technologies</p>
+          </div>
+
+          {/* Specializations */}
+          <div
+            className="
+              text-center py-8 rounded-2xl
+              bg-gradient-to-r from-[#00E0FF] to-[#60A5FA]
+              shadow-[0_0_30px_rgba(0,150,255,0.35)]
+              border border-white/10
+              transition-all duration-500
+              hover:scale-[1.03]
+            "
+          >
+            <p className="text-3xl font-bold text-white">3</p>
+            <p className="text-white/90">Core Specializations</p>
+          </div>
+
+          {/* Production Ready */}
+          <div
+            className="
+              text-center py-8 rounded-2xl
+              bg-gradient-to-r from-[#10B981] to-[#059669]
+              shadow-[0_0_30px_rgba(16,185,129,0.4)]
+              border border-white/10
+              transition-all duration-500
+              hover:scale-[1.03]
+            "
+          >
+            <p className="text-3xl font-bold text-white">100%</p>
+            <p className="text-white/90">Production Ready</p>
+          </div>
+        </div>
+
+        {/* Button */}
+        <div className="text-center mt-14">
+          <button
+            className="
+              px-8 py-3 rounded-full text-lg font-semibold
+              bg-gradient-to-r from-[#00E0FF] to-[#007BFF]
+              text-white shadow-[0_0_25px_rgba(0,150,255,0.5)]
+              hover:shadow-[0_0_40px_rgba(0,150,255,0.7)]
+              transition-all duration-500
+              hover:-translate-y-1
+            "
+          >
+            Explore Full Skill Set →
+          </button>
         </div>
       </div>
     </section>

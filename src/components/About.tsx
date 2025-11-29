@@ -50,13 +50,21 @@ const About = () => {
             </div>
 
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 backdrop-blur-sm border border-cyan-500/20 flex items-center justify-center p-8">
-                <div className="text-center space-y-4">
-                  <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white text-4xl font-bold">
-                    FK
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 backdrop-blur-sm border border-cyan-500/20 overflow-hidden">
+                <img
+                  src="/assets/images/franklin-mburu.jpg"
+                  alt="Franklin Mburu"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-500 opacity-40 mix-blend-multiply"></div>
+                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center space-y-2">
+                  <div className="text-xl font-semibold text-white animate-pulse drop-shadow-[0_0_15px_rgba(6,182,212,1)]">
+                    Franklin Mburu
                   </div>
-                  <div className="text-xl font-semibold text-white">Franklin Mburu</div>
-                  <div className="text-gray-400">AI Engineer & Developer</div>
+                  <div className="text-gray-300 text-sm drop-shadow-[0_0_10px_rgba(59,130,246,1)]">
+                    AI Engineer & Developer
+                  </div>
                 </div>
               </div>
             </div>

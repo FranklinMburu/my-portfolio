@@ -13,7 +13,7 @@ export const projects: Project[] = [
     techStack: ['Python', 'FastAPI', 'GPT-5', 'Multi-agent Systems', 'WebSocket'],
     category: 'AI/ML',
     status: 'In Development',
-    image: 'https://images.pexels.com/photos/534216/pexels-photo-534216.jpeg?auto=compress&cs=tinysrgb&w=800'
+    image: '/assets/images/ai-trading-agent.jpg' // Updated to use a relative local path
   },
   {
     id: '2',
@@ -27,8 +27,9 @@ export const projects: Project[] = [
     techStack: ['Flask', 'React', 'PostgreSQL', 'JWT', 'RBAC', 'AI'],
     category: 'Full-Stack',
     status: 'Production',
-    image: 'https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/assets/images/full-stack-supplier-inventory.jpg', // Updated to use a relative local path
     githubUrl: '#'
+    
   },
   {
     id: '3',
