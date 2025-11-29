@@ -1,23 +1,81 @@
-logs
+# --- SYSTEM FILES ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+lost+found/
+
+# --- DEPENDENCIES ---
+node_modules/
+
+# --- BUILD OUTPUT ---
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vite/
+
+# --- CACHE ---
+.cache/
+.next/cache/
+npm-cache/
+yarn-cache/
+pnpm-store/
+.eslintcache
+
+# --- LOGS ---
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# --- ENVIRONMENT FILES ---
+.env
+.env.*
+!.env.example
 
+# --- TYPESCRIPT ---
+*.tsbuildinfo
+
+# --- TEST ---
+coverage/
+
+# --- EDITOR FILES ---
+# Keep VS Code settings (like recommended extensions)
+# ONLY ignore personal workspace files
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-.env
+!.vscode/settings.json
+!.vscode/launch.json
+
+# JetBrains
+.idea/
+*.iml
+
+# --- TEMPORARY / BACKUP FILES ---
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.pid
+*.seed
+
+# --- ARCHIVES ---
+*.zip
+*.gz
+*.rar
+*.7z
+*.tar
+
+# --- STORYBOOK ---
+storybook-static/
+
+# --- SASS ---
+.sass-cache/
+
+# --- TAILWIND ---
+.tailwindcss-jit-cache/
