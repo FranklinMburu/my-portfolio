@@ -5,7 +5,7 @@ const Education = () => {
     {
       institution: 'Moringa School',
       degree: 'Software Development Diploma',
-      period: '2023',
+      period: '2024',
       description: 'Comprehensive training in full-stack development, software engineering principles, and modern development practices.'
     },
     {

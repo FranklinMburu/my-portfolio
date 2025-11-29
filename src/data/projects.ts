@@ -28,7 +28,7 @@ export const projects: Project[] = [
     category: 'Full-Stack',
     status: 'Production',
     image: '/assets/images/full-stack-supplier-inventory.jpg', // Updated to use a relative local path
-    githubUrl: '#'
+    githubUrl: 'https://github.com/FranklinMburu/supplier-inventory'
     
   },
   {

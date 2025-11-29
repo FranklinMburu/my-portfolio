@@ -36,7 +36,7 @@ const Footer = () => {
                 className="flex items-center space-x-3 text-gray-400 hover:text-cyan-400 transition-colors text-sm"
               >
                 <Phone className="w-4 h-4" />
-                <span>+254 733 321 677</span>
+                <span>+254 718 921 677</span>
               </a>
               <div className="flex items-center space-x-3 text-gray-400 text-sm">
                 <MapPin className="w-4 h-4" />

@@ -42,8 +42,8 @@ const Contact = () => {
     {
       icon: Phone,
       label: 'Phone',
-      value: '+254 733 321 677',
-      link: 'tel:+254733321677'
+      value: '+254 718 921 677',
+      link: 'tel:+254718921677'
     },
     {
       icon: MapPin,

@@ -4,7 +4,7 @@ export const experiences: Experience[] = [
   {
     title: 'Senior Head of ICT',
     company: 'Stafford Schools',
-    period: 'January 2024 – Present',
+    period: 'January 2024 – 2025',
     achievements: [
       'Led digital transformation initiatives across multiple school campuses',
       'Implemented AI-powered learning management systems',
