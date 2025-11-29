@@ -5,7 +5,7 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Github, label: 'GitHub', url: 'https://github.com/franklinmburu' },
-    { icon: Linkedin, label: 'LinkedIn', url: 'https://linkedin.com/in/franklinmburu' }
+    { icon: Linkedin, label: 'LinkedIn', url: 'https://linkedin.com/in/franklin-mburu' }
   ];
 
   return (

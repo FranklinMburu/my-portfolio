@@ -63,7 +63,7 @@ const Contact = () => {
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      url: 'https://linkedin.com/in/franklinmburu',
+      url: 'https://linkedin.com/in/franklin-mburu',
       color: 'hover:text-blue-400'
     }
   ];
