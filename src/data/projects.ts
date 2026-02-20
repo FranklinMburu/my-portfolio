@@ -115,5 +115,22 @@ export const projects: Project[] = [
     category: 'Automation',
     status: 'Production',
     image: 'https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    id: '9',
+    title: 'Mini Agentic AI',
+    description: 'Multi-worker LLM orchestration system that coordinates specialized AI agents (Planner, Coder, Reviewer) to solve complex tasks. Features real-time WebSocket event streaming, deterministic action validation, and auto-persistent state management.',
+    achievements: [
+      'Multi-agent coordination with role-based workers',
+      'Real-time event streaming to live dashboard',
+      'State persistence and recovery',
+      'Rate-limited API calls with token bucket algorithm',
+      'Comprehensive test coverage (10+ test files)'
+    ],
+    techStack: ['Python', 'FastAPI', 'WebSocket', 'Google Generative AI', 'Async/Await'],
+    category: 'AI/ML',
+    status: 'Production',
+    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
+    githubUrl: 'https://github.com/FranklinMburu/mini-agentic-ai'
   }
 ];

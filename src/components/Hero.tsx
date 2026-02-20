@@ -60,7 +60,14 @@ const Hero = () => {
           </button>
 
           <button
-            onClick={() => window.open('#', '_blank')}
+            onClick={() => {
+              const link = document.createElement('a');
+              link.href = '/assets/images/Franklin_Mburu_Kamande_Backend_Developer_CV.pdf';
+              link.download = 'Franklin_Mburu_Kamande_Backend_Developer_CV.pdf';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
             className="px-4 sm:px-6 py-2 sm:py-3 bg-background-dark/50 backdrop-blur-sm rounded-lg font-semibold text-text-white border border-background-dark hover:border-primary-cyan hover:bg-background-dark/70 transition-all duration-300 flex items-center space-x-2 hover:scale-105"
           >
             <Download className="w-4 h-4 sm:w-5 sm:h-5" />

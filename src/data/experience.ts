@@ -19,5 +19,22 @@ export const experiences: Experience[] = [
       'Cloud Services',
       'Network Administration'
     ]
+  },
+  {
+    title: 'Software Developer',
+    company: 'United Legal Group',
+    period: 'November 2025 – Present',
+    achievements: [
+      'Developing software solutions for third-party debt collection operations',
+      'Building scalable systems for financial services processing',
+      'Implementing data management and reporting systems',
+      'Collaborating with financial teams on commission-based tracking systems'
+    ],
+    technologies: [
+      'Full-Stack Development',
+      'Financial Systems',
+      'Database Management',
+      'API Development'
+    ]
   }
 ];
