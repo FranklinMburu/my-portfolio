@@ -43,9 +43,8 @@ const About = () => {
                 and agriculture.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Currently serving as <span className="text-green-400 font-semibold">Senior Head of ICT</span> at
-                Stafford Schools, where I lead digital transformation initiatives and develop custom AI-powered
-                educational solutions.
+                Currently serving as <span className="text-green-400 font-semibold">Software Engineer</span> at
+                <span className="text-green-400 font-semibold"> United Legal Group</span>, building scalable multi-tenant CRM systems with emphasis on backend engineering, security, and performance. Previously, I served as Senior Head of ICT at Stafford Schools, where I led digital transformation initiatives and developed custom AI-powered educational solutions.
               </p>
             </div>
 
