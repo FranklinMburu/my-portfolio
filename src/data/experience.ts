@@ -21,20 +21,31 @@ export const experiences: Experience[] = [
     ]
   },
   {
-    title: 'Software Developer',
+    title: 'Software Engineer – Multi-Tenant Enterprise CRM',
     company: 'United Legal Group',
-    period: 'November 2025 – Present',
+    period: 'October 2025 – Present',
     achievements: [
-      'Developing software solutions for third-party debt collection operations',
-      'Building scalable systems for financial services processing',
-      'Implementing data management and reporting systems',
-      'Collaborating with financial teams on commission-based tracking systems'
+      'Backend engineer on production multi-tenant CRM serving multiple business clients',
+      'Designed and maintained Django REST APIs with PostgreSQL, enforcing strict tenant data isolation and secure access boundaries',
+      'Implemented and enforced role-based access control (RBAC) across tenant boundaries with permission policies and validation rules',
+      'Built and maintained service-layer business logic and validation pipelines for stateful workflows',
+      'Improved API reliability through consistent error-handling standards, structured logging, and defensive validation',
+      'Worked in Docker-based environments and contributed to cloud-deployed production configuration practices',
+      'Assisted with query optimization and performance improvements in high-usage modules',
+      'Collaborated in disciplined remote workflows: PR reviews, branching strategy, code quality checks, and documentation',
+      'Strengthened tenant-level security and access boundaries',
+      'Improved onboarding clarity through documentation and environment standardization',
+      'Reduced recurring configuration issues through structured setup guides and repeatable environments'
     ],
     technologies: [
-      'Full-Stack Development',
-      'Financial Systems',
-      'Database Management',
-      'API Development'
+      'Django',
+      'Django REST Framework',
+      'PostgreSQL',
+      'Python',
+      'Docker',
+      'RBAC',
+      'Cloud Services',
+      'Git'
     ]
   }
 ];
