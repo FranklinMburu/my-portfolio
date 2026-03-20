@@ -32,11 +32,11 @@ const Footer = () => {
                 <span>franklinmburu05@gmail.com</span>
               </a>
               <a
-                href="tel:+254733321677"
+                href="tel:+254718921677"
                 className="flex items-center space-x-3 text-gray-400 hover:text-cyan-400 transition-colors text-sm"
               >
                 <Phone className="w-4 h-4" />
-                <span>+254 718 921 677</span>
+                <span>+254 718 *** 677</span>
               </a>
               <div className="flex items-center space-x-3 text-gray-400 text-sm">
                 <MapPin className="w-4 h-4" />
