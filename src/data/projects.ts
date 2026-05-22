@@ -132,5 +132,60 @@ export const projects: Project[] = [
     status: 'Production',
     image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
     githubUrl: 'https://github.com/FranklinMburu/mini-agentic-ai'
+  },
+  {
+    id: '10',
+    title: 'AI-Powered KYC Verification Platform',
+    description: 'Enterprise-grade identity verification platform with OCR extraction, face matching, liveness detection, and fraud analysis. Production-ready system handling secure document processing with comprehensive audit logging.',
+    achievements: [
+      'Multi-modal identity verification (OCR, face matching, liveness detection)',
+      'Enterprise fraud scoring & suspicious activity detection',
+      'Admin verification dashboard with audit logging',
+      'Mobile-responsive capture workflows',
+      'REST API architecture with secure authentication'
+    ],
+    techStack: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'OpenCV', 'Tesseract OCR', 'Docker'],
+    category: 'AI/ML',
+    status: 'Production',
+    image: 'https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=800',
+    githubUrl: 'https://github.com/FranklinMburu/ai-kyc-platform',
+    liveUrl: 'https://ai-kyc-demo.vercel.app'
+  },
+  {
+    id: '11',
+    title: 'AI Document Intelligence API',
+    description: 'High-performance document processing API for extracting structured intelligence from IDs, invoices, PDFs, and compliance documents. Async-first architecture with confidence scoring and automated validation pipelines.',
+    achievements: [
+      'Multi-format document parsing (PDF, images, scans)',
+      'Structured JSON extraction with confidence scoring',
+      'Document classification & entity recognition',
+      'Async processing with distributed task queue',
+      'RESTful API with validation pipelines'
+    ],
+    techStack: ['Python', 'FastAPI', 'PostgreSQL', 'Tesseract OCR', 'LangChain', 'Docker'],
+    category: 'AI/ML',
+    status: 'Production',
+    image: 'https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&cs=tinysrgb&w=800',
+    githubUrl: 'https://github.com/FranklinMburu/document-intelligence-api',
+    liveUrl: 'https://document-ai-api.vercel.app'
+  },
+  {
+    id: '12',
+    title: 'Compliance & Risk Monitoring Dashboard',
+    description: 'Operational compliance and risk monitoring platform for detecting suspicious workflows, investigating failed verifications, and tracking enterprise anomalies. Real-time analytics with role-based access control.',
+    achievements: [
+      'Real-time risk scoring engine with machine learning models',
+      'Suspicious activity detection & alert workflows',
+      'Investigation management queue with prioritization',
+      'Comprehensive audit logging & traceability',
+      'Role-based access control (RBAC) system',
+      'Interactive analytics dashboards'
+    ],
+    techStack: ['React', 'FastAPI', 'PostgreSQL', 'WebSockets', 'Chart.js', 'Docker'],
+    category: 'Full-Stack',
+    status: 'Production',
+    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
+    githubUrl: 'https://github.com/FranklinMburu/compliance-risk-dashboard',
+    liveUrl: 'https://risk-monitoring-demo.vercel.app'
   }
 ];
