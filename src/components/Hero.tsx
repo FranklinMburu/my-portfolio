@@ -1,5 +1,6 @@
 import { ArrowRight, Download, Mail } from 'lucide-react';
 import SkillsSection from './SkillsSection';
+import { projects } from '../data/projects';
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -85,8 +86,8 @@ const Hero = () => {
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-md sm:max-w-lg md:max-w-2xl mx-auto">
           <div className="text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary-cyan mb-1">10+</div>
-            <div className="text-xs sm:text-sm md:text-base text-text-gray">Production Projects</div>
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary-cyan mb-1">{projects.length}</div>
+            <div className="text-xs sm:text-sm md:text-base text-text-gray">Portfolio Projects</div>
           </div>
           <div className="text-center">
             <div className="text-xl sm:text-2xl md:text-3xl font-bold text-primary-blue mb-1">100+</div>

@@ -1,5 +1,9 @@
 import { Brain, Server, Wrench } from "lucide-react";
 import { skills } from "../data/skills";
+import { projects } from "../data/projects";
+
+const technologyCount = skills.reduce((total, group) => total + group.items.length, 0);
+const livePublicCount = projects.filter((p) => p.liveUrl || p.githubUrl).length;
 
 const iconMap = {
   Brain,
@@ -107,8 +111,8 @@ const Skills = () => {
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-white">8+</p>
-            <p className="text-white/90">Production Projects</p>
+            <p className="text-3xl font-bold text-white">{projects.length}</p>
+            <p className="text-white/90">Portfolio Projects</p>
           </div>
 
           {/* Technologies */}
@@ -122,7 +126,7 @@ const Skills = () => {
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-white">25+</p>
+            <p className="text-3xl font-bold text-white">{technologyCount}</p>
             <p className="text-white/90">Technologies</p>
           </div>
 
@@ -137,11 +141,11 @@ const Skills = () => {
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-white">3</p>
+            <p className="text-3xl font-bold text-white">{skills.length}</p>
             <p className="text-white/90">Core Specializations</p>
           </div>
 
-          {/* Production Ready */}
+          {/* Live or public */}
           <div
             className="
               text-center py-8 rounded-2xl
@@ -152,8 +156,8 @@ const Skills = () => {
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-white">100%</p>
-            <p className="text-white/90">Production Ready</p>
+            <p className="text-3xl font-bold text-white">{livePublicCount}</p>
+            <p className="text-white/90">Live or Public Code</p>
           </div>
         </div>
 
