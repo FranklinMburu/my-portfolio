@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import WebsitesStory from '../components/websites/WebsitesStory';
+import { prefersReducedMotion } from '../lib/motion';
 import { ArrowRight } from 'lucide-react';
 import Link from '../components/Link';
 import Reveal from '../components/Reveal';
@@ -67,15 +69,22 @@ const WebsiteTile = ({ site }: { site: Website }) => (
 const WebsitesPage = () => {
   useDocumentTitle('Websites - Franklin Mburu Kamande');
   const [category, setCategory] = useState<(typeof websiteCategories)[number]>('All');
+  // The scroll story replaces the still opening; reduced-motion visitors keep the still one.
+  const [story] = useState(() => !prefersReducedMotion());
 
   const featured = websites.find((site) => site.featured) ?? websites[0];
-  const rest = websites.filter((site) => site !== featured && (category === 'All' || site.category === category));
+  const rest = websites.filter(
+    (site) => (story || site !== featured) && (category === 'All' || site.category === category)
+  );
   const left = rest.filter((_, i) => i % 2 === 0);
   const right = rest.filter((_, i) => i % 2 === 1);
 
   return (
-    <div className="overflow-hidden pt-16">
-      {/* Hero: giant title with the featured website rising through it */}
+    <div className={story ? 'pt-0' : 'overflow-hidden pt-16'}>
+      {story ? (
+        <WebsitesStory sites={websites} />
+      ) : (
+      /* Hero: giant title with the featured website rising through it */
       <section className="relative bg-background-dark px-6 pb-28 pt-16 md:pb-36">
         <div aria-hidden="true" className="absolute left-1/2 top-32 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-primary-blue opacity-[0.16] blur-[140px]" />
         <div aria-hidden="true" className="absolute left-[8%] top-10 h-[360px] w-[360px] rounded-full bg-primary-cyan opacity-[0.12] blur-[110px]" />
@@ -125,6 +134,7 @@ const WebsitesPage = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Work: two staggered columns, one bold line each */}
       <section className="bg-page px-6 py-28 md:py-32">
