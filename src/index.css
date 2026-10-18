@@ -345,22 +345,17 @@ html.light .sheet-shadow {
 }
 
 /* Respect visitors who ask their system for less motion. */
-/* Websites page: scroll story (WebsitesStory.tsx). --intro and --p run 0 to 1. */
+/* Websites page: scroll story (WebsitesStory.tsx). Motion is written by script. */
 .story-stage {
-  --intro: 0;
-  --p: 0;
+  contain: paint;
 }
 .story-title {
-  opacity: calc(1 - var(--intro) * 1.5);
-  transform: translate3d(0, calc(var(--intro) * -16vh), 0) scale(calc(1 - var(--intro) * 0.18));
   transform-origin: 50% 30%;
 }
-.story-cue {
-  opacity: calc(1 - var(--intro) * 4);
-}
-
-.story-rail {
-  opacity: calc((var(--intro) - 0.55) * 2.4);
+.story-aurora {
+  background:
+    radial-gradient(500px 280px at 50% 52%, rgba(0, 123, 255, 0.16), transparent 70%),
+    radial-gradient(260px 260px at 14% 22%, rgba(0, 216, 255, 0.1), transparent 70%);
 }
 .story-scene {
   perspective: 2400px;
@@ -449,7 +444,6 @@ html.light .sheet-shadow {
     radial-gradient(1px 1px at 50% 42%, rgba(165, 240, 255, 0.3), transparent 60%),
     radial-gradient(1.5px 1.5px at 92% 30%, rgba(165, 240, 255, 0.35), transparent 60%);
   background-size: 520px 520px;
-  transform: translate3d(0, calc(var(--p) * -140px), 0);
   height: calc(100% + 160px);
   opacity: 0.8;
 }

@@ -66,6 +66,10 @@ const HOLDS = [
 const MOVES = ['swing', 'spin', 'dive', 'overhead', 'drop', 'bank', 'away', 'lid'] as const;
 const CUTS = new Set<string>(['spin', 'overhead', 'drop', 'lid']);
 
+/** A soft brand glow with a long, even falloff (no blur filter needed). */
+const glowOf = (c: string) =>
+  `radial-gradient(closest-side, color-mix(in srgb, ${c} 70%, transparent) 0%, color-mix(in srgb, ${c} 38%, transparent) 30%, color-mix(in srgb, ${c} 14%, transparent) 60%, color-mix(in srgb, ${c} 4%, transparent) 82%, transparent 100%)`;
+
 /** Laptop on the right for even sites (words on the left), left for odd ones. */
 const sideOf = (i: number) => (i % 2 === 0 ? 1 : -1);
 
@@ -77,6 +81,10 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
   const lidRef = useRef<HTMLDivElement>(null);
   const phoneRef = useRef<HTMLDivElement>(null);
   const auraRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const cueRef = useRef<HTMLParagraphElement>(null);
+  const specksRef = useRef<HTMLDivElement>(null);
+  const railRef = useRef<HTMLElement>(null);
   const screens = useRef<(HTMLDivElement | null)[]>([]);
   const phones = useRef<(HTMLDivElement | null)[]>([]);
   const texts = useRef<(HTMLDivElement | null)[]>([]);
@@ -98,25 +106,57 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
 
   useEffect(() => {
     const section = sectionRef.current;
-    const stage = stageRef.current;
-    if (!section || !stage) return;
+    if (!section) return;
     let frame = 0;
+    let lastTime = 0;
+    let current: number | null = null;
+
+    // Sizes are read once per resize, never in the middle of a frame's writes.
+    let sizes = { vw: window.innerWidth, sectionH: section.offsetHeight, rigW: rigRef.current?.offsetWidth ?? 0 };
+    const measure = () => {
+      sizes = { vw: window.innerWidth, sectionH: section.offsetHeight, rigW: rigRef.current?.offsetWidth ?? 0 };
+    };
+
+    // Only touch the DOM when a value really changes.
+    const last = new WeakMap<HTMLElement, Record<string, string>>();
+    const put = (el: HTMLElement | null | undefined, prop: string, value: string) => {
+      if (!el) return;
+      let seen = last.get(el);
+      if (!seen) last.set(el, (seen = {}));
+      if (seen[prop] === value) return;
+      seen[prop] = value;
+      if (prop.startsWith('--')) el.style.setProperty(prop, value);
+      else (el.style as unknown as Record<string, string>)[prop] = value;
+    };
 
     // Decode every screenshot up front so no screen flashes empty when it slides in.
     section.querySelectorAll('img').forEach((img) => {
       img.decode?.().catch(() => undefined);
     });
 
-    const update = () => {
+    const update = (time: number) => {
       frame = 0;
       const { vh, intro, per, tail } = geometry();
-      const vw = window.innerWidth;
+      const { vw, sectionH, rigW } = sizes;
       const wide = vw >= 1024;
-      const scrolled = -section.getBoundingClientRect().top;
+      const target = -section.getBoundingClientRect().top;
+
+      // Inertia: the story glides after the scroll instead of stepping with each
+      // wheel notch. About a tenth of a second to settle.
+      const dt = lastTime ? Math.min(64, time - lastTime) : 16.7;
+      lastTime = time;
+      if (current === null) current = target;
+      current += (target - current) * (1 - Math.pow(1 - 0.16, dt / 16.7));
+      if (Math.abs(target - current) < 0.3) current = target;
+      const scrolled = current;
 
       const introP = clamp(scrolled / intro);
-      stage.style.setProperty('--intro', introP.toFixed(4));
-      stage.style.setProperty('--p', clamp(scrolled / (section.offsetHeight - vh)).toFixed(4));
+      const prog = clamp(scrolled / (sectionH - vh));
+      put(titleRef.current, 'opacity', clamp(1 - introP * 1.5).toFixed(3));
+      put(titleRef.current, 'transform', `translate3d(0, ${(-introP * vh * 0.16).toFixed(1)}px, 0) scale(${(1 - introP * 0.18).toFixed(4)})`);
+      put(cueRef.current, 'opacity', clamp(1 - introP * 4).toFixed(3));
+      put(railRef.current, 'opacity', clamp((introP - 0.55) * 2.4).toFixed(3));
+      put(specksRef.current, 'transform', `translate3d(0, ${(-prog * 140).toFixed(1)}px, 0)`);
 
       // Hold on each site for the first part of its stretch, then move on.
       const f = clamp((scrolled - intro) / per, 0, n - 1);
@@ -207,19 +247,19 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
       const rig = rigRef.current;
       const body = bodyRef.current;
       const lid = lidRef.current;
-      if (rig) rig.style.transform = `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) scale(${p.s.toFixed(4)})`;
-      if (body) body.style.transform = `rotateX(${p.rx.toFixed(2)}deg) rotateY(${p.ry.toFixed(2)}deg) rotateZ(${p.rz.toFixed(2)}deg)`;
-      if (lid) lid.style.transform = `rotateX(${p.lid.toFixed(2)}deg)`;
-      if (auraRef.current) auraRef.current.style.transform = `translate3d(${(p.x * 0.7).toFixed(1)}px, 0, 0)`;
+      put(rig, 'transform', `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) scale(${p.s.toFixed(4)})`);
+      put(body, 'transform', `rotateX(${p.rx.toFixed(2)}deg) rotateY(${p.ry.toFixed(2)}deg) rotateZ(${p.rz.toFixed(2)}deg)`);
+      put(lid, 'transform', `rotateX(${p.lid.toFixed(2)}deg)`);
+      put(auraRef.current, 'transform', `translate3d(${(p.x * 0.7).toFixed(1)}px, 0, 0)`);
 
       // Phone stands in front of the laptop's inner corner, toward the words,
       // and crosses in front of the screen when the laptop changes side.
       if (phoneRef.current) {
         const side = p.x / (vw * 0.17 || 1);
         const show = clamp((introP - 0.75) * 4) * (1 - outro) * (1 - phoneFade);
-        const reach = (rig?.offsetWidth ?? 0) * 0.55;
-        phoneRef.current.style.transform = `translate3d(${(-side * reach).toFixed(1)}px, 0, 420px)`;
-        phoneRef.current.style.opacity = show.toFixed(3);
+        const reach = rigW * 0.55;
+        put(phoneRef.current, 'transform', `translate3d(${(-side * reach).toFixed(1)}px, 0, 420px)`);
+        put(phoneRef.current, 'opacity', show.toFixed(3));
       }
 
       const place = (els: (HTMLDivElement | null)[], pos: number) =>
@@ -227,13 +267,13 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
           if (!el) return;
           const d = i - pos;
           if (d >= 1 || d <= -1) {
-            el.style.visibility = 'hidden';
+            put(el, 'visibility', 'hidden');
             return;
           }
-          el.style.visibility = 'visible';
+          put(el, 'visibility', 'visible');
           // Incoming slides in from below; outgoing drifts up a little and dims.
-          el.style.transform = d > 0 ? `translate3d(0, ${(d * 100).toFixed(2)}%, 0)` : `translate3d(0, ${(d * 28).toFixed(2)}%, 0) scale(${(1 + d * 0.06).toFixed(4)})`;
-          el.style.setProperty('--dim', d < 0 ? (-d * 0.75).toFixed(3) : '0');
+          put(el, 'transform', d > 0 ? `translate3d(0, ${(d * 100).toFixed(2)}%, 0)` : `translate3d(0, ${(d * 28).toFixed(2)}%, 0) scale(${(1 + d * 0.06).toFixed(4)})`);
+          put(el, '--dim', d < 0 ? (-d * 0.75).toFixed(3) : '0');
         });
       // Cut moves swap the screen in one go while it is out of sight.
       const cutPos = base + (t >= 0.5 ? 1 : 0);
@@ -244,13 +284,18 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
         if (!el) return;
         const d = i - s;
         const a = clamp(1 - Math.abs(d) * 2.2) * clamp((introP - 0.6) * 2.5) * (1 - outro) * (1 - wordsFade);
-        el.style.opacity = a.toFixed(3);
-        el.style.transform = `translate3d(0, ${(d * 60).toFixed(1)}px, 0)`;
-        el.style.visibility = a <= 0.001 ? 'hidden' : 'visible';
-        el.style.pointerEvents = a > 0.5 ? 'auto' : 'none';
+        if (a <= 0.001) {
+          put(el, 'visibility', 'hidden');
+          put(el, 'opacity', '0');
+          return;
+        }
+        put(el, 'visibility', 'visible');
+        put(el, 'opacity', a.toFixed(3));
+        put(el, 'transform', `translate3d(0, ${(d * 60).toFixed(1)}px, 0)`);
+        put(el, 'pointerEvents', a > 0.5 ? 'auto' : 'none');
       });
       glows.current.forEach((el, i) => {
-        if (el) el.style.opacity = (clamp(1 - Math.abs(i - s)) * 0.5 * introP * (1 - outro * 0.6)).toFixed(3);
+        put(el, 'opacity', (clamp(1 - Math.abs(i - s)) * 0.6 * introP * (1 - outro * 0.6)).toFixed(2));
       });
 
       const now = Math.round(s);
@@ -258,16 +303,24 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
         activeRef.current = now;
         setActive(now);
       }
+
+      // Keep gliding until the story has caught up with the scroll.
+      if (current !== target && !frame) frame = requestAnimationFrame(update);
+      else if (current === target) lastTime = 0;
     };
     const request = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
-    update();
+    const onResize = () => {
+      measure();
+      request();
+    };
+    update(performance.now());
     window.addEventListener('scroll', request, { passive: true });
-    window.addEventListener('resize', request);
+    window.addEventListener('resize', onResize);
     return () => {
       window.removeEventListener('scroll', request);
-      window.removeEventListener('resize', request);
+      window.removeEventListener('resize', onResize);
       cancelAnimationFrame(frame);
     };
     // geometry reads refs only; n is fixed for the page's life.
@@ -293,22 +346,21 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
     >
       <div ref={stageRef} className="story-stage sticky top-0 h-[100svh] overflow-hidden">
         {/* Atmosphere: cool aurora, the active brand's glow (follows the laptop), drifting ice specks */}
-        <div aria-hidden="true" className="absolute left-1/2 top-[30%] h-[560px] w-[1000px] -translate-x-1/2 rounded-full bg-primary-blue opacity-[0.16] blur-[140px]" />
-        <div aria-hidden="true" className="absolute left-[6%] top-[8%] h-[380px] w-[380px] rounded-full bg-primary-cyan opacity-[0.11] blur-[110px]" />
+        <div aria-hidden="true" className="story-aurora absolute inset-0" />
         <div ref={auraRef} aria-hidden="true" className="absolute inset-0 will-change-transform">
           {sites.map((site, i) => (
             <div
               key={site.slug}
               ref={(el) => (glows.current[i] = el)}
-              className="absolute left-1/2 top-[14%] h-[34vh] w-[70vw] -translate-x-1/2 rounded-full opacity-0 blur-[90px] lg:top-[16%] lg:h-[520px] lg:w-[620px] lg:blur-[130px]"
-              style={{ background: site.glow === '#ffffff' ? site.stage : site.glow }}
+              className="absolute left-1/2 top-[4%] h-[56vh] w-[110vw] -translate-x-1/2 opacity-0 will-change-[opacity] lg:top-[2%] lg:h-[880px] lg:w-[1000px]"
+              style={{ background: glowOf(site.glow === '#ffffff' ? site.stage : site.glow) }}
             />
           ))}
         </div>
-        <div aria-hidden="true" className="story-specks absolute inset-0" />
+        <div ref={specksRef} aria-hidden="true" className="story-specks absolute inset-0 will-change-transform" />
 
         {/* Opening title */}
-        <div className="story-title pointer-events-none absolute inset-x-0 top-[22%] z-20 px-6 text-center lg:top-[16%]">
+        <div ref={titleRef} className="story-title will-change-transform pointer-events-none absolute inset-x-0 top-[22%] z-20 px-6 text-center lg:top-[16%]">
           <p className="mb-4 text-lg text-muted">
             Websites for businesses that want to be <span className="font-semibold text-ink">seen, trusted and chosen.</span>
           </p>
@@ -322,7 +374,7 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
           >
             Websites
           </h1>
-          <p className="story-cue mt-10 text-sm font-semibold tracking-wider text-subtle">
+          <p ref={cueRef} className="story-cue mt-10 text-sm font-semibold tracking-wider text-subtle">
             {pad(n)} SITES · SCROLL TO OPEN
           </p>
         </div>
@@ -432,7 +484,7 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
         ))}
 
         {/* Rail: jump to any site */}
-        <nav aria-label="Jump to a website" className="story-rail absolute right-3 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-2.5 md:flex lg:right-5">
+        <nav ref={railRef} aria-label="Jump to a website" style={{ opacity: 0 }} className="story-rail absolute right-3 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-2.5 md:flex lg:right-5">
           {sites.map((site, i) => (
             <button
               key={site.slug}
