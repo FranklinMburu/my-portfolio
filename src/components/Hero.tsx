@@ -1,17 +1,12 @@
 import { ArrowRight, Download, Mail } from 'lucide-react';
+import Link from './Link';
+import { CV_PATH, CV_FILENAME } from '../data/site';
 import SkillsSection from './SkillsSection';
 import { projects } from '../data/projects';
 
 const Hero = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-background-dark px-4 sm:px-6 md:px-8">
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-background-dark px-4 sm:px-6 md:px-8 pt-24 pb-24 md:pt-20 md:pb-16">
       <div className="absolute inset-0 bg-gradient-to-br from-background-dark via-background-dark to-accent-purple/20"></div>
 
       <div className="absolute inset-0 opacity-20 hidden sm:block">
@@ -52,36 +47,30 @@ const Hero = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
-            onClick={() => scrollToSection('projects')}
+          <Link
+            to="/projects"
             className="group px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary-cyan to-primary-blue rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-primary-cyan/50 transition-all duration-300 flex items-center space-x-2 hover:-translate-y-1"
           >
             <span>View Projects</span>
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
 
-          <button
-            onClick={() => {
-              const link = document.createElement('a');
-              link.href = '/assets/images/Franklin_Mburu_Kamande_Backend_Developer_CV.pdf';
-              link.download = 'Franklin_Mburu_Kamande_Backend_Developer_CV.pdf';
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-            }}
+          <a
+            href={CV_PATH}
+            download={CV_FILENAME}
             className="px-4 sm:px-6 py-2 sm:py-3 bg-background-dark/50 backdrop-blur-sm rounded-lg font-semibold text-text-white border border-background-dark hover:border-primary-cyan hover:bg-background-dark/70 transition-all duration-300 flex items-center space-x-2 hover:-translate-y-1"
           >
             <Download className="w-4 h-4 sm:w-5 sm:h-5" />
             <span>Download CV</span>
-          </button>
+          </a>
 
-          <button
-            onClick={() => scrollToSection('contact')}
+          <Link
+            to="/contact"
             className="px-4 sm:px-6 py-2 sm:py-3 bg-background-dark/50 backdrop-blur-sm rounded-lg font-semibold text-text-white border border-background-dark hover:border-accent-purple hover:bg-background-dark/70 transition-all duration-300 flex items-center space-x-2 hover:-translate-y-1"
           >
             <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
             <span>Contact Me</span>
-          </button>
+          </Link>
         </div>
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-md sm:max-w-lg md:max-w-2xl mx-auto">
@@ -102,11 +91,15 @@ const Hero = () => {
         <SkillsSection />
       </div>
 
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <a
+        href="#featured"
+        aria-label="Scroll to featured work"
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce"
+      >
         <div className="w-5 h-8 border-2 border-text-gray rounded-full flex items-start justify-center p-1">
           <div className="w-1 h-2 bg-primary-cyan rounded-full animate-scroll"></div>
         </div>
-      </div>
+      </a>
     </section>
   );
 };

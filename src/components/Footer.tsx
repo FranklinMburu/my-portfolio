@@ -1,4 +1,6 @@
 import { Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import Link from './Link';
+import { navItems, CV_PATH, CV_FILENAME } from '../data/site';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,7 +13,7 @@ const Footer = () => {
   return (
     <footer className="bg-section/50 backdrop-blur-lg border-t border-line/60">
       <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-2xl font-bold bg-gradient-to-r from-primary-cyan to-primary-blue bg-clip-text text-transparent mb-4">
               Franklin Mburu
@@ -19,6 +21,24 @@ const Footer = () => {
             <p className="text-muted text-sm leading-relaxed">
               Applied AI Engineer & Full-Stack Developer building intelligent systems that deliver real-world impact.
             </p>
+          </div>
+
+          <div>
+            <h4 className="text-ink font-semibold mb-4">Pages</h4>
+            <ul className="space-y-3">
+              {navItems.map((item) => (
+                <li key={item.to}>
+                  <Link to={item.to} className="text-muted hover:text-primary-cyan transition-colors text-sm">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <a href={CV_PATH} download={CV_FILENAME} className="text-muted hover:text-primary-cyan transition-colors text-sm">
+                  Download CV
+                </a>
+              </li>
+            </ul>
           </div>
 
           <div>

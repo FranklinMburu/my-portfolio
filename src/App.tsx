@@ -1,15 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Education from './components/Education';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import ProjectsPage from './pages/ProjectsPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import NotFoundPage from './pages/NotFoundPage';
+import { navigate, usePath, useScrollOnRouteChange } from './lib/router';
+import { legacyHashRoutes } from './data/site';
+
+const routes: Record<string, () => JSX.Element> = {
+  '/': HomePage,
+  '/projects': ProjectsPage,
+  '/about': AboutPage,
+  '/contact': ContactPage
+};
 
 function App() {
+  const path = usePath();
+
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     try {
       return localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
@@ -28,21 +37,31 @@ function App() {
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
+  // Links shared before the multi-page site (e.g. /#projects) go to their new page.
+  useLayoutEffect(() => {
+    const target = path === '/' ? legacyHashRoutes[window.location.hash] : undefined;
+    if (target && target !== '/') navigate(target, { replace: true });
+  }, [path]);
+
+  useScrollOnRouteChange(path);
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
+  const Page = routes[path] ?? NotFoundPage;
+
   return (
-    <div className={`bg-page text-ink transition-colors duration-300`}>
-      <Header theme={theme} toggleTheme={toggleTheme} />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Education />
-        <Contact />
+    <div className="bg-page text-ink transition-colors duration-300">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-glass focus:text-ink"
+      >
+        Skip to content
+      </a>
+      <Header theme={theme} toggleTheme={toggleTheme} path={path} />
+      <main id="main">
+        <Page />
       </main>
       <Footer />
     </div>
