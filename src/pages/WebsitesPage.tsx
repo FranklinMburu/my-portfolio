@@ -112,7 +112,7 @@ const WebsitesPage = () => {
             aria-label={`${featured.client}: view website`}
           >
             <BrowserFrame
-              url={featured.url && featured.url !== '#' ? featured.url.replace(/^https?:\/\//, '') : '[client-website].co.ke'}
+              url={featured.displayUrl ?? featured.url?.replace(/^https?:\/\//, '')}
               className="shadow-[0_40px_120px_-20px_rgba(0,123,255,0.55)]"
             >
               <div className="h-[260px] transition-transform duration-700 ease-out group-hover:scale-[1.03] sm:h-[400px] lg:h-[520px]">
@@ -134,6 +134,7 @@ const WebsitesPage = () => {
       {/* Work: two staggered columns, one bold line each */}
       <section className="bg-page px-6 py-28 md:py-32">
         <div className="mx-auto max-w-[1240px]">
+          {websiteCategories.length > 2 && (
           <div className="mb-16 flex flex-wrap gap-3 md:mb-20" role="group" aria-label="Filter websites">
             {websiteCategories.map((item) => (
               <button
@@ -148,6 +149,7 @@ const WebsitesPage = () => {
               </button>
             ))}
           </div>
+          )}
 
           {rest.length === 0 ? (
             <p className="py-16 text-center text-lg text-muted">More {category.toLowerCase()} work coming soon.</p>

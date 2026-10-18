@@ -14,7 +14,7 @@ export const DesktopShot = ({ site, className = '' }: { site: Website; className
 /** The website's phone screenshot, or its drawn stand-in. */
 export const PhoneShot = ({ site, alt = false }: { site: Website; alt?: boolean }) =>
   site.mobileImage ? (
-    <img src={site.mobileImage} alt={`${site.client} website on a phone`} className="h-full w-full object-cover object-top" loading="lazy" />
+    <img src={alt && site.mobileImage2 ? site.mobileImage2 : site.mobileImage} alt={`${site.client} website on a phone`} className="h-full w-full object-cover object-top" loading="lazy" />
   ) : (
     <div className="h-full w-full" aria-hidden="true">
       <PhoneMock variant={site.mock} alt={alt} />

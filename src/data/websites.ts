@@ -1,12 +1,15 @@
 import type { MockVariant } from '../components/websites/SiteMock';
 
 /**
- * Client websites shown on the /websites gallery.
+ * Websites shown on the /websites gallery.
  *
- * Every entry below is a PLACEHOLDER (placeholder: true) until it is replaced
- * with a real website: set the real client, statement, year, url and add
- * screenshots (image = desktop, mobileImage = phone) in /public/assets/websites/.
- * When `image` is set the screenshot is shown; otherwise the drawn mock is used.
+ * The three entries below are CONCEPT sites: real, working websites designed and
+ * built by Franklin for fictional businesses. They are labelled "Concept" on the
+ * page. The sites themselves live in /public/concepts/<slug>/ and their
+ * screenshots in /public/assets/websites/<slug>/.
+ *
+ * To add client work: add an entry with status 'Live', the real client name,
+ * url and screenshots. Client work should go above the concepts.
  */
 
 export type WebsiteCategory = 'Business' | 'Landing page' | 'Web app';
@@ -14,20 +17,27 @@ export type WebsiteCategory = 'Business' | 'Landing page' | 'Web app';
 export interface Website {
   slug: string;
   client: string;
-  /** One bold line: what the website does for the client. */
+  /** One bold line: what the website does. */
   statement: string;
   category: WebsiteCategory;
   year: string;
   status: 'Live' | 'Concept';
+  /** Link to the working site. Concept sites are served from /concepts/. */
   url?: string;
+  /** What the browser bar shows in screenshots. */
+  displayUrl?: string;
   role: string;
   location?: string;
   /** One sentence for the detail page. */
   summary: string;
+  /** Desktop screenshot. */
   image?: string;
+  /** Phone screenshots. */
   mobileImage?: string;
+  mobileImage2?: string;
+  /** More desktop screenshots for the detail page. */
   gallery?: string[];
-  /** Drawn stand-in used while there is no screenshot. */
+  /** Drawn stand-in used when there is no screenshot. */
   mock: MockVariant;
   /** Backdrop colour of the tile ("product shot" stage). */
   stage: string;
@@ -37,90 +47,75 @@ export interface Website {
   phoneFirst?: boolean;
   tilt?: number;
   featured?: boolean;
-  placeholder?: boolean;
 }
+
+const shots = (slug: string) => ({
+  image: `/assets/websites/${slug}/desktop.webp`,
+  mobileImage: `/assets/websites/${slug}/mobile.webp`,
+  mobileImage2: `/assets/websites/${slug}/mobile-2.webp`,
+  gallery: [2, 3, 4].map((n) => `/assets/websites/${slug}/page-${n}.webp`)
+});
 
 export const websites: Website[] = [
   {
-    slug: 'example-hospitality',
-    client: '[Client name]',
-    statement: '[One line on what the website does for them]',
+    slug: 'keja',
+    client: 'Keja',
+    statement: 'A property agency where the home rises through the clouds as you scroll.',
     category: 'Business',
-    year: '[Year]',
-    status: 'Live',
-    url: '#',
+    year: '2026',
+    status: 'Concept',
+    url: '/concepts/keja/index.html',
+    displayUrl: 'concepts/keja',
     role: 'Design + build',
-    location: '[City]',
-    summary: '[One sentence: what the business needed, and what the website now does for them.]',
-    mock: 'warm',
-    stage: '#1c140f',
-    glow: '#f59e0b',
-    featured: true,
-    placeholder: true
-  },
-  {
-    slug: 'example-launch',
-    client: '[Client name]',
-    statement: '[One line: a launch page that turned visitors into sign-ups]',
-    category: 'Landing page',
-    year: '[Year]',
-    status: 'Live',
-    url: '#',
-    role: 'Build',
-    summary: '[One sentence: what the business needed, and what the website now does for them.]',
+    location: 'Nairobi',
+    summary:
+      'A concept site for a Nairobi property agency: a scroll-driven hero, a search panel, listings and neighbourhood guides, built to feel calm and trustworthy.',
+    ...shots('keja'),
     mock: 'saas',
-    stage: '#0d1b3e',
-    glow: '#007bff',
-    tilt: -3,
-    placeholder: true
+    stage: '#bcd6ee',
+    glow: '#ffffff',
+    featured: true
   },
   {
-    slug: 'example-mobile-first',
-    client: '[Client name]',
-    statement: '[One line: a business site built for customers on their phones]',
+    slug: 'ember-and-salt',
+    client: 'Ember & Salt',
+    statement: 'An open-fire restaurant whose name you scroll straight through, into the flames.',
     category: 'Business',
-    year: '[Year]',
-    status: 'Live',
-    url: '#',
+    year: '2026',
+    status: 'Concept',
+    url: '/concepts/ember-and-salt/index.html',
+    displayUrl: 'concepts/ember-and-salt',
     role: 'Design + build',
-    summary: '[One sentence: what the business needed, and what the website now does for them.]',
-    mock: 'teal',
-    stage: '#042f2c',
-    glow: '#14b8a6',
-    phoneFirst: true,
-    placeholder: true
+    location: 'Nairobi',
+    summary:
+      'A concept site for an open-fire restaurant in Westlands: a scroll-driven hero, a menu that reads like the real thing, and booking in one line.',
+    ...shots('ember-and-salt'),
+    mock: 'warm',
+    stage: '#1b1410',
+    glow: '#f26a21',
+    tilt: -2.5
   },
   {
-    slug: 'example-premium-brand',
-    client: '[Client name]',
-    statement: '[One line: a premium brand that finally looks the part online]',
+    slug: 'nguvu',
+    client: 'Nguvu',
+    statement: 'A strength studio with classes that slide past as you scroll.',
     category: 'Business',
-    year: '[Year]',
-    status: 'Live',
-    url: '#',
+    year: '2026',
+    status: 'Concept',
+    url: '/concepts/nguvu/index.html',
+    displayUrl: 'concepts/nguvu',
     role: 'Design + build',
-    summary: '[One sentence: what the business needed, and what the website now does for them.]',
-    mock: 'gold',
-    stage: '#1a1305',
-    glow: '#d6b56d',
-    placeholder: true
-  },
-  {
-    slug: 'example-web-app',
-    client: '[Client name]',
-    statement: '[One line: a web app that replaced their spreadsheets]',
-    category: 'Web app',
-    year: '[Year]',
-    status: 'Live',
-    url: '#',
-    role: 'Build',
-    summary: '[One sentence: what the business needed, and what the website now does for them.]',
+    location: 'Nairobi',
+    summary:
+      'A concept site for a strength studio in Kilimani: bold type, black-and-white photography, a pinned class strip, the weekly timetable and plain-spoken pricing.',
+    ...shots('nguvu'),
     mock: 'dashboard',
-    stage: '#0b1220',
-    glow: '#22c55e',
-    tilt: 2.5,
-    placeholder: true
+    stage: '#2747f5',
+    glow: '#9fb0ff',
+    phoneFirst: true
   }
 ];
 
-export const websiteCategories: Array<'All' | WebsiteCategory> = ['All', 'Business', 'Landing page', 'Web app'];
+/** Only the categories that have websites, so filters never lead to an empty page. */
+const usedCategories = Array.from(new Set(websites.map((site) => site.category)));
+export const websiteCategories: Array<'All' | WebsiteCategory> = ['All', ...usedCategories];

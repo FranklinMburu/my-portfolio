@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ember &amp; Salt — Open-fire kitchen, Westlands, Nairobi</title>
+  <meta name="description" content="An open-fire kitchen in Westlands, Nairobi. Everything is cooked over acacia charcoal. A concept website by Franklin Mburu Kamande.">
+  <meta name="theme-color" content="#1B1410">
+  <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="images/hero-fire.webp" as="image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231B1410'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-style='italic' fill='%23F26A21'%3E%26amp;%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" aria-label="Ember and Salt, back to top">Ember <i>&amp;</i> Salt</a>
+    <nav aria-label="Main">
+      <ul class="nav__links">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#fire">The fire</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--small" href="#book">Book a table</a>
+  </header>
+
+  <main id="main">
+    <!-- Hero: the name is filled with fire; scrolling dives through it -->
+    <section class="hero" id="top" aria-label="Ember and Salt">
+      <div class="hero__stage">
+        <img class="hero__photo" src="images/hero-fire.webp" alt="Flames rising behind a grill loaded with meat over glowing charcoal" width="1800" height="2700">
+        <div class="hero__shade" aria-hidden="true"></div>
+        <h1 class="hero__title">
+          <span class="hero__word">Ember</span>
+          <span class="hero__word hero__word--amp"><i>&amp;</i> Salt</span>
+        </h1>
+        <p class="hero__line">An open-fire kitchen in Westlands, Nairobi</p>
+        <p class="hero__after">Everything here meets the fire.</p>
+        <span class="hero__cue" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <section class="intro" aria-labelledby="intro-heading">
+      <h2 id="intro-heading" class="intro__text">
+        Beef, goat, tilapia, maize and plantain, cooked over acacia charcoal by people who know when to leave it alone.
+      </h2>
+      <div class="intro__meta">
+        <p>One open kitchen. One long fire. A short menu that changes with the market at Wakulima.</p>
+        <a class="link" href="#menu">See tonight's menu</a>
+      </div>
+    </section>
+
+    <section class="menu" id="menu" aria-labelledby="menu-heading">
+      <div class="menu__photo">
+        <img src="images/dish-shank.webp" alt="Slow-roasted goat shoulder on the bone in a dark bowl" width="1200" height="798" loading="lazy">
+      </div>
+      <div class="menu__list">
+        <h2 id="menu-heading" class="section-title">Tonight's fire</h2>
+        <ul class="dishes">
+          <li class="dish">
+            <h3 class="dish__name">Goat shoulder, twelve hours over coals</h3>
+            <p class="dish__desc">Kachumbari, flatbread from the ashes</p>
+            <p class="dish__price"><span class="sr-only">Price: </span>2,400</p>
+          </li>
+          <li class="dish">
+            <h3 class="dish__name">Whole tilapia, lime and pili pili</h3>
+            <p class="dish__desc">From Lake Victoria, grilled in a banana leaf</p>
+            <p class="dish__price"><span class="sr-only">Price: </span>1,900</p>
+          </li>
+          <li class="dish">
+            <h3 class="dish__name">Bone marrow, mukimo crumbs</h3>
+            <p class="dish__desc">Roasted split bones, toasted maize and greens</p>
+            <p class="dish__price"><span class="sr-only">Price: </span>1,200</p>
+          </li>
+          <li class="dish">
+            <h3 class="dish__name">Flame-charred sukuma</h3>
+            <p class="dish__desc">Garlic, smoked salt, a little brown butter</p>
+            <p class="dish__price"><span class="sr-only">Price: </span>650</p>
+          </li>
+          <li class="dish">
+            <h3 class="dish__name">Plantain roasted in its skin</h3>
+            <p class="dish__desc">Honey butter, toasted sesame</p>
+            <p class="dish__price"><span class="sr-only">Price: </span>700</p>
+          </li>
+          <li class="dish">
+            <h3 class="dish__name">Ember-roasted pineapple</h3>
+            <p class="dish__desc">Chilli caramel, coconut cream</p>
+            <p class="dish__price"><span class="sr-only">Price: </span>800</p>
+          </li>
+        </ul>
+        <p class="menu__note">Prices in Kenyan shillings. Ask us what came off the fire last.</p>
+      </div>
+    </section>
+
+    <section class="fire" id="fire" aria-labelledby="fire-heading">
+      <h2 id="fire-heading" class="fire__title">The fire</h2>
+      <div class="fire__grid">
+        <figure class="fire__item fire__item--tall">
+          <img src="images/coals.webp" alt="Meat searing on a grill over glowing charcoal" width="1200" height="1798" loading="lazy">
+          <figcaption>Acacia charcoal, lit at three every afternoon.</figcaption>
+        </figure>
+        <figure class="fire__item fire__item--mid">
+          <img src="images/dish-red.webp" alt="A plated dish of charred tomatoes and fresh flowers" width="1200" height="1800" loading="lazy">
+          <figcaption>Tomatoes blistered on the edge of the coals.</figcaption>
+        </figure>
+        <figure class="fire__item fire__item--low">
+          <img src="images/chef-flame.webp" alt="A cook working beside tall flames in the open kitchen" width="1200" height="1658" loading="lazy">
+          <figcaption>No gas, no shortcuts.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="room" aria-labelledby="room-heading">
+      <div class="room__photo">
+        <img src="images/kitchen.webp" alt="The open kitchen with the fire burning behind the counter" width="1400" height="788" loading="lazy">
+      </div>
+      <div class="room__text">
+        <h2 id="room-heading" class="section-title">Sit at the fire</h2>
+        <p>Eight seats face the hearth. You watch your dinner cook, you talk to the people cooking it, and you leave smelling faintly of woodsmoke.</p>
+        <p>The dining room behind is quieter, for long tables and slow evenings.</p>
+      </div>
+      <div class="room__side">
+        <img src="images/interior.webp" alt="Warm, wood-panelled dining room lit by candles" width="1600" height="2400" loading="lazy">
+        <img src="images/cocktail.webp" alt="A smoked dawa cocktail on a wooden bar" width="1000" height="1333" loading="lazy">
+      </div>
+    </section>
+
+    <section class="visit" id="visit" aria-labelledby="visit-heading">
+      <h2 id="visit-heading" class="section-title">Visit</h2>
+      <dl class="visit__facts">
+        <div><dt>Where</dt><dd>Westlands, Nairobi</dd></div>
+        <div><dt>Dinner</dt><dd>Tuesday to Sunday, 5pm until late</dd></div>
+        <div><dt>Lunch</dt><dd>Saturday and Sunday, 12pm to 4pm</dd></div>
+        <div><dt>Closed</dt><dd>Mondays, while the hearth is cleaned</dd></div>
+      </dl>
+    </section>
+
+    <section class="book" id="book" aria-labelledby="book-heading">
+      <h2 id="book-heading" class="book__title">Book a table</h2>
+      <form class="book__form" id="book-form" novalidate>
+        <label>Date<input type="date" name="date" required></label>
+        <label>Time
+          <select name="time" required>
+            <option value="">Choose a time</option>
+            <option>17:30</option><option>18:30</option><option>19:30</option><option>20:30</option><option>21:30</option>
+          </select>
+        </label>
+        <label>Guests
+          <select name="guests" required>
+            <option value="">How many?</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+          </select>
+        </label>
+        <label>Name<input type="text" name="name" autocomplete="name" required></label>
+        <button class="btn" type="submit">Book a table</button>
+        <p class="book__status" id="book-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__brand">Ember <i>&amp;</i> Salt</p>
+    <p class="footer__note">
+      Ember &amp; Salt is a fictional restaurant. This concept website was designed and built by
+      <a href="https://franklins-portfolio-v1.vercel.app/">Franklin Mburu Kamande</a>.
+      Photography from Unsplash.
+    </p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

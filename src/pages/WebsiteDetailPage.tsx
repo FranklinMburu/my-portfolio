@@ -15,7 +15,8 @@ const WebsiteDetailPage = ({ slug }: { slug: string }) => {
   if (!site) return <NotFoundPage />;
 
   const next = websites[(index + 1) % websites.length];
-  const hasLiveLink = site.url && site.url !== '#';
+  const hasLiveLink = Boolean(site.url && site.url !== '#');
+  const linkLabel = site.status === 'Concept' ? 'Open the site' : 'Visit live site';
   const facts = [site.category === 'Business' ? 'Business website' : site.category, site.location, site.year, site.role].filter(Boolean);
 
   return (
@@ -46,7 +47,7 @@ const WebsiteDetailPage = ({ slug }: { slug: string }) => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 rounded-full bg-gradient-hero px-7 py-4 font-semibold text-white shadow-[0_10px_34px_rgba(0,216,255,0.32)] transition-transform hover:-translate-y-1"
               >
-                Visit live site
+                {linkLabel}
                 <ArrowUpRight className="h-4 w-4" />
               </a>
             )}
@@ -58,7 +59,7 @@ const WebsiteDetailPage = ({ slug }: { slug: string }) => {
       <section className="bg-background-dark px-6 pb-24 pt-4">
         <div className="animate-rise-late mx-auto max-w-[1240px]">
           <BrowserFrame
-            url={hasLiveLink ? site.url!.replace(/^https?:\/\//, '') : '[client-website].co.ke'}
+            url={site.displayUrl ?? site.url?.replace(/^https?:\/\//, '')}
             light={site.mock === 'saas'}
             className="shadow-[0_0_90px_-14px_rgba(0,123,255,0.35)]"
           >

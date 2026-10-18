@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keja — Homes in Nairobi, found properly</title>
+  <meta name="description" content="Keja helps you buy or rent a home in Nairobi without six months of weekend viewings. A concept website by Franklin Mburu Kamande.">
+  <meta name="theme-color" content="#BCD6EE">
+  <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="images/clouds.webp" as="image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E1B2C'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-size='34' font-weight='900' fill='%23BCD6EE'%3EK%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" aria-label="Keja, back to top">KEJA</a>
+    <nav aria-label="Main">
+      <ul class="nav__links">
+        <li><a href="#homes">Homes</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#areas">Areas</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--small" href="#talk">Talk to an agent</a>
+  </header>
+
+  <main id="main">
+    <!-- Hero: KEJA over the clouds; a home rises through the letters -->
+    <section class="hero" id="top" aria-label="Keja">
+      <div class="hero__stage">
+        <img class="hero__sky" src="images/clouds.webp" alt="" width="1800" height="1200">
+        <h1 class="hero__word hero__word--solid">KEJA</h1>
+        <div class="hero__home">
+          <img src="images/hero-villa.webp" alt="A white modern villa under a deep blue sky" width="1800" height="881">
+        </div>
+        <p class="hero__word hero__word--outline" aria-hidden="true">KEJA</p>
+        <p class="hero__lead">Homes in Nairobi, found properly.</p>
+        <a class="hero__cta btn" href="#find">Start your search</a>
+      </div>
+    </section>
+
+    <section class="find" id="find" aria-labelledby="find-heading">
+      <h2 id="find-heading" class="find__title">What are you looking for?</h2>
+      <form class="find__form" id="find-form">
+        <fieldset class="find__mode">
+          <legend class="sr-only">Buy or rent</legend>
+          <label><input type="radio" name="mode" value="buy" checked><span>Buy</span></label>
+          <label><input type="radio" name="mode" value="rent"><span>Rent</span></label>
+        </fieldset>
+        <label class="find__field">Area
+          <select name="area">
+            <option>All areas</option>
+            <option>Karen</option><option>Runda</option><option>Lavington</option>
+            <option>Kilimani</option><option>Kileleshwa</option><option>Westlands</option>
+          </select>
+        </label>
+        <label class="find__field">Bedrooms
+          <select name="beds">
+            <option>Any</option><option>1+</option><option>2+</option><option>3+</option><option>4+</option>
+          </select>
+        </label>
+        <button class="btn" type="submit">Show homes</button>
+        <p class="find__status" id="find-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="statement" aria-labelledby="statement-heading">
+      <h2 id="statement-heading" class="statement__text">Finding a home in Nairobi shouldn't take six months of weekend viewings.</h2>
+      <p class="statement__body">Keja agents live in the areas they sell. We visit every home before you do, tell you what the listing leaves out, and only show you the ones worth your Saturday.</p>
+    </section>
+
+    <section class="how" id="how" aria-labelledby="how-heading">
+      <h2 id="how-heading" class="section-title">How it works</h2>
+      <ol class="steps">
+        <li class="step">
+          <h3>Tell us how you live</h3>
+          <p>Your commute, your budget, school runs, whether you need a garden for the dog. Twenty minutes on the phone.</p>
+        </li>
+        <li class="step">
+          <h3>We visit first</h3>
+          <p>An agent walks every shortlisted home, checks the water, the power backup and the road in the rain.</p>
+        </li>
+        <li class="step">
+          <h3>You view three, not thirty</h3>
+          <p>One morning, three homes that fit. We handle the offer, the lawyer and the keys.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="homes" id="homes" aria-labelledby="homes-heading">
+      <div class="homes__head">
+        <h2 id="homes-heading" class="section-title">On the market this week</h2>
+        <p class="homes__note">Every one visited by a Keja agent.</p>
+      </div>
+      <ul class="listings">
+        <li class="listing listing--wide">
+          <img src="images/pool-villa.webp" alt="Long single-storey villa with a pool and glass walls" width="1400" height="788" loading="lazy">
+          <div class="listing__info">
+            <h3>Karen, five-bedroom villa</h3>
+            <p>Half an acre, pool, solar backup</p>
+            <p class="listing__price">KSh 145,000,000</p>
+          </div>
+        </li>
+        <li class="listing">
+          <img src="images/palm-house.webp" alt="Modern house with wooden panels behind palm trees" width="1200" height="800" loading="lazy">
+          <div class="listing__info">
+            <h3>Runda, four-bedroom home</h3>
+            <p>Gated community with a mature garden</p>
+            <p class="listing__price">KSh 98,000,000</p>
+          </div>
+        </li>
+        <li class="listing">
+          <img src="images/hillside.webp" alt="White house with deep balconies on a green hillside" width="1200" height="1800" loading="lazy">
+          <div class="listing__info">
+            <h3>Lavington, townhouse</h3>
+            <p>Three bedrooms and a rooftop terrace</p>
+            <p class="listing__price">KSh 450,000 a month</p>
+          </div>
+        </li>
+        <li class="listing">
+          <img src="images/white-house.webp" alt="Corner of a white modern building against a blue sky" width="1200" height="1800" loading="lazy">
+          <div class="listing__info">
+            <h3>Kilimani, two-bedroom apartment</h3>
+            <p>Eighth floor, with a gym and lift</p>
+            <p class="listing__price">KSh 180,000 a month</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="inside" aria-labelledby="inside-heading">
+      <h2 id="inside-heading" class="inside__title">Walk in before you drive over.</h2>
+      <p class="inside__body">Every listing comes with a full photo walk-through and a short video from the agent who visited.</p>
+      <div class="inside__strip">
+        <img src="images/living.webp" alt="Living room with a green sofa and floor-to-ceiling windows" width="1200" height="1500" loading="lazy">
+        <img src="images/kitchen.webp" alt="Warmly lit open-plan kitchen and lounge" width="1200" height="675" loading="lazy">
+        <img src="images/lounge.webp" alt="Bright lounge with marble wall and garden view" width="1200" height="800" loading="lazy">
+      </div>
+    </section>
+
+    <section class="areas" id="areas" aria-labelledby="areas-heading">
+      <div class="areas__photo">
+        <img src="images/nairobi-park.webp" alt="Nairobi skyline seen across the grassland of the national park" width="1800" height="1013" loading="lazy">
+        <h2 id="areas-heading" class="areas__title">Nairobi, street by street</h2>
+      </div>
+      <dl class="areas__list">
+        <div><dt>Karen</dt><dd>Space, quiet, and big gardens near the forest.</dd></div>
+        <div><dt>Runda</dt><dd>Gated, green and close to the embassies.</dd></div>
+        <div><dt>Lavington</dt><dd>Leafy streets, good schools, ten minutes to town.</dd></div>
+        <div><dt>Kilimani</dt><dd>Apartments, cafés and an easy commute.</dd></div>
+        <div><dt>Kileleshwa</dt><dd>Calm residential blocks with city views.</dd></div>
+        <div><dt>Westlands</dt><dd>Walk to work, restaurants and the malls.</dd></div>
+      </dl>
+    </section>
+
+    <section class="talk" id="talk" aria-labelledby="talk-heading">
+      <img class="talk__bg" src="images/nairobi-city.webp" alt="" width="1400" height="787" loading="lazy">
+      <div class="talk__panel">
+        <h2 id="talk-heading" class="talk__title">Talk to an agent</h2>
+        <p>Tell us where you'd like to live. An agent who knows the area will call you back the same day.</p>
+        <form class="talk__form" id="talk-form" novalidate>
+          <label>Your name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Email<input type="email" name="email" autocomplete="email" required></label>
+          <button class="btn" type="submit">Ask for a call</button>
+          <p class="talk__status" id="talk-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__brand">KEJA</p>
+    <p class="footer__note">
+      Keja is a fictional property agency, and these homes and prices are not real. This concept website was
+      designed and built by <a href="https://franklins-portfolio-v1.vercel.app/">Franklin Mburu Kamande</a>.
+      Photography from Unsplash.
+    </p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

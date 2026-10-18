@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nguvu — Strength studio, Kilimani, Nairobi</title>
+  <meta name="description" content="Small-group strength, boxing and conditioning in Kilimani, Nairobi. A concept website by Franklin Mburu Kamande.">
+  <meta name="theme-color" content="#16171A">
+  <link rel="preload" href="fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="images/hero-deadlift.webp" as="image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232747F5'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Impact,Arial Narrow,sans-serif' font-size='40' fill='%23ECE8E1'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" aria-label="Nguvu, back to top">NGUVU</a>
+    <nav aria-label="Main">
+      <ul class="nav__links">
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#timetable">Timetable</a></li>
+        <li><a href="#join">Membership</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--small" href="#first">Book a free session</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <img class="hero__photo" src="images/hero-deadlift.webp" alt="An athlete gripping a loaded barbell in a dark gym" width="1800" height="1200">
+      <div class="hero__top">
+        <p class="hero__line">Strength studio in Kilimani, Nairobi</p>
+        <a class="btn" href="#first">Book a free session</a>
+      </div>
+      <h1 class="hero__title" id="hero-title" aria-label="Nguvu">
+        <span aria-hidden="true">N</span><span aria-hidden="true">G</span><span aria-hidden="true">U</span><span aria-hidden="true">V</span><span aria-hidden="true">U</span>
+      </h1>
+    </section>
+
+    <section class="manifesto" aria-labelledby="manifesto-heading">
+      <h2 id="manifesto-heading" class="manifesto__text">Strong is a practice, not a look.</h2>
+      <div class="manifesto__body">
+        <p>Nguvu means strength in Swahili. We teach it in groups of eight, with coaches who learn your name and your limits before they add weight to the bar.</p>
+        <p>Barbells, bags, kettlebells and a track out back. Show up three times a week and we'll handle the rest.</p>
+      </div>
+    </section>
+
+    <!-- Classes: pinned; the strip slides sideways as you scroll -->
+    <section class="classes" id="classes" aria-labelledby="classes-heading">
+      <div class="classes__pin">
+        <h2 id="classes-heading" class="classes__title">Classes</h2>
+        <div class="classes__track">
+          <article class="class">
+            <img src="images/barbell.webp" alt="A loaded barbell on a dark floor dusted with chalk" width="1200" height="748" loading="lazy">
+            <div class="class__text">
+              <h3>Barbell</h3>
+              <p>Squat, press and deadlift, coached one rep at a time.</p>
+              <p class="class__count">Six sessions a week</p>
+            </div>
+          </article>
+          <article class="class">
+            <img src="images/boxer-silhouette.webp" alt="A boxer standing in silhouette against a bright window" width="1400" height="933" loading="lazy">
+            <div class="class__text">
+              <h3>Boxing</h3>
+              <p>Pads, bags and footwork. No sparring unless you ask for it.</p>
+              <p class="class__count">Five sessions a week</p>
+            </div>
+          </article>
+          <article class="class">
+            <img src="images/kettlebell.webp" alt="A chalked hand gripping a kettlebell" width="1200" height="1200" loading="lazy">
+            <div class="class__text">
+              <h3>Conditioning</h3>
+              <p>Kettlebells, sleds and rowers. Forty minutes, done properly.</p>
+              <p class="class__count">Eight sessions a week</p>
+            </div>
+          </article>
+          <article class="class">
+            <img src="images/sprint.webp" alt="Sprinters driving out of the blocks on a track" width="1400" height="933" loading="lazy">
+            <div class="class__text">
+              <h3>Track</h3>
+              <p>Sprint mechanics and intervals on the 60-metre lane.</p>
+              <p class="class__count">Three sessions a week</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="timetable" id="timetable" aria-labelledby="timetable-heading">
+      <h2 id="timetable-heading" class="section-title">This week</h2>
+      <div class="timetable__scroll" tabindex="0" role="region" aria-labelledby="timetable-heading">
+        <table>
+          <thead>
+            <tr><th scope="col"><span class="sr-only">Time</span></th><th scope="col">Mon</th><th scope="col">Tue</th><th scope="col">Wed</th><th scope="col">Thu</th><th scope="col">Fri</th><th scope="col">Sat</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">6:00</th><td>Barbell</td><td>Conditioning</td><td>Barbell</td><td>Conditioning</td><td>Barbell</td><td>Track</td></tr>
+            <tr><th scope="row">7:15</th><td>Conditioning</td><td>Boxing</td><td>Conditioning</td><td>Boxing</td><td>Conditioning</td><td>Barbell</td></tr>
+            <tr><th scope="row">12:30</th><td>Boxing</td><td>Barbell</td><td>Track</td><td>Barbell</td><td>Boxing</td><td></td></tr>
+            <tr><th scope="row">18:00</th><td>Barbell</td><td>Conditioning</td><td>Boxing</td><td>Track</td><td>Conditioning</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="floor" aria-label="The studio floor">
+      <img src="images/bw-athlete.webp" alt="An athlete resting between sets in the gym, in black and white" width="1200" height="1800" loading="lazy">
+      <img src="images/woman-boxing.webp" alt="A woman throwing a punch at a heavy bag" width="1200" height="1600" loading="lazy">
+      <p class="floor__quote">Eight people. One coach. Nobody gets lost at the back.</p>
+    </section>
+
+    <section class="join" id="join" aria-labelledby="join-heading">
+      <h2 id="join-heading" class="section-title">Membership</h2>
+      <ul class="plans">
+        <li class="plan">
+          <h3>Drop in</h3>
+          <p>Any single class, any day.</p>
+          <p class="plan__price">KSh 1,500</p>
+        </li>
+        <li class="plan">
+          <h3>Eight a month</h3>
+          <p>Two sessions a week. Book up to a week ahead.</p>
+          <p class="plan__price">KSh 9,000 <span>a month</span></p>
+        </li>
+        <li class="plan plan--main">
+          <h3>Unlimited</h3>
+          <p>Every class, open gym on Sundays, a programme review each month.</p>
+          <p class="plan__price">KSh 14,000 <span>a month</span></p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="first" id="first" aria-labelledby="first-heading">
+      <h2 id="first-heading" class="first__title">Your first session is on us.</h2>
+      <form class="first__form" id="first-form" novalidate>
+        <label>Name<input type="text" name="name" autocomplete="name" required></label>
+        <label>Email<input type="email" name="email" autocomplete="email" required></label>
+        <label>Class
+          <select name="class">
+            <option>Barbell</option><option>Boxing</option><option>Conditioning</option><option>Track</option>
+          </select>
+        </label>
+        <button class="btn btn--light" type="submit">Book a free session</button>
+        <p class="first__status" id="first-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__brand">NGUVU</p>
+    <p class="footer__note">
+      Nguvu is a fictional strength studio. This concept website was designed and built by
+      <a href="https://franklins-portfolio-v1.vercel.app/">Franklin Mburu Kamande</a>.
+      Photography from Unsplash.
+    </p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
