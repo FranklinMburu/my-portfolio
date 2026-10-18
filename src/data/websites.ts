@@ -5,8 +5,8 @@ import type { MockVariant } from '../components/websites/SiteMock';
  *
  * The entries below are showcase sites: real, working websites designed and built
  * by Franklin to show what he can build for different industries (status 'Concept';
- * the status is not shown on the page). The sites live in /public/work/<slug>/ and
- * their screenshots in /public/assets/websites/<slug>/.
+ * the status is not shown on the page). Each is live on its own Vercel project from
+ * github.com/FranklinMburu/showcase-websites; screenshots are in /public/assets/websites/<slug>/.
  *
  * To add client work: add an entry with status 'Live', the real client name,
  * url and screenshots. Client work should go above the showcase sites.
@@ -22,7 +22,7 @@ export interface Website {
   category: WebsiteCategory;
   year: string;
   status: 'Live' | 'Concept';
-  /** Link to the working site. Showcase sites are served from /work/. */
+  /** Link to the working site (its live address). */
   url?: string;
   /** What the browser bar shows in screenshots. */
   displayUrl?: string;
@@ -64,8 +64,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/work/keja/index.html',
-    displayUrl: 'work/keja',
+    url: 'https://keja-beryl.vercel.app',
+    displayUrl: 'keja-beryl.vercel.app',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -83,8 +83,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/work/enkare/index.html',
-    displayUrl: 'work/enkare',
+    url: 'https://enkare-seven.vercel.app',
+    displayUrl: 'enkare-seven.vercel.app',
     role: 'Design + build',
     location: 'Maasai Mara',
     summary:
@@ -102,8 +102,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/work/tabasamu/index.html',
-    displayUrl: 'work/tabasamu',
+    url: 'https://tabasamu-phi.vercel.app',
+    displayUrl: 'tabasamu-phi.vercel.app',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -121,8 +121,8 @@ export const websites: Website[] = [
     category: 'Online store',
     year: '2026',
     status: 'Concept',
-    url: '/work/mlima/index.html',
-    displayUrl: 'work/mlima',
+    url: 'https://mlima.vercel.app',
+    displayUrl: 'mlima.vercel.app',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -140,8 +140,8 @@ export const websites: Website[] = [
     category: 'Landing page',
     year: '2026',
     status: 'Concept',
-    url: '/work/mbegu/index.html',
-    displayUrl: 'work/mbegu',
+    url: 'https://mbegu-theta.vercel.app',
+    displayUrl: 'mbegu-theta.vercel.app',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -159,8 +159,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/work/ember-and-salt/index.html',
-    displayUrl: 'work/ember-and-salt',
+    url: 'https://ember-and-salt-chi.vercel.app',
+    displayUrl: 'ember-and-salt-chi.vercel.app',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -178,8 +178,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/work/nguvu/index.html',
-    displayUrl: 'work/nguvu',
+    url: 'https://nguvu-kappa.vercel.app',
+    displayUrl: 'nguvu-kappa.vercel.app',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -197,8 +197,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/work/chipukizi/index.html',
-    displayUrl: 'work/chipukizi',
+    url: 'https://chipukizi-fawn.vercel.app',
+    displayUrl: 'chipukizi-fawn.vercel.app',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -216,8 +216,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/work/mwamba/index.html',
-    displayUrl: 'work/mwamba',
+    url: 'https://mwamba-lime.vercel.app',
+    displayUrl: 'mwamba-lime.vercel.app',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
