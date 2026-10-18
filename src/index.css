@@ -345,6 +345,28 @@ html.light .sheet-shadow {
 }
 
 /* Respect visitors who ask their system for less motion. */
+/* Header height, shared by every page's top spacing (Header.tsx).
+   Phones from 340px wide show a second row of page links. */
+:root {
+  --header-h: 70px;
+}
+@media (max-width: 767px) {
+  :root {
+    --header-h: 105px;
+  }
+}
+@media (max-width: 339px) {
+  :root {
+    --header-h: 64px;
+  }
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Websites page: scroll story (WebsitesStory.tsx). Motion is written by script. */
 .story-stage {
   contain: paint;

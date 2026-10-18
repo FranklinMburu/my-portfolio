@@ -389,7 +389,7 @@ const Hero = () => {
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
         id="home"
-        className={`hero-clip relative z-0 lg:sticky min-h-screen flex flex-col items-center justify-center bg-background-dark px-4 sm:px-6 md:px-8 pt-24 pb-24 md:pt-20 md:pb-16 ${mode === 'off' ? '' : 'hero-story'}`}
+        className={`hero-clip relative z-0 lg:sticky min-h-screen flex flex-col items-center justify-center bg-background-dark px-4 sm:px-6 md:px-8 pt-[calc(var(--header-h)+1.5rem)] pb-24 md:pt-20 md:pb-16 ${mode === 'off' ? '' : 'hero-story'}`}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-background-dark via-background-dark to-accent-purple/20"></div>
 

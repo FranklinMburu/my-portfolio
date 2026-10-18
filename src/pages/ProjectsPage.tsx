@@ -4,7 +4,7 @@ import { useDocumentTitle } from '../lib/router';
 const ProjectsPage = () => {
   useDocumentTitle('Projects - Franklin Mburu Kamande');
   return (
-    <div className="pt-16">
+    <div className="pt-[var(--header-h)]">
       <Projects />
     </div>
   );

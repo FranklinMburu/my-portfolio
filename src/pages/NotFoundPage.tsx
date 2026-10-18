@@ -5,7 +5,7 @@ import { useDocumentTitle } from '../lib/router';
 const NotFoundPage = () => {
   useDocumentTitle('Page not found - Franklin Mburu Kamande');
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-background-dark px-6 pt-16">
+    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-background-dark px-6 pt-[var(--header-h)]">
       <div className="absolute inset-0 bg-gradient-to-br from-background-dark via-background-dark to-accent-purple/20"></div>
       <div className="absolute top-1/3 left-1/3 w-72 h-72 bg-primary-cyan/20 rounded-full blur-[96px]"></div>
       <div className="relative text-center max-w-lg">

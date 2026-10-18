@@ -380,7 +380,7 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
         </div>
 
         {/* The laptop */}
-        <div className="story-scene absolute inset-0 flex items-center justify-center pt-16">
+        <div className="story-scene absolute inset-0 flex items-center justify-center pt-[var(--header-h)]">
           <div ref={rigRef} className="story-rig relative w-[84vw] will-change-transform lg:w-[min(44vw,70vh)]">
             <Link
               to={`/websites/${current.slug}`}

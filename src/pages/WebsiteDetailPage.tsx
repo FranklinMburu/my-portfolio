@@ -20,7 +20,7 @@ const WebsiteDetailPage = ({ slug }: { slug: string }) => {
   const facts = [site.category === 'Business' ? 'Business website' : site.category, site.location, site.year, site.role].filter(Boolean);
 
   return (
-    <div className="overflow-hidden pt-16">
+    <div className="overflow-hidden pt-[var(--header-h)]">
       {/* Title */}
       <section className="relative bg-background-dark px-6 pb-10 pt-14">
         <div aria-hidden="true" className="absolute -top-40 right-[8%] h-[440px] w-[440px] rounded-full opacity-[0.1] blur-[110px]" style={{ background: site.glow }} />

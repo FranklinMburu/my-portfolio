@@ -80,7 +80,7 @@ const WebsitesPage = () => {
   const right = rest.filter((_, i) => i % 2 === 1);
 
   return (
-    <div className={story ? 'pt-0' : 'overflow-hidden pt-16'}>
+    <div className={story ? 'pt-0' : 'overflow-hidden pt-[var(--header-h)]'}>
       {story ? (
         <WebsitesStory sites={websites} />
       ) : (
