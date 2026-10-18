@@ -5,11 +5,11 @@ import type { MockVariant } from '../components/websites/SiteMock';
  *
  * The entries below are showcase sites: real, working websites designed and built
  * by Franklin to show what he can build for different industries (status 'Concept';
- * the status is not shown on the page). The sites live in /public/concepts/<slug>/ and
+ * the status is not shown on the page). The sites live in /public/work/<slug>/ and
  * their screenshots in /public/assets/websites/<slug>/.
  *
  * To add client work: add an entry with status 'Live', the real client name,
- * url and screenshots. Client work should go above the concepts.
+ * url and screenshots. Client work should go above the showcase sites.
  */
 
 export type WebsiteCategory = 'Business' | 'Online store' | 'Landing page' | 'Web app';
@@ -22,7 +22,7 @@ export interface Website {
   category: WebsiteCategory;
   year: string;
   status: 'Live' | 'Concept';
-  /** Link to the working site. Concept sites are served from /concepts/. */
+  /** Link to the working site. Showcase sites are served from /work/. */
   url?: string;
   /** What the browser bar shows in screenshots. */
   displayUrl?: string;
@@ -64,8 +64,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/concepts/keja/index.html',
-    displayUrl: 'concepts/keja',
+    url: '/work/keja/index.html',
+    displayUrl: 'work/keja',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -83,8 +83,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/concepts/enkare/index.html',
-    displayUrl: 'concepts/enkare',
+    url: '/work/enkare/index.html',
+    displayUrl: 'work/enkare',
     role: 'Design + build',
     location: 'Maasai Mara',
     summary:
@@ -102,8 +102,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/concepts/tabasamu/index.html',
-    displayUrl: 'concepts/tabasamu',
+    url: '/work/tabasamu/index.html',
+    displayUrl: 'work/tabasamu',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -121,8 +121,8 @@ export const websites: Website[] = [
     category: 'Online store',
     year: '2026',
     status: 'Concept',
-    url: '/concepts/mlima/index.html',
-    displayUrl: 'concepts/mlima',
+    url: '/work/mlima/index.html',
+    displayUrl: 'work/mlima',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -140,8 +140,8 @@ export const websites: Website[] = [
     category: 'Landing page',
     year: '2026',
     status: 'Concept',
-    url: '/concepts/akiba/index.html',
-    displayUrl: 'concepts/akiba',
+    url: '/work/akiba/index.html',
+    displayUrl: 'work/akiba',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -159,8 +159,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/concepts/ember-and-salt/index.html',
-    displayUrl: 'concepts/ember-and-salt',
+    url: '/work/ember-and-salt/index.html',
+    displayUrl: 'work/ember-and-salt',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -178,8 +178,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/concepts/nguvu/index.html',
-    displayUrl: 'concepts/nguvu',
+    url: '/work/nguvu/index.html',
+    displayUrl: 'work/nguvu',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -197,8 +197,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/concepts/mwangaza/index.html',
-    displayUrl: 'concepts/mwangaza',
+    url: '/work/mwangaza/index.html',
+    displayUrl: 'work/mwangaza',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
@@ -216,8 +216,8 @@ export const websites: Website[] = [
     category: 'Business',
     year: '2026',
     status: 'Concept',
-    url: '/concepts/mwamba/index.html',
-    displayUrl: 'concepts/mwamba',
+    url: '/work/mwamba/index.html',
+    displayUrl: 'work/mwamba',
     role: 'Design + build',
     location: 'Nairobi',
     summary:
