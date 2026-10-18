@@ -249,6 +249,17 @@ html.light {
   animation-delay: var(--d, 0ms);
 }
 
+/* Hero story (large screens): scroll drives these groups instead of the load entrance. */
+.hero-story .stage,
+.hero-story .stage .intro {
+  animation: none !important;
+}
+
+.hero-name {
+  position: relative;
+  transform-origin: 50% 50%;
+}
+
 /* Shadow above the sheet that slides over the pinned hero. */
 .sheet-shadow {
   box-shadow: 0 -30px 70px -20px rgb(0 0 0 / 0.55);

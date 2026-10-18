@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { prefersReducedMotion } from '../../lib/motion';
 
+interface CountUpProps {
+  value: string;
+  delay?: number;
+  duration?: number;
+  /** Counting waits until this is true (e.g. until the number scrolls into view). */
+  run?: boolean;
+}
+
 /** Counts the leading number of a value up from zero ("100+" -> 0+ ... 100+). */
-const CountUp = ({ value, delay = 0, duration = 1400 }: { value: string; delay?: number; duration?: number }) => {
+const CountUp = ({ value, delay = 0, duration = 1400, run = true }: CountUpProps) => {
   const match = value.match(/^(\d+)(.*)$/);
   const end = match ? Number(match[1]) : 0;
   const suffix = match ? match[2] : '';
@@ -14,6 +22,7 @@ const CountUp = ({ value, delay = 0, duration = 1400 }: { value: string; delay?:
       setShown(end);
       return;
     }
+    if (!run) return;
     let start = 0;
     const step = (time: number) => {
       if (!start) start = time;
@@ -29,7 +38,7 @@ const CountUp = ({ value, delay = 0, duration = 1400 }: { value: string; delay?:
       cancelAnimationFrame(frame.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+  }, [value, run]);
 
   if (!match) return <>{value}</>;
   return (
