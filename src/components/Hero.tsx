@@ -83,7 +83,6 @@ const arrive = (el: HTMLElement | null, t: number) => {
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLDivElement>(null);
@@ -348,15 +347,38 @@ const Hero = () => {
     };
   }, [mode]);
 
-  // A soft cyan light that drifts after the cursor.
-  const onPointerMove = (event: React.PointerEvent<HTMLElement>) => {
-    const glow = glowRef.current;
+  // Quiet depth: the stars and the background glows shift a few pixels with the mouse,
+  // in opposite directions, easing toward the cursor (--mx/--my run from -1 to 1).
+  const pointer = useRef({ x: 0, y: 0, tx: 0, ty: 0, frame: 0 });
+  const drift = () => {
+    const p = pointer.current;
     const section = sectionRef.current;
-    if (!glow || !section || event.pointerType !== 'mouse' || !hasFinePointer() || prefersReducedMotion()) return;
-    const rect = section.getBoundingClientRect();
-    glow.style.opacity = '1';
-    glow.style.transform = `translate(${event.clientX - rect.left - 300}px, ${event.clientY - rect.top - 300}px)`;
+    p.x += (p.tx - p.x) * 0.06;
+    p.y += (p.ty - p.y) * 0.06;
+    const settled = Math.abs(p.tx - p.x) < 0.002 && Math.abs(p.ty - p.y) < 0.002;
+    if (settled) {
+      p.x = p.tx;
+      p.y = p.ty;
+    }
+    section?.style.setProperty('--mx', p.x.toFixed(4));
+    section?.style.setProperty('--my', p.y.toFixed(4));
+    p.frame = settled ? 0 : requestAnimationFrame(drift);
   };
+  const aim = (x: number, y: number) => {
+    const p = pointer.current;
+    p.tx = x;
+    p.ty = y;
+    if (!p.frame) p.frame = requestAnimationFrame(drift);
+  };
+  useEffect(() => () => cancelAnimationFrame(pointer.current.frame), []);
+
+  const onPointerMove = (event: React.PointerEvent<HTMLElement>) => {
+    const section = sectionRef.current;
+    if (!section || event.pointerType !== 'mouse' || !hasFinePointer() || prefersReducedMotion()) return;
+    const rect = section.getBoundingClientRect();
+    aim(((event.clientX - rect.left) / rect.width) * 2 - 1, ((event.clientY - rect.top) / rect.height) * 2 - 1);
+  };
+  const onPointerLeave = () => aim(0, 0);
 
   const countDelay = mode === 'off' ? 1100 : 0;
 
@@ -365,22 +387,16 @@ const Hero = () => {
       <section
         ref={sectionRef}
         onPointerMove={onPointerMove}
+        onPointerLeave={onPointerLeave}
         id="home"
         className={`hero-clip relative z-0 lg:sticky min-h-screen flex flex-col items-center justify-center bg-background-dark px-4 sm:px-6 md:px-8 pt-24 pb-24 md:pt-20 md:pb-16 ${mode === 'off' ? '' : 'hero-story'}`}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-background-dark via-background-dark to-accent-purple/20"></div>
 
         <div
-          ref={glowRef}
-          aria-hidden="true"
-          className="pointer-events-none absolute left-0 top-0 hidden h-[600px] w-[600px] rounded-full opacity-0 sm:block"
-          style={{
-            background: 'radial-gradient(circle, rgb(var(--c-accent) / 0.13), transparent 62%)',
-            transition: 'transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.8s ease'
-          }}
-        />
-
-        <div className="absolute inset-0 opacity-20 hidden sm:block" style={{ transform: 'translateY(calc(var(--hp, 0) * 160px))' }}>
+          className="absolute inset-0 opacity-20 hidden sm:block"
+          style={{ transform: 'translate(calc(var(--mx, 0) * -18px), calc(var(--my, 0) * -14px + var(--hp, 0) * 160px))' }}
+        >
           <div className="absolute top-1/4 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-primary-cyan rounded-full filter blur-[96px] animate-pulse"></div>
           <div className="absolute bottom-1/4 right-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-primary-blue rounded-full filter blur-[96px] animate-pulse delay-1000"></div>
         </div>
@@ -388,7 +404,10 @@ const Hero = () => {
         {/* Phones: one soft glow, so the story has some light behind it. */}
         <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[18%] h-80 w-80 -translate-x-1/2 rounded-full bg-primary-cyan/15 blur-[90px] sm:hidden" />
 
-        <div className="absolute inset-0" style={{ transform: 'translateY(calc(var(--hp, 0) * -90px))' }}>
+        <div
+          className="absolute inset-0"
+          style={{ transform: 'translate(calc(var(--mx, 0) * 10px), calc(var(--my, 0) * 8px + var(--hp, 0) * -90px))' }}
+        >
           {stars.map((style, i) => (
             <div key={i} className="absolute w-1 h-1 bg-primary-cyan rounded-full animate-twinkle hidden sm:block" style={style}></div>
           ))}
