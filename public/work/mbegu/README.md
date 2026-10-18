@@ -1,4 +1,4 @@
-# Akiba
+# Mbegu
 
 Website for a savings app. Designed and built by Franklin Mburu Kamande (https://franklins-portfolio-v1.vercel.app/).
 

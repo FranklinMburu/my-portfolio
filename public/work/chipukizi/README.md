@@ -1,4 +1,4 @@
-# Mwangaza Academy
+# Chipukizi Academy
 
 Website for a day school in Karen, Nairobi. Designed and built by Franklin Mburu Kamande (https://franklins-portfolio-v1.vercel.app/).
 

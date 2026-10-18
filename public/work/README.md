@@ -7,8 +7,8 @@ Showcase websites across different industries, designed and built by Franklin Mb
 - `nguvu/`: Nguvu, a strength studio in Kilimani, Nairobi
 - `enkare/`: Enkare, a safari camp in the Maasai Mara
 - `tabasamu/`: Tabasamu Dental Studio, a dental studio in Kilimani, Nairobi
-- `akiba/`: Akiba, a savings app
-- `mwangaza/`: Mwangaza Academy, a day school in Karen, Nairobi
+- `mbegu/`: Mbegu, a savings app
+- `chipukizi/`: Chipukizi Academy, a day school in Karen, Nairobi
 - `mlima/`: Mlima Coffee Roasters, a Kenyan coffee roaster with an online shop
 - `mwamba/`: Mwamba Advocates, a law firm in Upper Hill, Nairobi
 
