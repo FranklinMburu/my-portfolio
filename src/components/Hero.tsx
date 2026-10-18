@@ -54,7 +54,7 @@ const Hero = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={() => scrollToSection('projects')}
-            className="group px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary-cyan to-primary-blue rounded-lg font-semibold text-text-white hover:shadow-lg hover:shadow-primary-cyan/50 transition-all duration-300 flex items-center space-x-2 hover:scale-105"
+            className="group px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary-cyan to-primary-blue rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-primary-cyan/50 transition-all duration-300 flex items-center space-x-2 hover:-translate-y-1"
           >
             <span>View Projects</span>
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
@@ -69,7 +69,7 @@ const Hero = () => {
               link.click();
               document.body.removeChild(link);
             }}
-            className="px-4 sm:px-6 py-2 sm:py-3 bg-background-dark/50 backdrop-blur-sm rounded-lg font-semibold text-text-white border border-background-dark hover:border-primary-cyan hover:bg-background-dark/70 transition-all duration-300 flex items-center space-x-2 hover:scale-105"
+            className="px-4 sm:px-6 py-2 sm:py-3 bg-background-dark/50 backdrop-blur-sm rounded-lg font-semibold text-text-white border border-background-dark hover:border-primary-cyan hover:bg-background-dark/70 transition-all duration-300 flex items-center space-x-2 hover:-translate-y-1"
           >
             <Download className="w-4 h-4 sm:w-5 sm:h-5" />
             <span>Download CV</span>
@@ -77,7 +77,7 @@ const Hero = () => {
 
           <button
             onClick={() => scrollToSection('contact')}
-            className="px-4 sm:px-6 py-2 sm:py-3 bg-background-dark/50 backdrop-blur-sm rounded-lg font-semibold text-text-white border border-background-dark hover:border-accent-purple hover:bg-background-dark/70 transition-all duration-300 flex items-center space-x-2 hover:scale-105"
+            className="px-4 sm:px-6 py-2 sm:py-3 bg-background-dark/50 backdrop-blur-sm rounded-lg font-semibold text-text-white border border-background-dark hover:border-accent-purple hover:bg-background-dark/70 transition-all duration-300 flex items-center space-x-2 hover:-translate-y-1"
           >
             <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
             <span>Contact Me</span>

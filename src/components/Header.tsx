@@ -50,7 +50,7 @@ const Header = ({ theme, toggleTheme }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-lg shadow-lg shadow-cyan-500/10 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-lg shadow-lg shadow-primary-cyan/10 ${
         isScrolled ? 'bg-background-dark/95' : 'bg-transparent'
       }`}
     >

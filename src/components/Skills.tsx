@@ -15,22 +15,22 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-28 bg-gradient-to-b from-[#020617] via-[#030712] to-[#000000]"
+      className="py-28 bg-gradient-to-b from-page via-page to-background-dark"
     >
       <div className="container mx-auto px-6">
         {/* Heading */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-ink">
             Technologies{" "}
-            <span className="bg-gradient-to-r from-[#00E0FF] to-[#007BFF] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary-cyan to-primary-blue bg-clip-text text-transparent">
               & Skills
             </span>
           </h2>
 
           {/* Small Top Bar */}
-          <div className="w-40 h-2 mx-auto rounded-full bg-gradient-to-r from-[#00E0FF] to-[#007BFF] mb-6"></div>
+          <div className="w-40 h-2 mx-auto rounded-full bg-gradient-to-r from-primary-cyan to-primary-blue mb-6"></div>
 
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-muted text-lg max-w-2xl mx-auto">
             A comprehensive toolkit spanning AI/ML, full-stack development, and
             production deployment
           </p>
@@ -46,10 +46,10 @@ const Skills = () => {
                 key={idx}
                 className="
                   p-8 rounded-3xl
-                  bg-[#0A0F1F]/70
-                  border border-white/10
-                  shadow-[0_0_40px_-10px_rgba(0,100,255,0.3)]
-                  hover:shadow-[0_0_60px_-6px_rgba(0,150,255,0.45)]
+                  bg-glass/70
+                  border border-ink/10
+                  shadow-card
+                  hover:shadow-card-hover
                   backdrop-blur-xl
                   transition-all duration-500
                   hover:-translate-y-2
@@ -60,15 +60,15 @@ const Skills = () => {
                   <div
                     className="
                       w-14 h-14 flex items-center justify-center rounded-xl
-                      bg-gradient-to-br from-[#00E0FF] to-[#007BFF]
-                      shadow-[0_0_20px_rgba(0,150,255,0.6)]
+                      bg-gradient-to-br from-primary-cyan to-primary-blue
+                      shadow-icon
                       scale-100 group-hover:scale-110 transition-all
                     "
                   >
-                    <Icon className="w-7 h-7 text-white" />
+                    <Icon className="w-7 h-7 text-ink" />
                   </div>
 
-                  <h3 className="text-xl font-semibold text-white">
+                  <h3 className="text-xl font-semibold text-ink">
                     {group.category}
                   </h3>
                 </div>
@@ -81,10 +81,10 @@ const Skills = () => {
                       className="
                         px-3 py-1.5 text-sm rounded-xl
                         text-white/90
-                        bg-[#111827]/60
-                        border border-white/10
+                        bg-section/60
+                        border border-ink/10
                         hover:text-white
-                        hover:bg-gradient-to-r hover:from-[#00E0FF] hover:to-[#007BFF]
+                        hover:bg-gradient-to-r hover:from-primary-cyan hover:to-primary-blue
                         hover:shadow-[0_0_18px_rgba(0,150,255,0.55)]
                         transition-all duration-300
                       "
@@ -104,14 +104,14 @@ const Skills = () => {
           <div
             className="
               text-center py-8 rounded-2xl
-              bg-gradient-to-r from-[#00E0FF] to-[#007BFF]
+              bg-gradient-to-r from-primary-cyan to-primary-blue
               shadow-[0_0_30px_rgba(0,150,255,0.4)]
-              border border-white/10
+              border border-ink/10
               transition-all duration-500
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-white">{projects.length}</p>
+            <p className="text-3xl font-bold text-ink">{projects.length}</p>
             <p className="text-white/90">Portfolio Projects</p>
           </div>
 
@@ -119,14 +119,14 @@ const Skills = () => {
           <div
             className="
               text-center py-8 rounded-2xl
-              bg-gradient-to-r from-[#8A2BE2] to-[#EC4899]
-              shadow-[0_0_30px_rgba(236,72,153,0.4)]
-              border border-white/10
+              bg-gradient-to-r from-accent-purple to-primary-blue
+              shadow-[0_0_30px_rgba(108,99,255,0.4)]
+              border border-ink/10
               transition-all duration-500
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-white">{technologyCount}</p>
+            <p className="text-3xl font-bold text-ink">{technologyCount}</p>
             <p className="text-white/90">Technologies</p>
           </div>
 
@@ -134,14 +134,14 @@ const Skills = () => {
           <div
             className="
               text-center py-8 rounded-2xl
-              bg-gradient-to-r from-[#00E0FF] to-[#60A5FA]
+              bg-gradient-to-r from-primary-cyan to-primary-blue/70
               shadow-[0_0_30px_rgba(0,150,255,0.35)]
-              border border-white/10
+              border border-ink/10
               transition-all duration-500
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-white">{skills.length}</p>
+            <p className="text-3xl font-bold text-ink">{skills.length}</p>
             <p className="text-white/90">Core Specializations</p>
           </div>
 
@@ -151,12 +151,12 @@ const Skills = () => {
               text-center py-8 rounded-2xl
               bg-gradient-to-r from-[#10B981] to-[#059669]
               shadow-[0_0_30px_rgba(16,185,129,0.4)]
-              border border-white/10
+              border border-ink/10
               transition-all duration-500
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-white">{livePublicCount}</p>
+            <p className="text-3xl font-bold text-ink">{livePublicCount}</p>
             <p className="text-white/90">Live or Public Code</p>
           </div>
         </div>

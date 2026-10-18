@@ -33,28 +33,28 @@ const Projects = () => {
       case 'Live':
         return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'Public code':
-        return 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30';
+        return 'bg-primary-cyan/15 text-primary-cyan border-primary-cyan/30';
       case 'Hackathon':
         return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
       case 'In Development':
         return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
       case 'Private':
-        return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+        return 'bg-gray-500/20 text-muted border-gray-500/30';
       default:
-        return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+        return 'bg-blue-500/20 text-primary-blue border-blue-500/30';
     }
   };
 
   return (
-    <section id="projects" className="py-24 bg-gray-900/50">
+    <section id="projects" className="py-24 bg-section/50">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-cyan to-primary-blue bg-clip-text text-transparent">
               Featured Projects
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6"></div>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-gradient-to-r from-primary-cyan to-primary-blue mx-auto mb-6"></div>
+            <p className="text-muted text-lg max-w-2xl mx-auto">
               A showcase of intelligent systems and production-grade applications
             </p>
           </div>
@@ -68,8 +68,8 @@ const Projects = () => {
                     onClick={() => setSelectedCategory(category)}
                     className={`px-4 py-2 rounded-lg font-medium transition-all ${
                       selectedCategory === category
-                        ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/30'
-                        : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-700'
+                        ? 'bg-gradient-to-r from-primary-cyan to-primary-blue text-white shadow-lg shadow-primary-cyan/30'
+                        : 'bg-card/50 text-muted hover:text-ink hover:bg-line/50 border border-line'
                     }`}
                   >
                     {category}
@@ -83,13 +83,13 @@ const Projects = () => {
                   placeholder="Search projects..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-2 pl-10 bg-gray-800/50 border border-gray-700 rounded-lg text-gray-300 placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors"
+                  className="w-full px-4 py-2 pl-10 bg-card/50 border border-line rounded-lg text-body placeholder-subtle focus:outline-none focus:border-primary-cyan transition-colors"
                 />
-                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-subtle" />
               </div>
             </div>
 
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-muted">
               Showing {filteredProjects.length} of {projects.length} projects
             </div>
           </div>
@@ -98,9 +98,9 @@ const Projects = () => {
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="group relative rounded-2xl bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 overflow-hidden hover:scale-105"
+                className="group relative rounded-2xl bg-card/30 backdrop-blur-sm border border-line hover:border-primary-cyan/50 transition-all duration-300 overflow-hidden hover:-translate-y-1"
               >
-                <div className="aspect-video overflow-hidden bg-gray-800">
+                <div className="aspect-video overflow-hidden bg-card">
                   {project.image ? (
                     <img
                       src={project.image}
@@ -109,13 +109,13 @@ const Projects = () => {
                       loading="lazy"
                     />
                   ) : (
-                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-[#0A0F1F] via-gray-900 to-accent-purple/20">
+                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-glass via-section to-accent-purple/20">
                       <div className="absolute w-40 h-40 bg-primary-cyan/20 rounded-full blur-3xl"></div>
                       {(() => {
                         const Icon = categoryIcon[project.category];
                         return (
-                          <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00E0FF] to-[#007BFF] shadow-[0_0_30px_rgba(0,150,255,0.5)] flex items-center justify-center">
-                            <Icon className="w-8 h-8 text-white" />
+                          <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-cyan to-primary-blue shadow-icon flex items-center justify-center">
+                            <Icon className="w-8 h-8 text-ink" />
                           </div>
                         );
                       })()}
@@ -125,7 +125,7 @@ const Projects = () => {
 
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-cyan-400 transition-colors line-clamp-2">
+                    <h3 className="text-xl font-semibold text-ink group-hover:text-primary-cyan transition-colors line-clamp-2">
                       {project.title}
                     </h3>
                     <span
@@ -138,16 +138,16 @@ const Projects = () => {
                     </span>
                   </div>
 
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-3 leading-relaxed">
+                  <p className="text-muted text-sm mb-4 line-clamp-3 leading-relaxed">
                     {project.description}
                   </p>
 
                   <div className="mb-4">
-                    <h4 className="text-xs font-semibold text-gray-500 mb-2">Key Achievements:</h4>
+                    <h4 className="text-xs font-semibold text-subtle mb-2">Key Achievements:</h4>
                     <ul className="space-y-1">
                       {project.achievements.slice(0, 2).map((achievement, index) => (
-                        <li key={index} className="text-xs text-gray-400 flex items-start">
-                          <span className="text-cyan-400 mr-2">•</span>
+                        <li key={index} className="text-xs text-muted flex items-start">
+                          <span className="text-primary-cyan mr-2">•</span>
                           <span className="line-clamp-1">{achievement}</span>
                         </li>
                       ))}
@@ -158,13 +158,13 @@ const Projects = () => {
                     {project.techStack.slice(0, 4).map((tech, index) => (
                       <span
                         key={index}
-                        className="px-2 py-1 text-xs bg-cyan-500/10 text-cyan-400 rounded border border-cyan-500/20"
+                        className="px-2 py-1 text-xs bg-primary-cyan/10 text-primary-cyan rounded border border-primary-cyan/20"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.techStack.length > 4 && (
-                      <span className="px-2 py-1 text-xs bg-gray-700/50 text-gray-400 rounded">
+                      <span className="px-2 py-1 text-xs bg-line/50 text-muted rounded">
                         +{project.techStack.length - 4}
                       </span>
                     )}
@@ -176,7 +176,7 @@ const Projects = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 px-3 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-medium rounded-lg hover:shadow-lg hover:shadow-cyan-500/30 transition-all flex items-center justify-center space-x-1"
+                        className="flex-1 px-3 py-2 bg-gradient-to-r from-primary-cyan to-primary-blue text-white text-sm font-medium rounded-lg hover:shadow-lg hover:shadow-primary-cyan/30 transition-all flex items-center justify-center space-x-1"
                       >
                         <ExternalLink className="w-3 h-3" />
                         <span>Live</span>
@@ -187,7 +187,7 @@ const Projects = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 px-3 py-2 bg-gray-700/50 text-gray-300 text-sm font-medium rounded-lg hover:bg-gray-600/50 transition-all flex items-center justify-center space-x-1"
+                        className="flex-1 px-3 py-2 bg-line/50 text-body text-sm font-medium rounded-lg hover:bg-line/70 transition-all flex items-center justify-center space-x-1"
                       >
                         <Github className="w-3 h-3" />
                         <span>Code</span>
@@ -198,7 +198,7 @@ const Projects = () => {
                         href={project.caseStudyUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-3 py-2 bg-gray-700/50 text-gray-300 text-sm font-medium rounded-lg hover:bg-gray-600/50 transition-all flex items-center justify-center"
+                        className="px-3 py-2 bg-line/50 text-body text-sm font-medium rounded-lg hover:bg-line/70 transition-all flex items-center justify-center"
                       >
                         <FileText className="w-3 h-3" />
                       </a>
@@ -211,7 +211,7 @@ const Projects = () => {
 
           {filteredProjects.length === 0 && (
             <div className="text-center py-16">
-              <p className="text-gray-400 text-lg">No projects found matching your criteria.</p>
+              <p className="text-muted text-lg">No projects found matching your criteria.</p>
             </div>
           )}
         </div>

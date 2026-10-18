@@ -101,51 +101,51 @@ const Contact = () => {
       icon: Github,
       label: 'GitHub',
       url: 'https://github.com/franklinmburu',
-      color: 'hover:text-gray-400'
+      color: 'hover:text-muted'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
       url: 'https://linkedin.com/in/franklin-mburu',
-      color: 'hover:text-blue-400'
+      color: 'hover:text-primary-blue'
     }
   ];
 
   return (
-    <section id="contact" className="py-24 bg-gray-900">
+    <section id="contact" className="py-24 bg-section">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-cyan to-primary-blue bg-clip-text text-transparent">
               Get In Touch
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6"></div>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-gradient-to-r from-primary-cyan to-primary-blue mx-auto mb-6"></div>
+            <p className="text-muted text-lg max-w-2xl mx-auto">
               Have a project in mind or want to collaborate? Let's build something amazing together.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-semibold text-white mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-semibold text-ink mb-6">Contact Information</h3>
 
               <div className="space-y-6 mb-8">
                 {contactInfo.map((item, index) => (
                   <div key={index} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-5 h-5 text-cyan-400" />
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-5 h-5 text-primary-cyan" />
                     </div>
                     <div>
-                      <p className="text-gray-400 text-sm mb-1">{item.label}</p>
+                      <p className="text-muted text-sm mb-1">{item.label}</p>
                       {item.link ? (
                         <a
                           href={item.link}
-                          className="text-white font-medium hover:text-cyan-400 transition-colors"
+                          className="text-ink font-medium hover:text-primary-cyan transition-colors"
                         >
                           {item.value}
                         </a>
                       ) : (
-                        <p className="text-white font-medium">{item.value}</p>
+                        <p className="text-ink font-medium">{item.value}</p>
                       )}
                     </div>
                   </div>
@@ -153,7 +153,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold text-white mb-4">Connect With Me</h4>
+                <h4 className="text-lg font-semibold text-ink mb-4">Connect With Me</h4>
                 <div className="flex space-x-4">
                   {socialLinks.map((link, index) => (
                     <a
@@ -161,10 +161,10 @@ const Contact = () => {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-all group ${link.color}`}
+                      className={`p-3 rounded-lg bg-card/50 hover:bg-line/50 transition-all group ${link.color}`}
                       aria-label={link.label}
                     >
-                      <link.icon className="w-6 h-6 text-gray-400 group-hover:scale-110 transition-transform" />
+                      <link.icon className="w-6 h-6 text-muted group-hover:scale-110 transition-transform" />
                     </a>
                   ))}
                 </div>
@@ -172,12 +172,12 @@ const Contact = () => {
             </div>
 
             <div>
-              <h3 className="text-2xl font-semibold text-white mb-6">Send a Message</h3>
+              <h3 className="text-2xl font-semibold text-ink mb-6">Send a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-muted mb-2">
                     Name
                   </label>
                   <input
@@ -187,13 +187,13 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors"
+                    className="w-full px-4 py-3 bg-card/50 border border-line rounded-lg text-ink placeholder-subtle focus:outline-none focus:border-primary-cyan transition-colors"
                     placeholder="Your name"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-muted mb-2">
                     Email
                   </label>
                   <input
@@ -203,13 +203,13 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors"
+                    className="w-full px-4 py-3 bg-card/50 border border-line rounded-lg text-ink placeholder-subtle focus:outline-none focus:border-primary-cyan transition-colors"
                     placeholder="your.email@example.com"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-400 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-muted mb-2">
                     Subject
                   </label>
                   <input
@@ -219,13 +219,13 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors"
+                    className="w-full px-4 py-3 bg-card/50 border border-line rounded-lg text-ink placeholder-subtle focus:outline-none focus:border-primary-cyan transition-colors"
                     placeholder="How can I help?"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-muted mb-2">
                     Message
                   </label>
                   <textarea
@@ -235,7 +235,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-card/50 border border-line rounded-lg text-ink placeholder-subtle focus:outline-none focus:border-primary-cyan transition-colors resize-none"
                     placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
@@ -247,7 +247,7 @@ const Contact = () => {
                 )}
 
                 {submitStatus === 'mailto' && (
-                  <div className="p-4 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-cyan-300 text-sm">
+                  <div className="p-4 bg-primary-cyan/10 border border-primary-cyan/30 rounded-lg text-primary-cyan text-sm">
                     Your email app should now open with the message filled in — just press send. If nothing opened,
                     email me directly at{' '}
                     <a href={`mailto:${CONTACT_EMAIL}`} className="underline">{CONTACT_EMAIL}</a>.
@@ -264,7 +264,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-primary-cyan to-primary-blue rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-primary-cyan/50 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>

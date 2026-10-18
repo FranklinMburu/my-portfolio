@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Design tokens. Values are RGB channels so Tailwind opacity modifiers work
+ * (e.g. bg-card/30). Dark is the default theme; html.light overrides it.
+ */
+:root {
+  --c-page: 3 7 18;          /* page background (gray-950) */
+  --c-section: 17 24 39;     /* section background (gray-900) */
+  --c-deep: 10 10 10;        /* hero / header (#0a0a0a) */
+  --c-card: 31 41 55;        /* translucent card fill (gray-800) */
+  --c-glass: 10 15 31;       /* deep glass card (#0A0F1F) */
+  --c-line: 55 65 81;        /* borders (gray-700) */
+  --c-ink: 255 255 255;      /* headings */
+  --c-body: 209 213 219;     /* body copy (gray-300) */
+  --c-muted: 156 163 175;    /* secondary copy (gray-400) */
+  --c-subtle: 107 114 128;   /* labels (gray-500) */
+  --c-accent: 0 216 255;     /* the one cyan (#00d8ff) */
+  --c-accent-2: 0 123 255;   /* the one blue (#007bff) */
+  --c-violet: 108 99 255;    /* #6c63ff */
+  --c-signal: 16 185 129;    /* green: live / verified */
+
+  --shadow-glow: 0 0 20px rgba(0, 216, 255, 0.5);
+  --shadow-card: 0 0 40px -10px rgba(0, 100, 255, 0.3);
+  --shadow-card-hover: 0 0 60px -6px rgba(0, 150, 255, 0.45);
+  --shadow-icon: 0 0 20px rgba(0, 150, 255, 0.6);
+
+  /* legacy names, kept for reference */
+  --color-primary-cyan: rgb(var(--c-accent));
+  --color-primary-blue: rgb(var(--c-accent-2));
+  --color-accent-purple: rgb(var(--c-violet));
+  --gradient-hero: linear-gradient(90deg, rgb(var(--c-accent)), rgb(var(--c-accent-2)));
+  --radius-pill: 9999px;
+  --radius-card: 16px;
+
+  color-scheme: dark;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -9,6 +45,14 @@
 
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: rgb(var(--c-page));
+    color: rgb(var(--c-ink));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-accent));
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 }
 
@@ -76,30 +120,6 @@
       opacity: 1;
     }
   }
-
-  .shadow-glass {
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-  }
-}
-
-:root {
-  --color-primary-cyan: #00d8ff;
-  --color-primary-blue: #007bff;
-  --color-accent-purple: #6c63ff;
-  --color-background-dark: #0a0a0a;
-  --color-text-white: #ffffff;
-  --color-text-gray: #b0b0b0;
-
-  --gradient-hero: linear-gradient(90deg, var(--color-primary-cyan), var(--color-primary-blue));
-
-  --spacing-container: 1440px;
-  --spacing-section: 120px;
-
-  --radius-pill: 9999px;
-  --radius-card: 16px;
-
-  --shadow-glow: 0 0 20px rgba(0, 216, 255, 0.5);
 }
 
 @keyframes pulse {
@@ -108,5 +128,20 @@
   }
   50% {
     opacity: 0.5;
+  }
+}
+
+/* Respect visitors who ask their system for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }

@@ -29,7 +29,7 @@ function App() {
   };
 
   return (
-    <div className={`${theme === 'dark' ? 'bg-gray-950 text-white' : 'bg-white text-gray-900'} transition-colors duration-300`}>
+    <div className={`bg-page text-ink transition-colors duration-300`}>
       <Header theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Hero />
