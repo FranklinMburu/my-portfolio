@@ -86,7 +86,7 @@ const Contact = () => {
       icon: Phone,
       label: 'Phone',
       value: '+254 718 *** 677',
-      link: 'tel:+25471***677'
+      link: null
     },
     {
       icon: MapPin,
