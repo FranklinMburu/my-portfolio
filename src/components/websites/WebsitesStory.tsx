@@ -1,29 +1,56 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import Link from '../Link';
-import { BrowserFrame, PhoneFrame } from './Frames';
+import { PhoneFrame } from './Frames';
 import type { Website } from '../../data/websites';
 
 /**
  * Websites page opening, told on scroll (Apple product-page style).
  *
- * The title fills the screen, then lifts away while a browser rises and pins
- * in the centre. Scrolling then walks through every site: each screenshot
- * slides up over the last, the name and line beside it change in step, the
- * phone view follows a beat later and a soft glow takes the brand's colour.
+ * A laptop built in CSS 3D starts closed and tilted away. As you scroll it
+ * rises, turns to face you and the lid opens. It then carries the story:
+ * for each site it glides to one side and angles toward that site's words,
+ * the screen changes, and it swings across for the next. After the last site
+ * it returns to the centre and the lid starts to close.
  *
- * Progress is written straight to the DOM on each animation frame (no React
- * re-render per frame); React only re-renders when the active site changes.
+ * Everything moves from one scroll position, written to the DOM on each
+ * animation frame; React only re-renders when the active site changes.
  */
 
 const clamp = (v: number, min = 0, max = 1) => Math.min(max, Math.max(min, v));
 const smooth = (t: number) => t * t * (3 - 2 * t);
-
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const pad = (n: number) => String(n).padStart(2, '0');
+
+interface Pose {
+  x: number; // px, from centre
+  y: number; // px, from centre
+  s: number; // scale
+  rx: number; // deg, negative = seen from above
+  ry: number; // deg
+  lid: number; // deg, 0 = upright, -90 = closed
+}
+
+const mix = (a: Pose, b: Pose, t: number): Pose => ({
+  x: lerp(a.x, b.x, t),
+  y: lerp(a.y, b.y, t),
+  s: lerp(a.s, b.s, t),
+  rx: lerp(a.rx, b.rx, t),
+  ry: lerp(a.ry, b.ry, t),
+  lid: lerp(a.lid, b.lid, t)
+});
+
+/** Laptop on the right for even sites (words on the left), left for odd ones. */
+const sideOf = (i: number) => (i % 2 === 0 ? 1 : -1);
 
 const WebsitesStory = ({ sites }: { sites: Website[] }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const rigRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const lidRef = useRef<HTMLDivElement>(null);
+  const phoneRef = useRef<HTMLDivElement>(null);
+  const auraRef = useRef<HTMLDivElement>(null);
   const screens = useRef<(HTMLDivElement | null)[]>([]);
   const phones = useRef<(HTMLDivElement | null)[]>([]);
   const texts = useRef<(HTMLDivElement | null)[]>([]);
@@ -36,11 +63,11 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
   const geometry = () => {
     const section = sectionRef.current!;
     const vh = window.innerHeight;
-    const intro = vh * 0.9;
-    const tail = vh * 0.5;
+    const intro = vh * 1.1;
+    const tail = vh * 0.7;
     const range = section.offsetHeight - vh;
     const per = Math.max(1, (range - intro - tail) / Math.max(1, n - 1));
-    return { vh, intro, per };
+    return { vh, intro, per, tail };
   };
 
   useEffect(() => {
@@ -56,18 +83,63 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
 
     const update = () => {
       frame = 0;
-      const { intro, per } = geometry();
+      const { vh, intro, per, tail } = geometry();
+      const vw = window.innerWidth;
+      const wide = vw >= 1024;
       const scrolled = -section.getBoundingClientRect().top;
 
       const introP = clamp(scrolled / intro);
       stage.style.setProperty('--intro', introP.toFixed(4));
+      stage.style.setProperty('--p', clamp(scrolled / (section.offsetHeight - vh)).toFixed(4));
 
       // Hold on each site for the first part of its stretch, then move on.
       const f = clamp((scrolled - intro) / per, 0, n - 1);
       const base = Math.floor(f);
       const frac = f - base;
-      const s = base + smooth(clamp((frac - 0.45) / 0.55));
-      stage.style.setProperty('--p', clamp(scrolled / (section.offsetHeight - window.innerHeight)).toFixed(4));
+      const t = smooth(clamp((frac - 0.45) / 0.55));
+      const s = base + t;
+
+      // Poses. On phones the laptop stays centred above the words.
+      const pose = (i: number): Pose =>
+        wide
+          ? { x: sideOf(i) * vw * 0.17, y: -vh * 0.09, s: 1, rx: -9, ry: -sideOf(i) * 17, lid: 12 }
+          : { x: 0, y: -vh * 0.17, s: 1, rx: -10, ry: -sideOf(i) * 10, lid: 12 };
+      const start: Pose = { x: 0, y: vh * (wide ? 0.2 : 0.14), s: wide ? 0.58 : 0.66, rx: -62, ry: 0, lid: -90 };
+      const end: Pose = { x: 0, y: vh * (wide ? 0 : -0.1), s: wide ? 0.78 : 0.82, rx: -24, ry: 0, lid: -62 };
+
+      let p: Pose;
+      if (scrolled < intro) {
+        const a = smooth(introP);
+        p = mix(start, pose(0), a);
+        // The lid opens in the second half of the rise.
+        p.lid = lerp(-90, pose(0).lid, smooth(clamp((introP - 0.3) / 0.6)));
+      } else {
+        p = mix(pose(base), pose(Math.min(n - 1, base + 1)), t);
+        // A small lift mid-move, as if carried.
+        p.y -= Math.sin(Math.PI * t) * vh * 0.035;
+        p.s *= 1 - Math.sin(Math.PI * t) * 0.05;
+      }
+      const lastHoldEnd = intro + per * (n - 1) + tail * 0.25;
+      const outro = smooth(clamp((scrolled - lastHoldEnd) / (tail * 0.75)));
+      if (outro > 0) p = mix(p, end, outro);
+
+      const rig = rigRef.current;
+      const body = bodyRef.current;
+      const lid = lidRef.current;
+      if (rig) rig.style.transform = `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) scale(${p.s.toFixed(4)})`;
+      if (body) body.style.transform = `rotateX(${p.rx.toFixed(2)}deg) rotateY(${p.ry.toFixed(2)}deg)`;
+      if (lid) lid.style.transform = `rotateX(${p.lid.toFixed(2)}deg)`;
+      if (auraRef.current) auraRef.current.style.transform = `translate3d(${(p.x * 0.7).toFixed(1)}px, 0, 0)`;
+
+      // Phone stands in front of the laptop's inner corner, toward the words,
+      // and crosses in front of the screen when the laptop changes side.
+      if (phoneRef.current) {
+        const side = p.x / (vw * 0.17 || 1);
+        const show = clamp((introP - 0.75) * 4) * (1 - outro);
+        const reach = (rig?.offsetWidth ?? 0) * 0.55;
+        phoneRef.current.style.transform = `translate3d(${(-side * reach).toFixed(1)}px, 0, 420px)`;
+        phoneRef.current.style.opacity = show.toFixed(3);
+      }
 
       const place = (els: (HTMLDivElement | null)[], pos: number) =>
         els.forEach((el, i) => {
@@ -82,21 +154,20 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
           el.style.transform = d > 0 ? `translate3d(0, ${(d * 100).toFixed(2)}%, 0)` : `translate3d(0, ${(d * 28).toFixed(2)}%, 0) scale(${(1 + d * 0.06).toFixed(4)})`;
           el.style.setProperty('--dim', d < 0 ? (-d * 0.75).toFixed(3) : '0');
         });
-
       place(screens.current, s);
-      // The phone follows a beat later, but rests exactly in place between changes.
       place(phones.current, base + smooth(clamp((frac - 0.6) / 0.4)));
 
       texts.current.forEach((el, i) => {
         if (!el) return;
         const d = i - s;
-        const a = clamp(1 - Math.abs(d) * 2.2);
+        const a = clamp(1 - Math.abs(d) * 2.2) * clamp((introP - 0.6) * 2.5) * (1 - outro);
         el.style.opacity = a.toFixed(3);
-        el.style.transform = `translate3d(0, ${(d * 70).toFixed(1)}px, 0)`;
+        el.style.transform = `translate3d(0, ${(d * 60).toFixed(1)}px, 0)`;
         el.style.visibility = a <= 0.001 ? 'hidden' : 'visible';
+        el.style.pointerEvents = a > 0.5 ? 'auto' : 'none';
       });
       glows.current.forEach((el, i) => {
-        if (el) el.style.opacity = (clamp(1 - Math.abs(i - s)) * 0.5 * introP).toFixed(3);
+        if (el) el.style.opacity = (clamp(1 - Math.abs(i - s)) * 0.5 * introP * (1 - outro * 0.6)).toFixed(3);
       });
 
       const now = Math.round(s);
@@ -135,25 +206,26 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
       ref={sectionRef}
       aria-label="Selected websites"
       className="story relative bg-background-dark"
-      style={{ height: `calc(100svh + ${90 + 50 + (n - 1) * 80}vh)` }}
+      style={{ height: `calc(100svh + ${110 + 70 + (n - 1) * 90}vh)` }}
     >
       <div ref={stageRef} className="story-stage sticky top-0 h-[100svh] overflow-hidden">
-        {/* Atmosphere: cool aurora, the active brand's glow, drifting ice specks */}
+        {/* Atmosphere: cool aurora, the active brand's glow (follows the laptop), drifting ice specks */}
         <div aria-hidden="true" className="absolute left-1/2 top-[30%] h-[560px] w-[1000px] -translate-x-1/2 rounded-full bg-primary-blue opacity-[0.16] blur-[140px]" />
         <div aria-hidden="true" className="absolute left-[6%] top-[8%] h-[380px] w-[380px] rounded-full bg-primary-cyan opacity-[0.11] blur-[110px]" />
-        {sites.map((site, i) => (
-          <div
-            key={site.slug}
-            ref={(el) => (glows.current[i] = el)}
-            aria-hidden="true"
-            className="absolute right-[4%] top-[14%] h-[34vh] w-[70vw] rounded-full opacity-0 blur-[90px] lg:top-[18%] lg:h-[520px] lg:w-[620px] lg:blur-[130px]"
-            style={{ background: site.glow === '#ffffff' ? site.stage : site.glow }}
-          />
-        ))}
+        <div ref={auraRef} aria-hidden="true" className="absolute inset-0 will-change-transform">
+          {sites.map((site, i) => (
+            <div
+              key={site.slug}
+              ref={(el) => (glows.current[i] = el)}
+              className="absolute left-1/2 top-[14%] h-[34vh] w-[70vw] -translate-x-1/2 rounded-full opacity-0 blur-[90px] lg:top-[16%] lg:h-[520px] lg:w-[620px] lg:blur-[130px]"
+              style={{ background: site.glow === '#ffffff' ? site.stage : site.glow }}
+            />
+          ))}
+        </div>
         <div aria-hidden="true" className="story-specks absolute inset-0" />
 
         {/* Opening title */}
-        <div className="story-title pointer-events-none absolute inset-x-0 top-[22%] z-10 px-6 text-center lg:top-[18%]">
+        <div className="story-title pointer-events-none absolute inset-x-0 top-[22%] z-20 px-6 text-center lg:top-[16%]">
           <p className="mb-4 text-lg text-muted">
             Websites for businesses that want to be <span className="font-semibold text-ink">seen, trusted and chosen.</span>
           </p>
@@ -168,101 +240,116 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
             Websites
           </h1>
           <p className="story-cue mt-10 text-sm font-semibold tracking-wider text-subtle">
-            {pad(n)} SITES · SCROLL TO SEE THEM
+            {pad(n)} SITES · SCROLL TO OPEN
           </p>
         </div>
 
-        {/* The pinned story */}
-        <div className="relative mx-auto flex h-full max-w-[1320px] flex-col justify-center gap-7 px-5 pt-16 lg:grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] lg:items-center lg:gap-14 lg:px-8">
-          {/* Words */}
-          <div className="story-words order-2 lg:order-1">
-            <div className="mb-5 flex items-baseline gap-3 font-semibold tabular-nums text-subtle">
-              <span className="text-2xl text-ink">{pad(active + 1)}</span>
-              <span className="text-sm">/ {pad(n)}</span>
-              <span className="ml-2 h-px w-16 self-center bg-line" aria-hidden="true">
-                <span
-                  className="block h-px bg-gradient-hero transition-[width] duration-500"
-                  style={{ width: `${((active + 1) / n) * 100}%` }}
-                />
-              </span>
-            </div>
-            <div className="relative h-[156px] sm:h-[170px] lg:h-[300px]">
-              {sites.map((site, i) => (
-                <div
-                  key={site.slug}
-                  ref={(el) => (texts.current[i] = el)}
-                  className="absolute inset-x-0 top-0 will-change-transform"
-                  style={{ opacity: i === 0 ? 1 : 0 }}
-                  aria-hidden={i !== active}
-                >
-                  <h2 className="font-black leading-[0.92] text-ink" style={{ fontSize: 'clamp(34px, 4.2vw, 64px)', letterSpacing: '-0.04em' }}>
-                    {site.client}
-                  </h2>
-                  <p className="mt-3 text-sm font-semibold text-primary-cyan">
-                    {site.category}
-                    {site.location ? ` · ${site.location}` : ''}
-                  </p>
-                  <p className="mt-3 max-w-md text-[15px] leading-relaxed text-muted lg:text-lg">{site.statement}</p>
+        {/* The laptop */}
+        <div className="story-scene absolute inset-0 flex items-center justify-center pt-16">
+          <div ref={rigRef} className="story-rig relative w-[84vw] will-change-transform lg:w-[min(44vw,70vh)]">
+            <Link
+              to={`/websites/${current.slug}`}
+              aria-label={`${current.client}: view website`}
+              className="story-body block"
+            >
+              <div ref={bodyRef} className="story-body-3d relative">
+                {/* Lid: screen on the front, brushed metal on the back */}
+                <div ref={lidRef} className="story-lid relative">
+                  <div className="story-lid-front rounded-t-[1.4vw] rounded-b-[0.35vw] border border-white/15 bg-[#06080d] p-[2.2%] pb-[3%] lg:rounded-t-[16px] lg:rounded-b-[5px]">
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-[0.4vw] bg-[#0A0F1F] lg:rounded-[4px]">
+                      {sites.map((site, i) => (
+                        <div
+                          key={site.slug}
+                          ref={(el) => (screens.current[i] = el)}
+                          className="story-layer absolute inset-0 will-change-transform"
+                          style={{ zIndex: i, visibility: i === 0 ? 'visible' : 'hidden' }}
+                        >
+                          <img
+                            src={site.image}
+                            alt={i === active ? `${site.client} website on a laptop` : ''}
+                            className="h-full w-full object-cover object-top"
+                            fetchPriority={i < 2 ? 'high' : 'low'}
+                          />
+                        </div>
+                      ))}
+                      <div aria-hidden="true" className="story-glare pointer-events-none absolute inset-0 z-50" />
+                    </div>
+                  </div>
+                  <div aria-hidden="true" className="story-lid-back absolute inset-0 rounded-t-[1.4vw] rounded-b-[0.35vw] lg:rounded-t-[16px] lg:rounded-b-[5px]">
+                    <span className="story-lid-mark" />
+                  </div>
                 </div>
-              ))}
+                {/* Keyboard deck, lying flat toward you from the hinge */}
+                <div aria-hidden="true" className="story-deck absolute left-[-5%] top-full w-[110%]">
+                  <div className="story-keys" />
+                  <div className="story-pad" />
+                </div>
+              </div>
+            </Link>
+
+            {/* Phone, standing in front of the laptop */}
+            <div ref={phoneRef} className="story-phone-slot pointer-events-none absolute bottom-[-12%] left-[42.5%] hidden w-[15%] lg:block" style={{ opacity: 0 }}>
+              <div>
+                <PhoneFrame className="aspect-[390/844] w-full !rounded-[22px] !p-1.5">
+                  <div className="relative h-full w-full overflow-hidden rounded-[16px]">
+                    {sites.map((site, i) => (
+                      <div
+                        key={site.slug}
+                        ref={(el) => (phones.current[i] = el)}
+                        className="story-layer absolute inset-0 will-change-transform"
+                        style={{ zIndex: i, visibility: i === 0 ? 'visible' : 'hidden' }}
+                      >
+                        <img src={site.mobileImage} alt="" className="h-full w-full object-cover object-top" fetchPriority="low" />
+                      </div>
+                    ))}
+                  </div>
+                </PhoneFrame>
+              </div>
             </div>
-            <div className="mt-2 flex flex-wrap items-center gap-5 lg:mt-6">
+          </div>
+        </div>
+
+        {/* Words: opposite the laptop on large screens, under it on phones */}
+        {sites.map((site, i) => (
+          <div
+            key={site.slug}
+            ref={(el) => (texts.current[i] = el)}
+            className={`story-text absolute inset-x-5 bottom-[7vh] z-30 will-change-transform sm:inset-x-10 lg:inset-x-auto lg:bottom-auto lg:top-1/2 lg:w-[30vw] lg:max-w-[440px] ${
+              sideOf(i) === 1 ? 'lg:left-[6vw]' : 'lg:right-[6vw]'
+            }`}
+            style={{ opacity: 0, visibility: 'hidden' }}
+            aria-hidden={i !== active}
+          >
+            <div className="lg:-translate-y-1/2 lg:pt-16">
+              <div className="mb-4 flex items-baseline gap-3 font-semibold tabular-nums text-subtle">
+                <span className="text-2xl text-ink">{pad(i + 1)}</span>
+                <span className="text-sm">/ {pad(n)}</span>
+                <span className="ml-2 h-px w-16 self-center bg-line" aria-hidden="true">
+                  <span className="block h-px bg-gradient-hero" style={{ width: `${((i + 1) / n) * 100}%` }} />
+                </span>
+              </div>
+              <h2 className="font-black leading-[0.92] text-ink" style={{ fontSize: 'clamp(32px, 4.2vw, 64px)', letterSpacing: '-0.04em' }}>
+                {site.client}
+              </h2>
+              <p className="mt-3 text-sm font-semibold text-primary-cyan">
+                {site.category}
+                {site.location ? ` · ${site.location}` : ''}
+              </p>
+              <p className="mt-3 max-w-md text-[15px] leading-relaxed text-muted lg:text-lg">{site.statement}</p>
               <Link
-                to={`/websites/${current.slug}`}
-                className="group inline-flex items-center gap-2 rounded-full bg-gradient-hero px-6 py-3 text-[15px] font-semibold text-white shadow-[0_10px_34px_rgba(0,216,255,0.32)] transition-transform hover:-translate-y-0.5"
+                to={`/websites/${site.slug}`}
+                tabIndex={i === active ? 0 : -1}
+                className="group mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-hero px-6 py-3 text-[15px] font-semibold text-white shadow-[0_10px_34px_rgba(0,216,255,0.32)] transition-transform hover:-translate-y-0.5 lg:mt-7"
               >
-                View {current.client}
+                View {site.client}
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             </div>
           </div>
-
-          {/* Device */}
-          <div className="story-device relative order-1 mx-auto w-full lg:order-2">
-            <Link to={`/websites/${current.slug}`} aria-label={`${current.client}: view website`} className="group block">
-              <BrowserFrame
-                url={current.displayUrl}
-                className="mx-auto w-full shadow-[0_40px_120px_-20px_rgba(0,123,255,0.55)] lg:w-[min(100%,calc(62vh*1.6))]"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#0A0F1F]">
-                  {sites.map((site, i) => (
-                    <div
-                      key={site.slug}
-                      ref={(el) => (screens.current[i] = el)}
-                      className="story-layer absolute inset-0 will-change-transform"
-                      style={{ zIndex: i, visibility: i === 0 ? 'visible' : 'hidden' }}
-                    >
-                      <img
-                        src={site.image}
-                        alt={i === active ? `${site.client} website on desktop` : ''}
-                        className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                        fetchPriority={i < 2 ? 'high' : 'low'}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </BrowserFrame>
-            </Link>
-
-            <PhoneFrame className="story-phone absolute -bottom-10 -left-10 hidden h-[40vh] max-h-[400px] w-auto aspect-[390/844] lg:block xl:-left-14">
-              <div className="relative h-full w-full overflow-hidden">
-                {sites.map((site, i) => (
-                  <div
-                    key={site.slug}
-                    ref={(el) => (phones.current[i] = el)}
-                    className="story-layer absolute inset-0 will-change-transform"
-                    style={{ zIndex: i, visibility: i === 0 ? 'visible' : 'hidden' }}
-                  >
-                    <img src={site.mobileImage} alt="" className="h-full w-full object-cover object-top" fetchPriority="low" />
-                  </div>
-                ))}
-              </div>
-            </PhoneFrame>
-          </div>
-        </div>
+        ))}
 
         {/* Rail: jump to any site */}
-        <nav aria-label="Jump to a website" className="story-rail absolute right-3 top-1/2 z-20 hidden -translate-y-1/2 flex-col gap-2.5 md:flex lg:right-6">
+        <nav aria-label="Jump to a website" className="story-rail absolute right-3 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-2.5 md:flex lg:right-5">
           {sites.map((site, i) => (
             <button
               key={site.slug}

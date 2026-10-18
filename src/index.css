@@ -358,13 +358,79 @@ html.light .sheet-shadow {
 .story-cue {
   opacity: calc(1 - var(--intro) * 4);
 }
-.story-device {
-  transform: translate3d(0, calc((1 - var(--intro)) * 62vh), 0) scale(calc(0.84 + var(--intro) * 0.16));
-  transform-origin: 50% 100%;
-}
-.story-words,
+
 .story-rail {
   opacity: calc((var(--intro) - 0.55) * 2.4);
+}
+.story-scene {
+  perspective: 2400px;
+  perspective-origin: 50% 40%;
+}
+.story-rig,
+.story-body,
+.story-body-3d,
+.story-lid {
+  transform-style: preserve-3d;
+}
+.story-lid {
+  transform-origin: 50% 100%;
+}
+.story-lid-front,
+.story-lid-back {
+  backface-visibility: hidden;
+}
+.story-lid-front {
+  box-shadow: 0 50px 120px -30px rgba(0, 123, 255, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+.story-lid-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(160deg, #3a4150 0%, #1d222c 45%, #121620 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.story-lid-mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(0, 216, 255, 0.55), rgba(0, 123, 255, 0.15) 55%, transparent 70%);
+  filter: blur(1px);
+}
+.story-deck {
+  aspect-ratio: 16 / 10.5;
+  transform-origin: 50% 0;
+  transform: rotateX(90deg);
+  border-radius: 0 0 14px 14px;
+  background: linear-gradient(180deg, #2a303c 0%, #1a1f29 60%, #141821 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55);
+}
+.story-keys {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  top: 7%;
+  height: 46%;
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0 5.6%, transparent 5.6% 6.6%),
+    repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0 14%, transparent 14% 16.6%);
+  opacity: 0.85;
+}
+.story-pad {
+  position: absolute;
+  left: 34%;
+  right: 34%;
+  top: 60%;
+  height: 30%;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.story-glare {
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0) 38%);
 }
 .story-layer::after {
   content: '';
