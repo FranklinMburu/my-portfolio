@@ -6,11 +6,14 @@ import ProjectsPage from './pages/ProjectsPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
+import WebsitesPage from './pages/WebsitesPage';
+import WebsiteDetailPage from './pages/WebsiteDetailPage';
 import { navigate, usePath, useScrollOnRouteChange } from './lib/router';
 import { legacyHashRoutes } from './data/site';
 
 const routes: Record<string, () => JSX.Element> = {
   '/': HomePage,
+  '/websites': WebsitesPage,
   '/projects': ProjectsPage,
   '/about': AboutPage,
   '/contact': ContactPage
@@ -49,6 +52,7 @@ function App() {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
+  const websiteSlug = path.match(/^\/websites\/([^/]+)$/)?.[1];
   const Page = routes[path] ?? NotFoundPage;
 
   return (
@@ -61,7 +65,7 @@ function App() {
       </a>
       <Header theme={theme} toggleTheme={toggleTheme} path={path} />
       <main id="main">
-        <Page />
+        {websiteSlug ? <WebsiteDetailPage slug={decodeURIComponent(websiteSlug)} /> : <Page />}
       </main>
       <Footer />
     </div>

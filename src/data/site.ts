@@ -3,6 +3,7 @@ export const CV_FILENAME = 'Franklin_Mburu_Kamande_Backend_Developer_CV.pdf';
 
 export const navItems = [
   { to: '/', label: 'Home' },
+  { to: '/websites', label: 'Websites' },
   { to: '/projects', label: 'Projects' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' }
