@@ -22,6 +22,9 @@ export default {
       gradientColorStops: {
         hero: ['#00d8ff', '#007bff'],
       },
+      backgroundImage: {
+        'gradient-hero': 'linear-gradient(90deg, #00d8ff, #007bff)',
+      },
       spacing: {
         container: '1440px',
         section: '120px',

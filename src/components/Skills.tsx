@@ -157,21 +157,6 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Button */}
-        <div className="text-center mt-14">
-          <button
-            className="
-              px-8 py-3 rounded-full text-lg font-semibold
-              bg-gradient-to-r from-[#00E0FF] to-[#007BFF]
-              text-white shadow-[0_0_25px_rgba(0,150,255,0.5)]
-              hover:shadow-[0_0_40px_rgba(0,150,255,0.7)]
-              transition-all duration-500
-              hover:-translate-y-1
-            "
-          >
-            Explore Full Skill Set →
-          </button>
-        </div>
       </div>
     </section>
   );
