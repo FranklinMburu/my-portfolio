@@ -28,6 +28,7 @@ interface Pose {
   s: number; // scale
   rx: number; // deg, negative = seen from above
   ry: number; // deg
+  rz: number; // deg, roll
   lid: number; // deg, 0 = upright, -90 = closed
 }
 
@@ -37,8 +38,33 @@ const mix = (a: Pose, b: Pose, t: number): Pose => ({
   s: lerp(a.s, b.s, t),
   rx: lerp(a.rx, b.rx, t),
   ry: lerp(a.ry, b.ry, t),
+  rz: lerp(a.rz, b.rz, t),
   lid: lerp(a.lid, b.lid, t)
 });
+
+/**
+ * How the laptop rests on each site: turn toward the words, tilt, size,
+ * height and lid angle. Small differences so no two pauses look alike.
+ */
+const HOLDS = [
+  { ry: 17, rx: -9, s: 1, dy: 0, lid: 12 }, // Keja
+  { ry: 22, rx: -4, s: 0.96, dy: 0.03, lid: 14 }, // Enkare: low and cinematic
+  { ry: 12, rx: -12, s: 1.05, dy: -0.01, lid: 10 }, // Tabasamu
+  { ry: 15, rx: -17, s: 0.94, dy: 0.01, lid: 16 }, // Mlima: from above, like a table
+  { ry: 23, rx: -7, s: 1, dy: 0, lid: 8 }, // Mbegu
+  { ry: 12, rx: -10, s: 1.04, dy: -0.01, lid: 12 }, // Ember & Salt
+  { ry: 19, rx: -4, s: 1.02, dy: 0.02, lid: 12 }, // Nguvu
+  { ry: 16, rx: -13, s: 0.95, dy: 0, lid: 14 }, // Chipukizi
+  { ry: 14, rx: -8, s: 1, dy: -0.01, lid: 12 } // Mwamba
+];
+
+/**
+ * The move that carries the laptop from one site to the next, in order.
+ * Moves marked as cuts change the screen at the moment it is hidden from view
+ * (back turned, lid shut, out of frame, edge-on); the others slide it.
+ */
+const MOVES = ['swing', 'spin', 'dive', 'overhead', 'drop', 'bank', 'away', 'lid'] as const;
+const CUTS = new Set<string>(['spin', 'overhead', 'drop', 'lid']);
 
 /** Laptop on the right for even sites (words on the left), left for odd ones. */
 const sideOf = (i: number) => (i % 2 === 0 ? 1 : -1);
@@ -99,25 +125,80 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
       const t = smooth(clamp((frac - 0.45) / 0.55));
       const s = base + t;
 
-      // Poses. On phones the laptop stays centred above the words.
-      const pose = (i: number): Pose =>
-        wide
-          ? { x: sideOf(i) * vw * 0.17, y: -vh * 0.09, s: 1, rx: -9, ry: -sideOf(i) * 17, lid: 12 }
-          : { x: 0, y: -vh * 0.17, s: 1, rx: -10, ry: -sideOf(i) * 10, lid: 12 };
-      const start: Pose = { x: 0, y: vh * (wide ? 0.2 : 0.14), s: wide ? 0.58 : 0.66, rx: -62, ry: 0, lid: -90 };
-      const end: Pose = { x: 0, y: vh * (wide ? 0 : -0.1), s: wide ? 0.78 : 0.82, rx: -24, ry: 0, lid: -62 };
+      // Poses. On phones the laptop stays centred above the words and turns less.
+      const pose = (i: number): Pose => {
+        const h = HOLDS[i % HOLDS.length];
+        return wide
+          ? { x: sideOf(i) * vw * 0.17, y: vh * (h.dy - 0.09), s: h.s, rx: h.rx, ry: -sideOf(i) * h.ry, rz: 0, lid: h.lid }
+          : { x: 0, y: vh * (h.dy * 0.5 - 0.17), s: 1 + (h.s - 1) * 0.5, rx: h.rx, ry: -sideOf(i) * h.ry * 0.55, rz: 0, lid: h.lid };
+      };
+      const start: Pose = { x: 0, y: vh * (wide ? 0.2 : 0.14), s: wide ? 0.58 : 0.66, rx: -62, ry: 0, rz: 0, lid: -90 };
+      const end: Pose = { x: 0, y: vh * (wide ? 0 : -0.1), s: wide ? 0.78 : 0.82, rx: -24, ry: 0, rz: 0, lid: -62 };
 
       let p: Pose;
+      let cut = false;
+      let phoneFade = 0;
+      let wordsFade = 0;
       if (scrolled < intro) {
         const a = smooth(introP);
         p = mix(start, pose(0), a);
         // The lid opens in the second half of the rise.
         p.lid = lerp(-90, pose(0).lid, smooth(clamp((introP - 0.3) / 0.6)));
       } else {
-        p = mix(pose(base), pose(Math.min(n - 1, base + 1)), t);
-        // A small lift mid-move, as if carried.
-        p.y -= Math.sin(Math.PI * t) * vh * 0.035;
-        p.s *= 1 - Math.sin(Math.PI * t) * 0.05;
+        const a = pose(base);
+        const b = pose(Math.min(n - 1, base + 1));
+        const bump = Math.sin(Math.PI * t);
+        const move = MOVES[base % MOVES.length];
+        cut = CUTS.has(move) && t > 0 && t < 1;
+        p = mix(a, b, t);
+        switch (move) {
+          case 'swing': // lifted and carried across
+            p.y -= bump * vh * 0.035;
+            p.s *= 1 - bump * 0.05;
+            break;
+          case 'spin': // turntable: a full turn, back of the lid passes the camera
+            p.ry += 360 * t;
+            p.y -= bump * vh * 0.03;
+            p.s *= 1 - bump * 0.14;
+            phoneFade = bump * 0.8;
+            break;
+          case 'dive': // rushes at the camera, screen nearly fills the view
+            p.s *= 1 + bump * (wide ? 0.85 : 0.3);
+            p.x *= 1 - bump;
+            p.y = lerp(p.y, wide ? vh * 0.02 : -vh * 0.12, bump);
+            p.rx = lerp(p.rx, 0, bump);
+            p.ry = lerp(p.ry, 0, bump);
+            phoneFade = Math.min(1, bump * 2.5);
+            wordsFade = Math.min(1, bump * 2.5);
+            break;
+          case 'overhead': // tips to a top-down view, screen edge-on
+            p.rx = lerp(p.rx, -80, bump);
+            p.y += bump * vh * 0.05;
+            p.s *= 1 - bump * 0.08;
+            phoneFade = bump;
+            break;
+          case 'drop': // sinks out of frame, comes up on the other side
+            p.x = lerp(a.x, b.x, smooth(clamp((t - 0.35) / 0.3)));
+            p.y += Math.pow(bump, 0.8) * vh * 0.95;
+            wordsFade = wide ? 0 : Math.min(1, bump * 2.5);
+            break;
+          case 'bank': // rolls into the turn like a plane
+            p.rz = -(Math.sign(b.x - a.x) || sideOf(base)) * bump * (wide ? 12 : 7);
+            p.y -= bump * vh * 0.06;
+            break;
+          case 'away': // shrinks into the distance and comes back
+            p.s *= 1 - bump * 0.55;
+            p.y -= bump * vh * 0.08;
+            p.ry += bump * 35 * sideOf(base);
+            phoneFade = bump * 0.7;
+            break;
+          case 'lid': // shuts, and the next site opens "like a file"
+            p.lid = lerp(p.lid, -90, Math.min(1, bump * 1.25));
+            p.rx = lerp(p.rx, -32, bump);
+            p.y += bump * vh * 0.03;
+            phoneFade = bump;
+            break;
+        }
       }
       const lastHoldEnd = intro + per * (n - 1) + tail * 0.25;
       const outro = smooth(clamp((scrolled - lastHoldEnd) / (tail * 0.75)));
@@ -127,7 +208,7 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
       const body = bodyRef.current;
       const lid = lidRef.current;
       if (rig) rig.style.transform = `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) scale(${p.s.toFixed(4)})`;
-      if (body) body.style.transform = `rotateX(${p.rx.toFixed(2)}deg) rotateY(${p.ry.toFixed(2)}deg)`;
+      if (body) body.style.transform = `rotateX(${p.rx.toFixed(2)}deg) rotateY(${p.ry.toFixed(2)}deg) rotateZ(${p.rz.toFixed(2)}deg)`;
       if (lid) lid.style.transform = `rotateX(${p.lid.toFixed(2)}deg)`;
       if (auraRef.current) auraRef.current.style.transform = `translate3d(${(p.x * 0.7).toFixed(1)}px, 0, 0)`;
 
@@ -135,7 +216,7 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
       // and crosses in front of the screen when the laptop changes side.
       if (phoneRef.current) {
         const side = p.x / (vw * 0.17 || 1);
-        const show = clamp((introP - 0.75) * 4) * (1 - outro);
+        const show = clamp((introP - 0.75) * 4) * (1 - outro) * (1 - phoneFade);
         const reach = (rig?.offsetWidth ?? 0) * 0.55;
         phoneRef.current.style.transform = `translate3d(${(-side * reach).toFixed(1)}px, 0, 420px)`;
         phoneRef.current.style.opacity = show.toFixed(3);
@@ -154,13 +235,15 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
           el.style.transform = d > 0 ? `translate3d(0, ${(d * 100).toFixed(2)}%, 0)` : `translate3d(0, ${(d * 28).toFixed(2)}%, 0) scale(${(1 + d * 0.06).toFixed(4)})`;
           el.style.setProperty('--dim', d < 0 ? (-d * 0.75).toFixed(3) : '0');
         });
-      place(screens.current, s);
-      place(phones.current, base + smooth(clamp((frac - 0.6) / 0.4)));
+      // Cut moves swap the screen in one go while it is out of sight.
+      const cutPos = base + (t >= 0.5 ? 1 : 0);
+      place(screens.current, cut ? cutPos : s);
+      place(phones.current, cut ? cutPos : base + smooth(clamp((frac - 0.6) / 0.4)));
 
       texts.current.forEach((el, i) => {
         if (!el) return;
         const d = i - s;
-        const a = clamp(1 - Math.abs(d) * 2.2) * clamp((introP - 0.6) * 2.5) * (1 - outro);
+        const a = clamp(1 - Math.abs(d) * 2.2) * clamp((introP - 0.6) * 2.5) * (1 - outro) * (1 - wordsFade);
         el.style.opacity = a.toFixed(3);
         el.style.transform = `translate3d(0, ${(d * 60).toFixed(1)}px, 0)`;
         el.style.visibility = a <= 0.001 ? 'hidden' : 'visible';
