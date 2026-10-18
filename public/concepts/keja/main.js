@@ -24,8 +24,8 @@
   window.addEventListener('resize', onScroll);
   update();
 
-  // Concept site: forms explain plainly that nothing was sent.
-  const concept = (formId, statusId, message, check) => {
+  // Forms (demo).
+  const demo = (formId, statusId, message, check) => {
     const form = document.getElementById(formId);
     const status = document.getElementById(statusId);
     form.addEventListener('submit', (event) => {
@@ -35,15 +35,15 @@
     });
   };
 
-  concept(
+  demo(
     'find-form',
     'find-status',
-    'This is a concept website, so there are no real listings to show. Keja is a fictional agency.'
+    'Demo search: in a live build, this shows matching homes from the listings database.'
   );
-  concept(
+  demo(
     'talk-form',
     'talk-status',
-    'This is a concept website, so no one will call. Your details were not sent anywhere.',
+    'Demo form: in a live build, this goes straight to an agent, who calls you back the same day.',
     (form) => {
       if (!form.name.value.trim()) {
         form.name.focus();

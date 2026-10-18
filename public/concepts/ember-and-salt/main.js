@@ -23,7 +23,7 @@
   window.addEventListener('resize', onScroll);
   update();
 
-  // Booking form: a concept site, so nothing is booked. Say so plainly.
+  // Booking form (demo).
   const form = document.getElementById('book-form');
   const status = document.getElementById('book-status');
   form.addEventListener('submit', (event) => {
@@ -35,7 +35,7 @@
       return;
     }
     status.textContent =
-      'This is a concept website, so no table was booked. Ember & Salt is a fictional restaurant.';
+      'Demo form: in a live build, this books the table and texts you a confirmation.';
   });
 
   // Dates in the past can't be booked.

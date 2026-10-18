@@ -40,7 +40,7 @@
   measure();
   update();
 
-  // Concept site: the form explains plainly that nothing was booked.
+  // First-session form (demo).
   const form = document.getElementById('first-form');
   const status = document.getElementById('first-status');
   form.addEventListener('submit', (event) => {
@@ -55,6 +55,6 @@
       form.email.focus();
       return;
     }
-    status.textContent = 'This is a concept website, so no session was booked. Nguvu is a fictional studio.';
+    status.textContent = 'Demo form: in a live build, this books your free first session and emails you the details.';
   });
 })();

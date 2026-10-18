@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tabasamu Dental Studio — Kilimani, Nairobi</title>
+  <meta name="description" content="A calm dental studio in Kilimani. Gentle care, clear prices and appointments that start on time." />
+  <link rel="preload" href="fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="images/smile.webp" as="image" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top"><span class="nav__mark" aria-hidden="true"></span>Tabasamu</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#treatments">Treatments</a>
+      <a href="#visit">First visit</a>
+      <a href="#studio">The studio</a>
+    </nav>
+    <a class="nav__book" href="#book">Book a visit</a>
+  </header>
+
+  <main id="main">
+    <!-- Hero: the smile opens as you scroll -->
+    <section class="hero" id="top" aria-label="Tabasamu Dental Studio">
+      <div class="hero__stage" id="stage">
+        <h1 class="hero__top">Healthy teeth.</h1>
+        <div class="hero__window">
+          <img src="images/smile.webp" alt="A woman smiling widely" />
+        </div>
+        <p class="hero__bottom" aria-hidden="true">Easy visits.</p>
+
+        <div class="hero__end">
+          <p>A calm dental studio in Kilimani.</p>
+          <a class="button button--light" href="#book">Book a visit</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="intro">
+      <p class="intro__lead reveal">Gentle care, clear prices and appointments that start on time. Most people are in and out in under an hour.</p>
+      <ul class="intro__facts reveal">
+        <li><strong>7am to 8pm</strong><span>Monday to Saturday</span></li>
+        <li><strong>Same week</strong><span>appointments, usually</span></li>
+        <li><strong>All ages</strong><span>kids have their own room</span></li>
+      </ul>
+    </section>
+
+    <!-- Treatments -->
+    <section class="treatments" id="treatments">
+      <div class="section-head">
+        <h2 class="reveal">Treatments</h2>
+        <p class="reveal">Prices are what you pay. If anything changes, we tell you before we start, not after.</p>
+      </div>
+      <ul class="menu">
+        <li class="reveal"><span class="menu__name">Check-up and clean</span><span class="menu__desc">Exam, scale and polish, advice you can use</span><span class="menu__price">KSh 4,500</span></li>
+        <li class="reveal"><span class="menu__name">Whitening</span><span class="menu__desc">In-studio, about 90 minutes, up to eight shades</span><span class="menu__price">KSh 25,000</span></li>
+        <li class="reveal"><span class="menu__name">Clear aligners</span><span class="menu__desc">Digital scan, a plan you can see, check-ins every six weeks</span><span class="menu__price">from KSh 180,000</span></li>
+        <li class="reveal"><span class="menu__name">Fillings</span><span class="menu__desc">Tooth-coloured, done in one visit</span><span class="menu__price">from KSh 6,000</span></li>
+        <li class="reveal"><span class="menu__name">Implants</span><span class="menu__desc">A permanent tooth, planned with 3D imaging</span><span class="menu__price">from KSh 120,000</span></li>
+        <li class="reveal"><span class="menu__name">Children's dentistry</span><span class="menu__desc">Short, playful visits that build good habits</span><span class="menu__price">KSh 3,500</span></li>
+      </ul>
+    </section>
+
+    <!-- First visit -->
+    <section class="visit" id="visit">
+      <h2 class="reveal">Your first visit</h2>
+      <ol class="steps">
+        <li class="reveal"><span class="steps__n">1</span><h3>Book in two minutes</h3><p>Pick a treatment, a day and a time below. You'll get a text the evening before.</p></li>
+        <li class="reveal"><span class="steps__n">2</span><h3>A 30-minute check</h3><p>A digital scan and X-ray, then your dentist shows you what they see, on screen.</p></li>
+        <li class="reveal"><span class="steps__n">3</span><h3>Leave with a plan</h3><p>Written options with prices. No pressure to decide on the day.</p></li>
+      </ol>
+    </section>
+
+    <!-- The studio -->
+    <section class="studio" id="studio">
+      <div class="section-head">
+        <h2 class="reveal">The studio</h2>
+        <p class="reveal">Daylight, quiet rooms and the latest equipment. Digital X-rays use far less radiation than film.</p>
+      </div>
+      <div class="studio__grid">
+        <img class="reveal studio__a" src="images/room.webp" alt="A bright treatment room with a dental chair" loading="lazy" />
+        <img class="reveal studio__b" src="images/reception.webp" alt="The reception area with teal seating" loading="lazy" />
+        <img class="reveal studio__c" src="images/xray.webp" alt="A dentist reviewing an X-ray on a light screen" loading="lazy" />
+        <img class="reveal studio__d" src="images/room-white.webp" alt="A white treatment room" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- Band -->
+    <section class="band">
+      <img src="images/orange.webp" alt="A woman laughing against an orange wall" loading="lazy" />
+      <div class="band__text">
+        <p class="reveal">Nervous? Tell us. We'll go at your pace.</p>
+        <small class="reveal">Every appointment has time built in to talk first. You can ask us to stop at any point.</small>
+      </div>
+    </section>
+
+    <!-- Book -->
+    <section class="book" id="book">
+      <div class="book__intro">
+        <h2 class="reveal">Book a visit</h2>
+        <p class="reveal">Choose what you need, then a day and a time.</p>
+        <img class="book__photo reveal" src="images/portrait.webp" alt="A woman smiling" loading="lazy" />
+      </div>
+
+      <form class="booker" id="book-form" novalidate>
+        <fieldset>
+          <legend>Treatment</legend>
+          <div class="chips" id="treatment-chips">
+            <label><input type="radio" name="treatment" value="Check-up and clean" checked /><span>Check-up and clean</span></label>
+            <label><input type="radio" name="treatment" value="Whitening" /><span>Whitening</span></label>
+            <label><input type="radio" name="treatment" value="Clear aligners consultation" /><span>Aligners consultation</span></label>
+            <label><input type="radio" name="treatment" value="Something hurts" /><span>Something hurts</span></label>
+            <label><input type="radio" name="treatment" value="Children's check-up" /><span>Children's check-up</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Day</legend>
+          <div class="chips chips--days" id="day-chips"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Time</legend>
+          <div class="chips" id="time-chips"></div>
+        </fieldset>
+
+        <div class="booker__row">
+          <label>Your name<input type="text" name="name" autocomplete="name" required /></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel" placeholder="07xx xxx xxx" required /></label>
+        </div>
+
+        <div class="booker__summary">
+          <p id="summary">Check-up and clean</p>
+          <button class="button" type="submit">Book this visit</button>
+        </div>
+        <p class="form-status" id="book-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__cols">
+      <p class="footer__name">Tabasamu</p>
+      <div><strong>Visit</strong><p>Argwings Kodhek Road<br />Kilimani, Nairobi</p></div>
+      <div><strong>Hours</strong><p>Monday to Saturday<br />7am to 8pm</p></div>
+    </div>
+    <p class="footer__credit">Website designed and built by <a href="https://franklins-portfolio-v1.vercel.app/" target="_blank" rel="noopener">Franklin Mburu Kamande</a></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

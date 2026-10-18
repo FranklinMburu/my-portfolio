@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mwamba Advocates — Upper Hill, Nairobi</title>
+  <meta name="description" content="A Nairobi law firm for companies, families and founders. Plain answers, fixed quotes and a partner on every matter." />
+  <link rel="preload" href="fonts/bodoni-moda.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top">Mwamba <em>Advocates</em></a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#practice">Practice areas</a>
+      <a href="#approach">How we work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav__cta" href="#contact">Book a consultation</a>
+  </header>
+
+  <main id="main">
+    <!-- Hero: the page opens to the city -->
+    <section class="hero" id="top">
+      <div class="hero__stage" id="stage">
+        <div class="hero__city" aria-hidden="true"><img src="images/night.webp" alt="" /></div>
+        <div class="hero__inside">
+          <p>Counsel for companies, families and founders.</p>
+          <a class="button button--brass" href="#contact">Book a consultation</a>
+        </div>
+        <div class="hero__half hero__half--top">
+          <p class="hero__kicker">Mwamba Advocates. Upper Hill, Nairobi.</p>
+          <h1><span>Clarity,</span></h1>
+        </div>
+        <div class="hero__half hero__half--bottom">
+          <p class="hero__line" aria-hidden="true">when it matters most.</p>
+          <p class="hero__cue" aria-hidden="true">Scroll</p>
+        </div>
+        <span class="sr-only">Clarity, when it matters most.</span>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="intro">
+      <p class="intro__lead reveal">Twenty-four advocates who answer in plain English, quote before they start and pick up the phone.</p>
+      <div class="intro__side reveal">
+        <img src="images/office.webp" alt="A quiet meeting room with dark chairs" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- Practice areas -->
+    <section class="practice" id="practice">
+      <h2 class="reveal">Practice areas</h2>
+      <div class="areas">
+        <details class="reveal" open>
+          <summary>Corporate and commercial</summary>
+          <div class="areas__body"><p>Company formation, shareholder agreements, mergers and acquisitions, and the contracts a growing business signs every week.</p><ul><li>Shareholder and investment agreements</li><li>Acquisitions and due diligence</li><li>Commercial contracts</li></ul></div>
+        </details>
+        <details class="reveal">
+          <summary>Property and conveyancing</summary>
+          <div class="areas__body"><p>Buying, selling, leasing and developing land, with title searches done properly before money changes hands.</p><ul><li>Sale and purchase of land</li><li>Leases and sectional titles</li><li>Development agreements</li></ul></div>
+        </details>
+        <details class="reveal">
+          <summary>Employment</summary>
+          <div class="areas__body"><p>Contracts, policies, restructuring and disputes, for employers who want to get it right the first time.</p><ul><li>Employment contracts and handbooks</li><li>Redundancy and restructuring</li><li>Employment and Labour Relations Court</li></ul></div>
+        </details>
+        <details class="reveal">
+          <summary>Disputes and arbitration</summary>
+          <div class="areas__body"><p>We try to settle first. When we can't, we go to court or arbitration fully prepared.</p><ul><li>Commercial litigation</li><li>Arbitration and mediation</li><li>Debt recovery</li></ul></div>
+        </details>
+        <details class="reveal">
+          <summary>Family and succession</summary>
+          <div class="areas__body"><p>Wills, trusts, estates and family matters, handled with care and discretion.</p><ul><li>Wills and family trusts</li><li>Succession and probate</li><li>Matrimonial property</li></ul></div>
+        </details>
+        <details class="reveal">
+          <summary>Tax</summary>
+          <div class="areas__body"><p>Advice on structuring, compliance and disputes with the revenue authority.</p><ul><li>Tax structuring</li><li>Objections and appeals</li><li>Transfer pricing</li></ul></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="approach" id="approach">
+      <img class="approach__photo" src="images/towers.webp" alt="Office towers in Nairobi" loading="lazy" />
+      <div class="approach__body">
+        <h2 class="reveal">How we work</h2>
+        <ul class="principles">
+          <li class="reveal"><h3>A quote before we start.</h3><p>You'll know the fee, or a capped range, before we do any work. No surprises on the invoice.</p></li>
+          <li class="reveal"><h3>A partner on every matter.</h3><p>A senior advocate reads every document that leaves this office in your name.</p></li>
+          <li class="reveal"><h3>An answer within a working day.</h3><p>Every call and email gets a reply by the end of the next working day, even if it's to say we're on it.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="contact__text">
+        <h2 class="reveal">Tell us what's happening.</h2>
+        <p class="reveal">A first 30-minute consultation is free. Everything you tell us is confidential from the first conversation.</p>
+        <address class="reveal">Mwamba Advocates<br />Upper Hill Road, Nairobi<br />Monday to Friday, 8am to 6pm</address>
+      </div>
+      <form class="contact__form reveal" id="contact-form" novalidate>
+        <label>Your name<input type="text" name="name" autocomplete="name" required /></label>
+        <label>Email or phone<input type="text" name="reach" autocomplete="email" required /></label>
+        <label>What is it about?
+          <select name="area">
+            <option>Corporate and commercial</option><option>Property and conveyancing</option><option>Employment</option><option>Disputes and arbitration</option><option>Family and succession</option><option>Tax</option><option>Not sure yet</option>
+          </select>
+        </label>
+        <label>A few lines about your matter<textarea name="note" rows="4"></textarea></label>
+        <button class="button" type="submit">Request a consultation</button>
+        <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__name">Mwamba <em>Advocates</em></p>
+    <p class="footer__credit">Website designed and built by <a href="https://franklins-portfolio-v1.vercel.app/" target="_blank" rel="noopener">Franklin Mburu Kamande</a></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mlima Coffee Roasters — Coffee from the slopes of Mt Kenya</title>
+  <meta name="description" content="Single-origin Kenyan coffee, grown on the slopes of Mt Kenya and roasted in small batches in Nairobi." />
+  <link rel="preload" href="fonts/gloock.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="images/cherries.webp" as="image" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top">Mlima</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#shop">Shop</a>
+      <a href="#journey">From cherry to cup</a>
+      <a href="#brew">Brew guide</a>
+    </nav>
+    <button class="nav__cart" id="cart-open" type="button" aria-haspopup="dialog">Cart <span id="cart-count">0</span></button>
+  </header>
+
+  <main id="main">
+    <!-- Hero: the cherries close into a single cherry -->
+    <section class="hero" id="top" aria-label="Mlima Coffee Roasters">
+      <div class="hero__stage" id="stage">
+        <p class="hero__side hero__side--left">Grown at 1,800 metres on the slopes of Mt Kenya.</p>
+        <div class="hero__photo"><img src="images/cherries.webp" alt="Ripe red coffee cherries" /></div>
+        <h1 class="hero__name">Mlima</h1>
+        <p class="hero__side hero__side--right">Roasted in small batches in Nairobi, every Monday.</p>
+        <a class="hero__shop button" href="#shop">Shop the coffee</a>
+      </div>
+    </section>
+
+    <!-- Shop -->
+    <section class="shop" id="shop">
+      <div class="shop__head">
+        <h2>The coffee</h2>
+        <p>Whole bean or ground for how you brew. Roasted to order and posted within two days.</p>
+      </div>
+      <div class="products" id="products"></div>
+    </section>
+
+    <!-- Journey -->
+    <section class="journey" id="journey">
+      <h2 class="reveal">From cherry to cup</h2>
+      <ol class="journey__list">
+        <li class="reveal"><img src="images/picking.webp" alt="Hands picking ripe coffee cherries" loading="lazy" /><span>1</span><h3>Picked by hand</h3><p>Only the reddest cherries, picked over several passes through the harvest.</p></li>
+        <li class="reveal"><img src="images/branch.webp" alt="Coffee cherries ripening on the branch" loading="lazy" /><span>2</span><h3>Washed and sun-dried</h3><p>Fermented, washed in mountain water and dried on raised beds for three weeks.</p></li>
+        <li class="reveal"><img src="images/grounds.webp" alt="Freshly ground coffee in a paper filter" loading="lazy" /><span>3</span><h3>Roasted in Nairobi</h3><p>Small batches, light enough to taste where it grew. Every bag is dated.</p></li>
+        <li class="reveal"><img src="images/pour.webp" alt="Coffee being poured into a cup" loading="lazy" /><span>4</span><h3>Brewed by you</h3><p>At its best between one and four weeks after roasting.</p></li>
+      </ol>
+    </section>
+
+    <!-- Farm band -->
+    <section class="farm">
+      <img src="images/farm.webp" alt="Coffee trees on a hillside at sunset" loading="lazy" />
+      <div class="farm__text">
+        <p class="reveal">Every bag is traceable to the farm that grew it.</p>
+        <small class="reveal">We buy directly from smallholder cooperatives in Nyeri and Kirinyaga, and pay above the auction price.</small>
+      </div>
+    </section>
+
+    <!-- Brew guide -->
+    <section class="brew" id="brew">
+      <img class="brew__photo reveal" src="images/red-cup.webp" alt="Coffee poured from a carafe into a red cup" loading="lazy" />
+      <div class="brew__text">
+        <h2 class="reveal">A good cup, every morning</h2>
+        <p class="reveal">For a pour-over or a cafetière.</p>
+        <dl class="brew__ratio reveal">
+          <div><dt>Coffee</dt><dd>15 g</dd></div>
+          <div><dt>Water</dt><dd>250 ml</dd></div>
+          <div><dt>Heat</dt><dd>94°C</dd></div>
+          <div><dt>Time</dt><dd>3 min</dd></div>
+        </dl>
+        <ol class="brew__steps reveal">
+          <li>Grind medium-fine, like sea salt.</li>
+          <li>Wet the grounds with a little water and wait 30 seconds.</li>
+          <li>Pour the rest slowly in circles, then let it drain.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Subscribe -->
+    <section class="sub" id="subscribe">
+      <h2 class="reveal">Never run out.</h2>
+      <p class="reveal">A fresh bag on your doorstep, as often as you like. Skip or cancel any time.</p>
+      <div class="sub__picker reveal" role="radiogroup" aria-label="How often">
+        <button type="button" role="radio" aria-checked="false" data-weeks="1">Every week</button>
+        <button type="button" role="radio" aria-checked="true" data-weeks="2">Every 2 weeks</button>
+        <button type="button" role="radio" aria-checked="false" data-weeks="4">Every month</button>
+      </div>
+      <p class="sub__price reveal" id="sub-price">KSh 1,260 a bag, 10% off</p>
+      <button class="button button--light" id="sub-start" type="button">Start a subscription</button>
+      <p class="form-status" id="sub-status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <!-- Cart drawer -->
+  <div class="cart" id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-title" hidden>
+    <div class="cart__backdrop" data-close></div>
+    <aside class="cart__panel">
+      <div class="cart__head"><h2 id="cart-title">Your cart</h2><button type="button" class="cart__close" data-close aria-label="Close cart">Close</button></div>
+      <ul class="cart__items" id="cart-items"></ul>
+      <p class="cart__empty" id="cart-empty">Your cart is empty. Start with the Nyeri Peaberry.</p>
+      <div class="cart__foot">
+        <p><span>Subtotal</span><strong id="cart-total">KSh 0</strong></p>
+        <small>Free delivery in Nairobi over KSh 3,000.</small>
+        <button class="button" id="checkout" type="button">Checkout</button>
+        <p class="form-status" id="cart-status" role="status" aria-live="polite"></p>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <p class="footer__name">Mlima</p>
+    <div class="footer__cols">
+      <p>Roastery and shop<br />Ngong Road, Nairobi</p>
+      <p>Open<br />Monday to Saturday, 7am to 6pm</p>
+    </div>
+    <p class="footer__credit">Website designed and built by <a href="https://franklins-portfolio-v1.vercel.app/" target="_blank" rel="noopener">Franklin Mburu Kamande</a></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

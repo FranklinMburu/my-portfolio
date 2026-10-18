@@ -1,12 +1,12 @@
-# Ember & Salt — concept website
+# Ember & Salt
 
-A concept website for a fictional open-fire restaurant in Westlands, Nairobi.
-Designed and built by Franklin Mburu Kamande. The business, menu and prices are fictional.
+Website for an open-fire restaurant in Westlands, Nairobi. Designed and built by Franklin Mburu Kamande (https://franklins-portfolio-v1.vercel.app/).
 
 - Plain HTML, CSS and JavaScript. No build step: open `index.html`, or deploy the folder to any static host.
-- Scroll-driven hero: the page sets a `--p` (0–1) progress variable that the CSS uses to dive through the title into the photo. Respects `prefers-reduced-motion`.
-- The booking form is a demo and says so; it does not send data anywhere.
+- Scroll-driven hero: you scroll through the name into the flames.
+- Respects reduced-motion settings and works from phone to desktop.
+- Forms are demos: they validate input and show what a live build would do.
 
 ## Credits
-- Photography: Unsplash (Unsplash License — free to use, no attribution required).
+- Photography: Unsplash (Unsplash License).
 - Fonts: Fraunces and Manrope, self-hosted from Fontsource (SIL Open Font License; see `fonts/`).

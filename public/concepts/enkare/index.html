@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enkare — A safari camp in the Maasai Mara</title>
+  <meta name="description" content="Eight tents on a bend of the Talek River in the Maasai Mara." />
+  <link rel="preload" href="fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="images/dawn.webp" as="image" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top">Enkare</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#tents">Tents</a>
+      <a href="#days">A day here</a>
+      <a href="#rates">Rates</a>
+    </nav>
+    <a class="nav__book" href="#book">Plan your stay</a>
+  </header>
+
+  <main id="main">
+    <!-- Hero: scroll from night to sunrise -->
+    <section class="hero" id="top" aria-label="Enkare at sunrise">
+      <div class="hero__stage" id="stage">
+        <img class="hero__photo" src="images/dawn.webp" alt="An acacia tree against the rising sun on the Mara plains" />
+        <div class="hero__night" aria-hidden="true"></div>
+        <div class="hero__sun" aria-hidden="true"></div>
+        <div class="hero__stars" aria-hidden="true"></div>
+
+        <p class="hero__clock" aria-hidden="true"><span id="clock">05:12</span><small id="clock-label">Before first light</small></p>
+
+        <div class="hero__name">
+          <h1>Enkare</h1>
+          <p>A safari camp in the Maasai Mara</p>
+        </div>
+
+        <div class="hero__end">
+          <p class="hero__line">Wake up where the Mara does.</p>
+          <a class="button button--light" href="#book">Plan your stay</a>
+        </div>
+
+        <p class="hero__cue" aria-hidden="true">Scroll to sunrise</p>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="intro">
+      <p class="intro__lead reveal">Eight tents on a bend of the Talek River. No fences and no crowds, only the plains, the river and whoever comes down to drink.</p>
+      <dl class="intro__facts reveal">
+        <div><dt>Tents</dt><dd>8</dd></div>
+        <div><dt>Conservancy</dt><dd>2,400 acres</dd></div>
+        <div><dt>Guests at most</dt><dd>16</dd></div>
+      </dl>
+    </section>
+
+    <!-- Tents -->
+    <section class="tents" id="tents">
+      <div class="tents__head">
+        <h2 class="reveal">The tents</h2>
+        <p class="reveal">Canvas walls, a timber deck and a view that runs to the escarpment. Each tent faces the river and none faces another.</p>
+      </div>
+
+      <div class="tents__grid">
+        <figure class="tents__big reveal">
+          <img src="images/tent.webp" alt="A raised safari tent with a wooden deck among trees" loading="lazy" />
+        </figure>
+        <figure class="tents__small reveal">
+          <img src="images/tent-inside.webp" alt="Inside a tent: a large bed facing open canvas windows" loading="lazy" />
+        </figure>
+        <ul class="tents__list reveal">
+          <li>King-size bed facing the plains</li>
+          <li>Outdoor shower and a copper bath</li>
+          <li>Private deck with day beds</li>
+          <li>Solar power, filtered river water</li>
+        </ul>
+      </div>
+
+      <div class="strip" aria-label="More of the camp">
+        <img class="reveal" src="images/tent-view.webp" alt="A guest looking out over the savanna from the tent" loading="lazy" />
+        <img class="reveal" src="images/tent-night.webp" alt="A tent lit from inside at night" loading="lazy" />
+        <img class="reveal" src="images/giraffe-window.webp" alt="A giraffe seen through a vehicle window" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- A day here -->
+    <section class="days" id="days">
+      <h2 class="days__title reveal">A day at Enkare</h2>
+      <div class="days__body">
+        <div class="days__media" aria-hidden="true">
+          <img class="is-on" data-for="0" src="images/balloon.webp" alt="" loading="lazy" />
+          <img data-for="1" src="images/tent-view.webp" alt="" loading="lazy" />
+          <img data-for="2" src="images/drive-dusk.webp" alt="" loading="lazy" />
+          <img data-for="3" src="images/elephants.webp" alt="" loading="lazy" />
+          <img data-for="4" src="images/tent-night.webp" alt="" loading="lazy" />
+        </div>
+        <ol class="days__list">
+          <li data-step="0"><time>05:30</time><h3>Balloon over the plains</h3><p>Lift off in the dark and watch the light arrive from a thousand feet up. Champagne breakfast where you land.</p></li>
+          <li data-step="1"><time>09:00</time><h3>Slow morning on the deck</h3><p>Coffee from the highlands, binoculars on the river. Hippos keep the time.</p></li>
+          <li data-step="2"><time>15:30</time><h3>Afternoon game drive</h3><p>Open vehicles, one guide for every four guests, no rush to be anywhere else.</p></li>
+          <li data-step="3"><time>18:15</time><h3>Sundowners on the ridge</h3><p>The herds move toward the water. You stay until the colour goes.</p></li>
+          <li data-step="4"><time>20:00</time><h3>Dinner by the fire</h3><p>Three courses under the stars, cooked over acacia wood. Askari walk you home.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Wildlife band -->
+    <section class="band">
+      <img src="images/lioness.webp" alt="A lioness resting in the grass" loading="lazy" />
+      <div class="band__text">
+        <p class="reveal">Your neighbours are lions.</p>
+        <small class="reveal">The Talek pride hunts within sight of camp. The great migration crosses from July to October.</small>
+      </div>
+    </section>
+
+    <!-- Rates -->
+    <section class="rates" id="rates">
+      <div class="rates__head">
+        <h2 class="reveal">Rates</h2>
+        <p class="reveal">Per person, per night, sharing. Everything is included: meals, drinks, two game drives a day, park fees and the airstrip transfer.</p>
+      </div>
+      <table class="rates__table reveal">
+        <thead><tr><th scope="col">Season</th><th scope="col">Months</th><th scope="col">Rate</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Green season</th><td>April to May</td><td>USD 480</td></tr>
+          <tr><th scope="row">Mid season</th><td>January to March, June, November to December</td><td>USD 620</td></tr>
+          <tr><th scope="row">Migration</th><td>July to October</td><td>USD 840</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Book -->
+    <section class="book" id="book">
+      <img class="book__photo" src="images/drive-dusk.webp" alt="" loading="lazy" />
+      <div class="book__panel reveal">
+        <h2>Plan your stay</h2>
+        <p>Tell us when you'd like to come. We'll reply with availability within a day.</p>
+        <form id="book-form" novalidate>
+          <label>Arriving<input type="date" name="arrive" required /></label>
+          <label>Nights
+            <select name="nights"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6 or more</option></select>
+          </label>
+          <label>Guests
+            <select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5 or more</option></select>
+          </label>
+          <label class="wide">Your name<input type="text" name="name" autocomplete="name" required /></label>
+          <label class="wide">Email<input type="email" name="email" autocomplete="email" required /></label>
+          <button class="button" type="submit">Check availability</button>
+          <p class="form-status" id="book-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__name">Enkare</p>
+    <p>Talek, Maasai Mara, Kenya</p>
+    <p class="footer__note">Website designed and built by <a href="https://franklins-portfolio-v1.vercel.app/" target="_blank" rel="noopener">Franklin Mburu Kamande</a></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

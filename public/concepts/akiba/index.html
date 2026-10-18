@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Akiba — Save a little, every day</title>
+  <meta name="description" content="Akiba rounds up your M-Pesa payments and saves the change. Goals, group savings and withdrawals in seconds." />
+  <link rel="preload" href="fonts/unbounded.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top">akiba<span aria-hidden="true">.</span></a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <a class="nav__cta" href="#get">Get the app</a>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <h1 class="hero__title">
+        <span class="line"><span>Save a little.</span></span>
+        <span class="line"><span>Every day.</span></span>
+      </h1>
+      <p class="hero__lead">Akiba rounds up your M-Pesa payments and saves the change. You won't notice it leaving. You'll notice it adding up.</p>
+      <div class="hero__ctas">
+        <a class="button" href="#get">Get the app</a>
+        <a class="button button--ghost" href="#how">See how it works</a>
+      </div>
+
+      <div class="hero__phone" aria-hidden="true">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="screen screen--home is-on">
+            <p class="s-hello">Habari, Wanjiku</p>
+            <div class="s-card">
+              <small>Total saved</small>
+              <strong>KSh <span id="hero-balance">0</span></strong>
+              <span class="s-up">+ KSh 312 this week</span>
+            </div>
+            <div class="s-row"><span class="s-dot s-dot--sun"></span><span>Round-up, Naivas</span><b>+ 40</b></div>
+            <div class="s-row"><span class="s-dot"></span><span>Round-up, Java House</span><b>+ 20</b></div>
+            <div class="s-row"><span class="s-dot s-dot--sun"></span><span>Daily save</span><b>+ 100</b></div>
+            <div class="s-row"><span class="s-dot"></span><span>Interest</span><b>+ 11</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__ticker" aria-hidden="true">
+        <div class="ticker__run"><span>Round-ups</span><span>Goals</span><span>Chama</span><span>Withdraw to M-Pesa</span><span>Interest paid daily</span></div><div class="ticker__run"><span>Round-ups</span><span>Goals</span><span>Chama</span><span>Withdraw to M-Pesa</span><span>Interest paid daily</span></div>
+      </div>
+    </section>
+
+    <!-- How it works: pinned phone, screens change with scroll -->
+    <section class="how" id="how">
+      <div class="how__pin">
+        <div class="how__phone" aria-hidden="true">
+          <div class="phone phone--big">
+            <div class="phone__notch"></div>
+
+            <div class="screen is-on" data-screen="0">
+              <p class="s-title">Round-ups</p>
+              <div class="s-pay"><small>You paid</small><strong>KSh 460</strong><span>Naivas, Westlands</span></div>
+              <div class="s-arrow">Rounded up to KSh 500</div>
+              <div class="s-saved"><small>Saved</small><strong>+ KSh 40</strong></div>
+              <p class="s-note">Round up to the nearest 50, 100 or 500.</p>
+            </div>
+
+            <div class="screen" data-screen="1">
+              <p class="s-title">Goals</p>
+              <div class="s-goal"><span>School fees, January</span><b>64%</b><i style="--w: 64%"></i><small>KSh 32,000 of 50,000</small></div>
+              <div class="s-goal"><span>New phone</span><b>38%</b><i style="--w: 38%"></i><small>KSh 11,400 of 30,000</small></div>
+              <div class="s-goal"><span>Emergency fund</span><b>81%</b><i style="--w: 81%"></i><small>KSh 24,300 of 30,000</small></div>
+            </div>
+
+            <div class="screen" data-screen="2">
+              <p class="s-title">Chama</p>
+              <div class="s-chama"><small>Mama Mboga Circle</small><strong>KSh 186,000</strong><span>6 members, KSh 2,000 a week</span></div>
+              <div class="s-members"><i>WK</i><i>AN</i><i>JM</i><i>FO</i><i>LW</i><i>+1</i></div>
+              <div class="s-row"><span class="s-dot s-dot--sun"></span><span>Achieng paid</span><b>2,000</b></div>
+              <div class="s-row"><span class="s-dot"></span><span>Next payout: Fatuma</span><b>Fri</b></div>
+            </div>
+
+            <div class="screen" data-screen="3">
+              <p class="s-title">Withdraw</p>
+              <div class="s-amount">KSh 5,000</div>
+              <div class="s-row"><span class="s-dot s-dot--sun"></span><span>To M-Pesa 0712 *** 678</span><b>Free</b></div>
+              <div class="s-done"><span>✓</span>Sent in 6 seconds</div>
+            </div>
+          </div>
+        </div>
+
+        <ol class="how__steps">
+          <li data-step="0"><span class="how__n">Round-ups</span><h3>Every payment saves the change.</h3><p>Pay KSh 460 at the shop, Akiba saves KSh 40. You choose how much to round to.</p></li>
+          <li data-step="1"><span class="how__n">Goals</span><h3>Name it, date it, watch it fill.</h3><p>School fees, a phone, a rainy day. Akiba tells you how much a day gets you there on time.</p></li>
+          <li data-step="2"><span class="how__n">Chama</span><h3>Your chama, without the notebook.</h3><p>Everyone sees who paid and who's next. Payouts go out automatically on the day.</p></li>
+          <li data-step="3"><span class="how__n">Withdraw</span><h3>Your money, back in seconds.</h3><p>Send to M-Pesa any time, day or night. No fee, no forms, no waiting.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Rate -->
+    <section class="rate">
+      <p class="rate__big">8.5<span>%</span></p>
+      <div class="rate__text">
+        <h2>A year, paid every day.</h2>
+        <p>Interest lands in your balance each morning, so you can watch it grow. No minimum balance and no lock-in.</p>
+      </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="calc" id="calculator">
+      <div class="calc__intro">
+        <h2>What could you have by next year?</h2>
+        <p>Move the slider. The total includes 8.5% a year, paid daily.</p>
+      </div>
+      <div class="calc__card">
+        <label for="daily">I can save <output id="daily-out">KSh 100</output> a day</label>
+        <input type="range" id="daily" min="20" max="1000" step="10" value="100" />
+        <div class="calc__result">
+          <small>In 12 months</small>
+          <strong id="calc-total">KSh 38,000</strong>
+          <span id="calc-interest">including KSh 1,500 interest</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- People -->
+    <section class="people">
+      <h2 class="people__title">Built for the way Kenya pays.</h2>
+      <div class="people__grid">
+        <figure class="people__a"><img src="images/merchant.webp" alt="A shop owner checking her phone at her counter" loading="lazy" /><figcaption>For the shop that never closes.</figcaption></figure>
+        <figure class="people__b"><img src="images/headphones.webp" alt="A young woman smiling at her phone" loading="lazy" /><figcaption>For the first payslip.</figcaption></figure>
+        <figure class="people__c"><img src="images/orange.webp" alt="A woman in an orange top holding her phone" loading="lazy" /><figcaption>For the long game.</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <h2>Questions</h2>
+      <div class="faq__list">
+        <details><summary>Does it cost anything?</summary><p>No. Saving, round-ups, goals, chamas and withdrawals to M-Pesa are all free.</p></details>
+        <details><summary>Can I take my money out at any time?</summary><p>Yes. Withdraw to M-Pesa whenever you like. Most withdrawals arrive in seconds.</p></details>
+        <details><summary>How is my account protected?</summary><p>Your PIN or fingerprint is needed for every withdrawal, and new phones must be approved from your old one or by our support team.</p></details>
+        <details><summary>Do I need a bank account?</summary><p>No. All you need is an M-Pesa line and your national ID.</p></details>
+      </div>
+    </section>
+
+    <!-- Get the app -->
+    <section class="get" id="get">
+      <h2>Start with KSh 20.</h2>
+      <p>Free on Android and iPhone.</p>
+      <form class="get__form" id="get-form" novalidate>
+        <label class="sr-only" for="get-phone">Phone number</label>
+        <input id="get-phone" type="tel" placeholder="07xx xxx xxx" autocomplete="tel" />
+        <button class="button button--dark" type="submit">Text me the link</button>
+      </form>
+      <p class="get__status" id="get-status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__logo">akiba<span>.</span></p>
+    <p class="footer__credit">Website designed and built by <a href="https://franklins-portfolio-v1.vercel.app/" target="_blank" rel="noopener">Franklin Mburu Kamande</a></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
