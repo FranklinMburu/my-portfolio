@@ -5,7 +5,17 @@ export interface Project {
   achievements: string[];
   techStack: string[];
   category: 'AI/ML' | 'Backend' | 'Full-Stack' | 'Automation';
-  status: 'Production' | 'In Development' | 'Private';
+  /**
+   * Honest evidence status:
+   * - Live: a working public deployment is linked
+   * - Public code: the source code is publicly linked
+   * - Hackathon: built during a hackathon; public code linked
+   * - Private: source and deployment are not public
+   * - In Development: still being built
+   */
+  status: 'Live' | 'Public code' | 'Hackathon' | 'Private' | 'In Development';
+  /** Shown on the Home page */
+  featured?: boolean;
   image?: string;
   liveUrl?: string;
   githubUrl?: string;

@@ -1,6 +1,16 @@
 import { useState } from 'react';
-import { ExternalLink, Github, FileText, Filter } from 'lucide-react';
+import { ExternalLink, Github, FileText, Filter, Brain, Server, Layers, Workflow } from 'lucide-react';
 import { projects } from '../data/projects';
+
+const categoryIcon = { 'AI/ML': Brain, Backend: Server, 'Full-Stack': Layers, Automation: Workflow } as const;
+
+const statusHint: Record<string, string> = {
+  Live: 'A working public deployment is linked',
+  'Public code': 'Source code is public on GitHub',
+  Hackathon: 'Built during a hackathon; source code is public',
+  Private: 'Source code and deployment are not public',
+  'In Development': 'Still being built'
+};
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -20,8 +30,12 @@ const Projects = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Production':
+      case 'Live':
         return 'bg-green-500/20 text-green-400 border-green-500/30';
+      case 'Public code':
+        return 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30';
+      case 'Hackathon':
+        return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
       case 'In Development':
         return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
       case 'Private':
@@ -87,12 +101,26 @@ const Projects = () => {
                 className="group relative rounded-2xl bg-gray-800/30 backdrop-blur-sm border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 overflow-hidden hover:scale-105"
               >
                 <div className="aspect-video overflow-hidden bg-gray-800">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
-                  />
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-[#0A0F1F] via-gray-900 to-accent-purple/20">
+                      <div className="absolute w-40 h-40 bg-primary-cyan/20 rounded-full blur-3xl"></div>
+                      {(() => {
+                        const Icon = categoryIcon[project.category];
+                        return (
+                          <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00E0FF] to-[#007BFF] shadow-[0_0_30px_rgba(0,150,255,0.5)] flex items-center justify-center">
+                            <Icon className="w-8 h-8 text-white" />
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-6">
@@ -101,6 +129,7 @@ const Projects = () => {
                       {project.title}
                     </h3>
                     <span
+                      title={statusHint[project.status]}
                       className={`px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(
                         project.status
                       )} whitespace-nowrap ml-2`}

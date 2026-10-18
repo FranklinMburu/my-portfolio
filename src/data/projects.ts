@@ -13,7 +13,7 @@ export const projects: Project[] = [
     techStack: ['Python', 'FastAPI', 'GPT-5', 'Multi-agent Systems', 'WebSocket'],
     category: 'AI/ML',
     status: 'In Development',
-    image: '/assets/images/ai-trading-agent.jpg' // Updated to use a relative local path
+    image: '/assets/images/ai-trading-agent.jpg'
   },
   {
     id: '2',
@@ -26,10 +26,8 @@ export const projects: Project[] = [
     ],
     techStack: ['Flask', 'React', 'PostgreSQL', 'JWT', 'RBAC', 'AI'],
     category: 'Full-Stack',
-    status: 'Production',
-    image: '/assets/images/full-stack-supplier-inventory.jpg', // Updated to use a relative local path
-    githubUrl: 'https://github.com/FranklinMburu/supplier-inventory'
-    
+    status: 'Private',
+    image: '/assets/images/full-stack-supplier-inventory.jpg'
   },
   {
     id: '3',
@@ -42,7 +40,7 @@ export const projects: Project[] = [
     ],
     techStack: ['Python', 'ChromaDB', 'LangChain', 'RAG', 'Transformers'],
     category: 'AI/ML',
-    status: 'Production',
+    status: 'Private',
     image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
@@ -56,9 +54,8 @@ export const projects: Project[] = [
     ],
     techStack: ['FastAPI', 'React', 'Mpesa API', 'SQLite', 'JWT'],
     category: 'Full-Stack',
-    status: 'Production',
-    image: 'https://images.pexels.com/photos/4391470/pexels-photo-4391470.jpeg?auto=compress&cs=tinysrgb&w=800',
-    liveUrl: '#'
+    status: 'Private',
+    image: 'https://images.pexels.com/photos/4391470/pexels-photo-4391470.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: '5',
@@ -71,7 +68,7 @@ export const projects: Project[] = [
     ],
     techStack: ['Django', 'MySQL', 'Bootstrap', 'Chart.js'],
     category: 'Backend',
-    status: 'Production',
+    status: 'Private',
     image: 'https://images.pexels.com/photos/422218/pexels-photo-422218.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
@@ -85,7 +82,7 @@ export const projects: Project[] = [
     ],
     techStack: ['PHP', 'MySQL', 'JavaScript', 'Bootstrap'],
     category: 'Full-Stack',
-    status: 'Production',
+    status: 'Private',
     image: 'https://images.pexels.com/photos/301926/pexels-photo-301926.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
@@ -113,7 +110,7 @@ export const projects: Project[] = [
     ],
     techStack: ['n8n', 'Node.js', 'PostgreSQL', 'REST API'],
     category: 'Automation',
-    status: 'Production',
+    status: 'Private',
     image: 'https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
@@ -129,9 +126,10 @@ export const projects: Project[] = [
     ],
     techStack: ['Python', 'FastAPI', 'WebSocket', 'Google Generative AI', 'Async/Await'],
     category: 'AI/ML',
-    status: 'Production',
+    status: 'Public code',
     image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
-    githubUrl: 'https://github.com/FranklinMburu/mini-agentic-ai'
+    githubUrl: 'https://github.com/FranklinMburu/mini-agentic-ai',
+    featured: true
   },
   {
     id: '10',
@@ -146,10 +144,8 @@ export const projects: Project[] = [
     ],
     techStack: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'OpenCV', 'Tesseract OCR', 'Docker'],
     category: 'AI/ML',
-    status: 'Production',
-    image: 'https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=800',
-    githubUrl: 'https://github.com/FranklinMburu/ai-kyc-platform',
-    liveUrl: 'https://ai-kyc-demo.vercel.app'
+    status: 'Private',
+    image: 'https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=800'
   },
   {
     id: '11',
@@ -164,10 +160,10 @@ export const projects: Project[] = [
     ],
     techStack: ['Python', 'FastAPI', 'PostgreSQL', 'Tesseract OCR', 'LangChain', 'Docker'],
     category: 'AI/ML',
-    status: 'Production',
+    status: 'Live',
     image: 'https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&cs=tinysrgb&w=800',
-    githubUrl: 'https://github.com/FranklinMburu/document-intelligence-api',
-    liveUrl: 'https://document-ai-api.vercel.app'
+    liveUrl: 'https://document-ai-api.vercel.app/docs',
+    featured: true
   },
   {
     id: '12',
@@ -183,9 +179,24 @@ export const projects: Project[] = [
     ],
     techStack: ['React', 'FastAPI', 'PostgreSQL', 'WebSockets', 'Chart.js', 'Docker'],
     category: 'Full-Stack',
-    status: 'Production',
-    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
-    githubUrl: 'https://github.com/FranklinMburu/compliance-risk-dashboard',
-    liveUrl: 'https://risk-monitoring-demo.vercel.app'
+    status: 'Private',
+    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    id: '13',
+    title: 'Nairobi Urban Flood Catastrophe Model',
+    description: 'Team hackathon prototype for the Kenya Re AI4Insurance Hackathon 2026: an auditable flood catastrophe-loss engine that runs hazard → exposure → vulnerability → financial loss → portfolio risk → AI analysis → human decision, on an organiser-supplied synthetic portfolio of 600 buildings.',
+    achievements: [
+      'Input validation rules (V1–V11) that stop a run instead of silently correcting data',
+      'Source-tagged configuration with four default loss scenarios',
+      'FastAPI upload service adapting CSV, XLSX, GeoJSON and PDF tables',
+      'Human approval step before AI-extracted values reach the model',
+      'pytest suite run by GitHub Actions on every push'
+    ],
+    techStack: ['Python', 'FastAPI', 'pandas', 'NumPy', 'rasterio', 'pytest', 'GitHub Actions'],
+    category: 'AI/ML',
+    status: 'Hackathon',
+    githubUrl: 'https://github.com/FranklinMburu/Nairobi-flood-cat-model',
+    featured: true
   }
 ];
