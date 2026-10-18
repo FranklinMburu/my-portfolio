@@ -30,7 +30,7 @@ const getStatusColor = (status: string): string => {
 
 const ProjectCard = ({ project }: { project: Project }) => (
   <div
-    className="group relative rounded-2xl bg-card/30 backdrop-blur-sm border border-line hover:border-primary-cyan/50 transition-all duration-300 overflow-hidden hover:-translate-y-1"
+    className="spotlight group relative h-full rounded-2xl bg-card/30 backdrop-blur-sm border border-line hover:border-primary-cyan/50 transition-all duration-300 overflow-hidden hover:-translate-y-1"
   >
     <div className="aspect-video overflow-hidden bg-card">
       {project.image ? (

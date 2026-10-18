@@ -10,6 +10,7 @@ import WebsitesPage from './pages/WebsitesPage';
 import WebsiteDetailPage from './pages/WebsiteDetailPage';
 import { navigate, usePath, useScrollOnRouteChange } from './lib/router';
 import { legacyHashRoutes } from './data/site';
+import { startSmoothScroll, startSpotlight } from './lib/motion';
 
 const routes: Record<string, () => JSX.Element> = {
   '/': HomePage,
@@ -47,6 +48,16 @@ function App() {
   }, [path]);
 
   useScrollOnRouteChange(path);
+
+  // Premium feel: gliding wheel scroll and the light that follows the cursor on cards.
+  useEffect(() => {
+    const stopScroll = startSmoothScroll();
+    const stopSpotlight = startSpotlight();
+    return () => {
+      stopScroll();
+      stopSpotlight();
+    };
+  }, []);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
