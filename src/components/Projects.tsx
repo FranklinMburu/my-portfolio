@@ -31,17 +31,17 @@ const Projects = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Live':
-        return 'bg-green-500/20 text-green-400 border-green-500/30';
+        return 'bg-signal/15 text-green-700 dark:text-green-400 border-signal/30';
       case 'Public code':
         return 'bg-primary-cyan/15 text-primary-cyan border-primary-cyan/30';
       case 'Hackathon':
-        return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
+        return 'bg-accent-purple/15 text-violet-700 dark:text-purple-300 border-accent-purple/30';
       case 'In Development':
-        return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
+        return 'bg-yellow-500/15 text-amber-700 dark:text-yellow-400 border-yellow-500/30';
       case 'Private':
-        return 'bg-gray-500/20 text-muted border-gray-500/30';
+        return 'bg-subtle/15 text-muted border-subtle/30';
       default:
-        return 'bg-blue-500/20 text-primary-blue border-blue-500/30';
+        return 'bg-primary-blue/15 text-primary-blue border-primary-blue/30';
     }
   };
 
@@ -115,7 +115,7 @@ const Projects = () => {
                         const Icon = categoryIcon[project.category];
                         return (
                           <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-cyan to-primary-blue shadow-icon flex items-center justify-center">
-                            <Icon className="w-8 h-8 text-ink" />
+                            <Icon className="w-8 h-8 text-white" />
                           </div>
                         );
                       })()}

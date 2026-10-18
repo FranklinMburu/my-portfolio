@@ -38,6 +38,31 @@
   color-scheme: dark;
 }
 
+/* Light theme: off-white page, white surfaces, navy type, deeper blue accents, restrained green. */
+html.light {
+  --c-page: 247 248 250;     /* #F7F8FA off-white */
+  --c-section: 255 255 255;
+  --c-deep: 240 243 248;
+  --c-card: 226 232 240;     /* used at /30–/50 for a faint tint */
+  --c-glass: 255 255 255;
+  --c-line: 203 213 225;
+  --c-ink: 15 27 51;         /* navy #0F1B33 */
+  --c-body: 51 65 85;
+  --c-muted: 71 85 105;
+  --c-subtle: 100 116 139;
+  --c-accent: 3 105 161;     /* sky-700, readable on white */
+  --c-accent-2: 29 78 216;   /* blue-700 */
+  --c-violet: 91 84 230;
+  --c-signal: 5 150 105;     /* green-600 */
+
+  --shadow-glow: 0 0 20px rgba(3, 105, 161, 0.25);
+  --shadow-card: 0 1px 2px rgba(15, 27, 51, 0.06), 0 8px 24px rgba(15, 27, 51, 0.06);
+  --shadow-card-hover: 0 2px 4px rgba(15, 27, 51, 0.06), 0 16px 36px rgba(15, 27, 51, 0.1);
+  --shadow-icon: 0 6px 16px rgba(3, 105, 161, 0.28);
+
+  color-scheme: light;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

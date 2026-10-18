@@ -39,7 +39,7 @@ const Hero = () => {
           <span className="text-primary-cyan text-xs sm:text-sm font-medium">Available for Projects</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary-cyan to-primary-blue bg-clip-text text-transparent leading-tight animate-pulse-once shadow-glass">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary-cyan to-primary-blue bg-clip-text text-transparent leading-tight animate-pulse-once">
           Franklin Mburu Kamande
         </h1>
 

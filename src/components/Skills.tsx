@@ -65,7 +65,7 @@ const Skills = () => {
                       scale-100 group-hover:scale-110 transition-all
                     "
                   >
-                    <Icon className="w-7 h-7 text-ink" />
+                    <Icon className="w-7 h-7 text-white" />
                   </div>
 
                   <h3 className="text-xl font-semibold text-ink">
@@ -80,7 +80,7 @@ const Skills = () => {
                       key={i}
                       className="
                         px-3 py-1.5 text-sm rounded-xl
-                        text-white/90
+                        text-ink/90
                         bg-section/60
                         border border-ink/10
                         hover:text-white
@@ -111,7 +111,7 @@ const Skills = () => {
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-ink">{projects.length}</p>
+            <p className="text-3xl font-bold text-white">{projects.length}</p>
             <p className="text-white/90">Portfolio Projects</p>
           </div>
 
@@ -126,7 +126,7 @@ const Skills = () => {
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-ink">{technologyCount}</p>
+            <p className="text-3xl font-bold text-white">{technologyCount}</p>
             <p className="text-white/90">Technologies</p>
           </div>
 
@@ -141,7 +141,7 @@ const Skills = () => {
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-ink">{skills.length}</p>
+            <p className="text-3xl font-bold text-white">{skills.length}</p>
             <p className="text-white/90">Core Specializations</p>
           </div>
 
@@ -156,7 +156,7 @@ const Skills = () => {
               hover:scale-[1.03]
             "
           >
-            <p className="text-3xl font-bold text-ink">{livePublicCount}</p>
+            <p className="text-3xl font-bold text-white">{livePublicCount}</p>
             <p className="text-white/90">Live or Public Code</p>
           </div>
         </div>

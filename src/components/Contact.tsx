@@ -241,7 +241,7 @@ const Contact = () => {
                 </div>
 
                 {submitStatus === 'success' && (
-                  <div className="p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-sm">
+                  <div className="p-4 bg-signal/15 border border-signal/30 rounded-lg text-green-700 dark:text-green-400 text-sm">
                     Thanks for reaching out! Your message has been sent and I'll get back to you soon.
                   </div>
                 )}
@@ -255,7 +255,7 @@ const Contact = () => {
                 )}
 
                 {submitStatus === 'error' && (
-                  <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-400 text-sm">
+                  <div className="p-4 bg-red-500/15 border border-red-500/30 rounded-lg text-red-700 dark:text-red-400 text-sm">
                     Something went wrong sending your message. Please try again, or{' '}
                     <a href={buildMailto(formData)} className="underline">send it by email instead</a>.
                   </div>

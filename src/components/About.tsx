@@ -43,8 +43,8 @@ const About = () => {
                 and agriculture.
               </p>
               <p className="text-body text-lg leading-relaxed">
-                Currently serving as <span className="text-green-400 font-semibold">Software Engineer</span> at
-                <span className="text-green-400 font-semibold"> United Legal Group</span>, building scalable multi-tenant CRM systems with emphasis on backend engineering, security, and performance. Previously, I served as Senior Head of ICT at Stafford Schools, where I led digital transformation initiatives and developed custom AI-powered educational solutions.
+                Currently serving as <span className="text-signal font-semibold">Software Engineer</span> at
+                <span className="text-signal font-semibold"> United Legal Group</span>, building scalable multi-tenant CRM systems with emphasis on backend engineering, security, and performance. Previously, I served as Senior Head of ICT at Stafford Schools, where I led digital transformation initiatives and developed custom AI-powered educational solutions.
               </p>
             </div>
 
@@ -58,10 +58,10 @@ const About = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-cyan to-primary-blue opacity-40 mix-blend-multiply"></div>
                 <div className="absolute inset-0 bg-black/40"></div>
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center space-y-2">
-                  <div className="text-xl font-semibold text-ink animate-pulse drop-shadow-[0_0_15px_rgba(6,182,212,1)]">
+                  <div className="text-xl font-semibold text-white animate-pulse drop-shadow-[0_0_15px_rgba(6,182,212,1)]">
                     Franklin Mburu
                   </div>
-                  <div className="text-body text-sm drop-shadow-[0_0_10px_rgba(59,130,246,1)]">
+                  <div className="text-gray-200 text-sm drop-shadow-[0_0_10px_rgba(59,130,246,1)]">
                     AI Engineer & Developer
                   </div>
                 </div>
