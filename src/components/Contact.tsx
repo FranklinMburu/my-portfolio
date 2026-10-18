@@ -1,6 +1,17 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
 
+const CONTACT_EMAIL = 'franklinmburu05@gmail.com';
+// Set VITE_WEB3FORMS_KEY (free key from web3forms.com) to deliver messages directly.
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
+
+type ContactForm = { name: string; email: string; subject: string; message: string };
+
+const buildMailto = ({ name, email, subject, message }: ContactForm) =>
+  `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject || 'Portfolio enquiry')}&body=${encodeURIComponent(
+    `${message}\n\n— ${name} (${email})`
+  )}`;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -10,7 +21,7 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error' | 'mailto'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -21,15 +32,47 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot: real visitors never fill this hidden field.
+    const form = e.currentTarget as HTMLFormElement;
+    const honeypot = (form.elements.namedItem('botcheck') as HTMLInputElement | null)?.checked;
+    if (honeypot) return;
+
     setIsSubmitting(true);
+    setSubmitStatus('idle');
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    if (!WEB3FORMS_KEY) {
+      // No form service configured: hand the message to the visitor's email app.
+      window.location.href = buildMailto(formData);
+      setSubmitStatus('mailto');
+      setIsSubmitting(false);
+      return;
+    }
 
-    setSubmitStatus('success');
-    setIsSubmitting(false);
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          from_name: 'Portfolio contact form',
+          name: formData.name,
+          email: formData.email,
+          subject: `Portfolio: ${formData.subject}`,
+          message: formData.message
+        })
+      });
+      const result = await response.json().catch(() => ({ success: false }));
+      if (!response.ok || !result.success) throw new Error('Send failed');
 
-    setTimeout(() => setSubmitStatus('idle'), 5000);
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setSubmitStatus('idle'), 8000);
+    } catch {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -132,6 +175,7 @@ const Contact = () => {
               <h3 className="text-2xl font-semibold text-white mb-6">Send a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">
                     Name
@@ -198,13 +242,22 @@ const Contact = () => {
 
                 {submitStatus === 'success' && (
                   <div className="p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-sm">
-                    Thanks for reaching out! I'll get back to you soon.
+                    Thanks for reaching out! Your message has been sent and I'll get back to you soon.
+                  </div>
+                )}
+
+                {submitStatus === 'mailto' && (
+                  <div className="p-4 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-cyan-300 text-sm">
+                    Your email app should now open with the message filled in — just press send. If nothing opened,
+                    email me directly at{' '}
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="underline">{CONTACT_EMAIL}</a>.
                   </div>
                 )}
 
                 {submitStatus === 'error' && (
                   <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-400 text-sm">
-                    Something went wrong. Please try again or email me directly.
+                    Something went wrong sending your message. Please try again, or{' '}
+                    <a href={buildMailto(formData)} className="underline">send it by email instead</a>.
                   </div>
                 )}
 
