@@ -16,7 +16,7 @@ const WebsiteDetailPage = ({ slug }: { slug: string }) => {
 
   const next = websites[(index + 1) % websites.length];
   const hasLiveLink = Boolean(site.url && site.url !== '#');
-  const linkLabel = site.status === 'Concept' ? 'Open the site' : 'Visit live site';
+  const linkLabel = 'Open the site';
   const facts = [site.category === 'Business' ? 'Business website' : site.category, site.location, site.year, site.role].filter(Boolean);
 
   return (
@@ -35,9 +35,8 @@ const WebsiteDetailPage = ({ slug }: { slug: string }) => {
                 {site.client}
               </h1>
               <div className="flex flex-wrap items-center gap-2.5 text-[15px] text-muted">
-                <span className={`h-2 w-2 rounded-full ${site.status === 'Live' ? 'bg-signal' : 'bg-accent-purple'}`} />
+                <span className="h-2 w-2 rounded-full bg-primary-cyan" />
                 {facts.join(' · ')}
-                {site.status === 'Concept' && <span className="text-accent-purple">· Concept</span>}
               </div>
             </div>
             {hasLiveLink && (

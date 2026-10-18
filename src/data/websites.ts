@@ -3,9 +3,9 @@ import type { MockVariant } from '../components/websites/SiteMock';
 /**
  * Websites shown on the /websites gallery.
  *
- * The entries below are CONCEPT sites: real, working websites designed and built
- * by Franklin to show what he can build for different industries. They are
- * labelled "Concept" on the page. The sites live in /public/concepts/<slug>/ and
+ * The entries below are showcase sites: real, working websites designed and built
+ * by Franklin to show what he can build for different industries (status 'Concept';
+ * the status is not shown on the page). The sites live in /public/concepts/<slug>/ and
  * their screenshots in /public/assets/websites/<slug>/.
  *
  * To add client work: add an entry with status 'Live', the real client name,
@@ -69,7 +69,7 @@ export const websites: Website[] = [
     role: 'Design + build',
     location: 'Nairobi',
     summary:
-      'A concept site for a Nairobi property agency: a scroll-driven hero, a search panel, listings and neighbourhood guides, built to feel calm and trustworthy.',
+      'A site for a Nairobi property agency: a scroll-driven hero, a search panel, listings and neighbourhood guides, built to feel calm and trustworthy.',
     ...shots('keja'),
     mock: 'saas',
     stage: '#bcd6ee',
@@ -88,7 +88,7 @@ export const websites: Website[] = [
     role: 'Design + build',
     location: 'Maasai Mara',
     summary:
-      'A concept site for a safari camp: night turns to sunrise as you scroll, a day at camp told hour by hour, seasonal rates and a booking request.',
+      'A site for a safari camp: night turns to sunrise as you scroll, a day at camp told hour by hour, seasonal rates and a booking request.',
     ...shots('enkare'),
     mock: 'warm',
     stage: '#14202a',
@@ -107,7 +107,7 @@ export const websites: Website[] = [
     role: 'Design + build',
     location: 'Nairobi',
     summary:
-      'A concept site for a dental studio: a smile-shaped hero, clear treatment prices and a booking widget with treatments, days and time slots.',
+      'A site for a dental studio: a smile-shaped hero, clear treatment prices and a booking widget with treatments, days and time slots.',
     ...shots('tabasamu'),
     mock: 'teal',
     stage: '#d3f0e8',
@@ -126,7 +126,7 @@ export const websites: Website[] = [
     role: 'Design + build',
     location: 'Nairobi',
     summary:
-      'A concept online store for a Kenyan coffee roaster: product pages with sizes and grinds, a working cart, a brew guide and subscriptions.',
+      'An online store for a Kenyan coffee roaster: product pages with sizes and grinds, a working cart, a brew guide and subscriptions.',
     ...shots('mlima'),
     mock: 'warm',
     stage: '#a8132b',
@@ -145,7 +145,7 @@ export const websites: Website[] = [
     role: 'Design + build',
     location: 'Nairobi',
     summary:
-      'A concept launch page for a savings app: live app screens that change as you scroll, a savings calculator and the answers people look for before they sign up.',
+      'A launch page for a savings app: live app screens that change as you scroll, a savings calculator and the answers people look for before they sign up.',
     ...shots('akiba'),
     mock: 'gold',
     stage: '#ffd23f',
@@ -164,7 +164,7 @@ export const websites: Website[] = [
     role: 'Design + build',
     location: 'Nairobi',
     summary:
-      'A concept site for an open-fire restaurant in Westlands: a scroll-driven hero, a menu that reads like the real thing, and booking in one line.',
+      'A site for an open-fire restaurant in Westlands: a scroll-driven hero, a menu that reads like the real thing, and booking in one line.',
     ...shots('ember-and-salt'),
     mock: 'warm',
     stage: '#1b1410',
@@ -183,7 +183,7 @@ export const websites: Website[] = [
     role: 'Design + build',
     location: 'Nairobi',
     summary:
-      'A concept site for a strength studio in Kilimani: bold type, black-and-white photography, a pinned class strip, the weekly timetable and plain-spoken pricing.',
+      'A site for a strength studio in Kilimani: bold type, black-and-white photography, a pinned class strip, the weekly timetable and plain-spoken pricing.',
     ...shots('nguvu'),
     mock: 'dashboard',
     stage: '#2747f5',
@@ -202,7 +202,7 @@ export const websites: Website[] = [
     role: 'Design + build',
     location: 'Nairobi',
     summary:
-      'A concept site for a day school: the school day in pictures, each section explained, admissions step by step, fees per term and tour booking.',
+      'A site for a day school: the school day in pictures, each section explained, admissions step by step, fees per term and tour booking.',
     ...shots('mwangaza'),
     mock: 'saas',
     stage: '#eef3fa',
@@ -221,7 +221,7 @@ export const websites: Website[] = [
     role: 'Design + build',
     location: 'Nairobi',
     summary:
-      'A concept site for a law firm: type-led and calm, with practice areas that open in place, how the firm works and a confidential consultation request.',
+      'A site for a law firm: type-led and calm, with practice areas that open in place, how the firm works and a confidential consultation request.',
     ...shots('mwamba'),
     mock: 'dashboard',
     stage: '#0a0a0b',

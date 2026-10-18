@@ -22,11 +22,6 @@ const Statement = ({ site, large = false }: { site: Website; large?: boolean }) 
     className={`${large ? 'text-2xl md:text-[30px]' : 'text-xl md:text-[26px]'} font-medium leading-snug tracking-tight text-muted`}
   >
     <span className="font-bold text-ink">{site.client}</span> – {site.statement}
-    {site.status === 'Concept' && (
-      <span className="ml-3 align-middle rounded-full border border-accent-purple/40 px-2.5 py-0.5 text-xs font-semibold text-accent-purple">
-        Concept
-      </span>
-    )}
   </p>
 );
 
