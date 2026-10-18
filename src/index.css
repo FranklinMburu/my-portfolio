@@ -255,6 +255,20 @@ html.light {
   animation: none !important;
 }
 
+.hero-clip {
+  overflow: hidden;
+  overflow: clip; /* clips like hidden, but still lets the top of the hero stay pinned on phones */
+}
+
+/* Phones: the name as three huge stacked words on the first screen. */
+.hero-big {
+  font-size: min(19vw, 9rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  transform-origin: 50% 50%;
+}
+
 .hero-name {
   position: relative;
   transform-origin: 50% 50%;
