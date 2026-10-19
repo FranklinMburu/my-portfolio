@@ -196,6 +196,8 @@ export const projects: Project[] = [
     techStack: ['Python', 'FastAPI', 'pandas', 'NumPy', 'rasterio', 'pytest', 'GitHub Actions'],
     category: 'AI/ML',
     status: 'Hackathon',
+    image: '/assets/images/nairobi-flood-cat-model.webp',
+    liveUrl: 'https://nairobi-flood-cat-model.vercel.app',
     githubUrl: 'https://github.com/FranklinMburu/Nairobi-flood-cat-model',
     featured: true
   }
