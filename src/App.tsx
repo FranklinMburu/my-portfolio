@@ -8,6 +8,7 @@ import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import WebsitesPage from './pages/WebsitesPage';
 import WebsiteDetailPage from './pages/WebsiteDetailPage';
+import CaseStudyPage from './pages/CaseStudyPage';
 import { navigate, usePath, useScrollOnRouteChange } from './lib/router';
 import { legacyHashRoutes } from './data/site';
 import { startSmoothScroll, startSpotlight } from './lib/motion';
@@ -64,6 +65,7 @@ function App() {
   };
 
   const websiteSlug = path.match(/^\/websites\/([^/]+)$/)?.[1];
+  const projectSlug = path.match(/^\/projects\/([^/]+)$/)?.[1];
   const Page = routes[path] ?? NotFoundPage;
 
   return (
@@ -76,7 +78,13 @@ function App() {
       </a>
       <Header theme={theme} toggleTheme={toggleTheme} path={path} />
       <main id="main">
-        {websiteSlug ? <WebsiteDetailPage slug={decodeURIComponent(websiteSlug)} /> : <Page />}
+        {websiteSlug ? (
+          <WebsiteDetailPage slug={decodeURIComponent(websiteSlug)} />
+        ) : projectSlug ? (
+          <CaseStudyPage slug={decodeURIComponent(projectSlug)} />
+        ) : (
+          <Page />
+        )}
       </main>
       <Footer />
     </div>

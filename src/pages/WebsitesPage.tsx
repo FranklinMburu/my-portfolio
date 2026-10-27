@@ -6,7 +6,8 @@ import Link from '../components/Link';
 import Reveal from '../components/Reveal';
 import { BrowserFrame, PhoneFrame } from '../components/websites/Frames';
 import { DesktopShot, PhoneShot } from '../components/websites/WebsiteVisuals';
-import { websites, websiteCategories, type Website } from '../data/websites';
+import { ClientWorkBadge } from '../components/websites/ClientWorkBadge';
+import { websites, websiteCategories, isClientWork, type Website } from '../data/websites';
 import { useDocumentTitle } from '../lib/router';
 
 const ViewBadge = ({ size = 'md', label = 'View' }: { size?: 'md' | 'lg'; label?: string }) => (
@@ -20,11 +21,14 @@ const ViewBadge = ({ size = 'md', label = 'View' }: { size?: 'md' | 'lg'; label?
 );
 
 const Statement = ({ site, large = false }: { site: Website; large?: boolean }) => (
-  <p
-    className={`${large ? 'text-2xl md:text-[30px]' : 'text-xl md:text-[26px]'} font-medium leading-snug tracking-tight text-muted`}
-  >
-    <span className="font-bold text-ink">{site.client}</span> – {site.statement}
-  </p>
+  <>
+    {isClientWork(site) && <ClientWorkBadge className="mb-3" />}
+    <p
+      className={`${large ? 'text-2xl md:text-[30px]' : 'text-xl md:text-[26px]'} font-medium leading-snug tracking-tight text-muted`}
+    >
+      <span className="font-bold text-ink">{site.client}</span> – {site.statement}
+    </p>
+  </>
 );
 
 const WebsiteTile = ({ site }: { site: Website }) => (

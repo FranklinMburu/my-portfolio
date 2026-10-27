@@ -20,6 +20,57 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   caseStudyUrl?: string;
+  /** URL segment for /projects/:slug; set when the project has a case study */
+  slug?: string;
+  caseStudy?: CaseStudy;
+}
+
+export type DiagramNodeKind = 'io' | 'core' | 'ai' | 'human' | 'gate' | 'stop';
+
+export interface DiagramNode {
+  id: string;
+  label: string;
+  /** Short second line */
+  sub?: string;
+  kind?: DiagramNodeKind;
+}
+
+export interface DiagramEdge {
+  from: string;
+  to: string;
+  label?: string;
+  /** A failure or fallback path */
+  dashed?: boolean;
+}
+
+export interface Diagram {
+  title: string;
+  /** One sentence under the diagram */
+  caption: string;
+  /** Rows from top to bottom; nodes in a row sit side by side */
+  rows: DiagramNode[][];
+  edges: DiagramEdge[];
+}
+
+export interface CaseStudyDecision {
+  title: string;
+  chose: string;
+  rejected: string;
+  why: string;
+}
+
+export interface CaseStudy {
+  /** One line under the title */
+  summary: string;
+  role: string;
+  context: string;
+  year: string;
+  problem: string[];
+  architecture: string[];
+  diagrams: Diagram[];
+  decisions: CaseStudyDecision[];
+  results: string[];
+  limits: string[];
 }
 
 export interface Experience {

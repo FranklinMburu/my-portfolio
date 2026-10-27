@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import Link from '../Link';
 import { PhoneFrame } from './Frames';
-import type { Website } from '../../data/websites';
+import { isClientWork, type Website } from '../../data/websites';
+import { ClientWorkBadge } from './ClientWorkBadge';
 
 /**
  * Websites page opening, told on scroll (Apple product-page style).
@@ -466,6 +467,7 @@ const WebsitesStory = ({ sites }: { sites: Website[] }) => {
               <h2 className="font-black leading-[0.92] text-ink" style={{ fontSize: 'clamp(32px, 4.2vw, 64px)', letterSpacing: '-0.04em' }}>
                 {site.client}
               </h2>
+              {isClientWork(site) && <ClientWorkBadge className="mt-4" />}
               <p className="mt-3 text-sm font-semibold text-primary-cyan">
                 {site.category}
                 {site.location ? ` · ${site.location}` : ''}

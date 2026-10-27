@@ -1,6 +1,74 @@
 import { Project } from '../types';
+import { ailayerCaseStudy, floodCaseStudy, miniAgenticCaseStudy } from './caseStudies';
 
 export const projects: Project[] = [
+  {
+    id: '14',
+    title: 'Job App OS (Vision 2060)',
+    description: 'An AI job-application assistant that captures job posts, checks them against your profile and drafts tailored applications from verified profile facts only, leaving gaps visible instead of inventing qualifications.',
+    achievements: [
+      'Captures a job from pasted text, a link or a screenshot into structured fields',
+      'Fit analysis with a verdict and the strengths and gaps behind it',
+      'Cover notes and follow-ups grounded in the user’s own profile',
+      'Rule: incomplete truth over hallucination'
+    ],
+    techStack: ['React', 'TypeScript', 'Gemini', 'Firebase', 'Node.js', 'PostgreSQL'],
+    category: 'AI/ML',
+    status: 'Live',
+    image: 'https://images.pexels.com/photos/5439455/pexels-photo-5439455.jpeg?auto=compress&cs=tinysrgb&w=800',
+    liveUrl: 'https://job-app-os-kappa.vercel.app/',
+    githubUrl: 'https://github.com/FranklinMburu/job-app-OS'
+  },
+  {
+    id: '15',
+    title: 'Autonomous Content Studio',
+    description: 'A $0 pipeline that turns a topic into a fact-checked, animated vertical explainer video, run on GitHub Actions. A person reviews every video before it is uploaded.',
+    achievements: [
+      'Gemini free tier writes the script and checks it against its sources',
+      'Kokoro open-source voice and 11 animated scene types with Tabler icons',
+      'FFmpeg rendering on GitHub Actions; the first run finished in 2 min 13 s',
+      'Version 1 built and five videos produced'
+    ],
+    techStack: ['Python', 'Gemini', 'Kokoro', 'FFmpeg', 'GitHub Actions'],
+    category: 'Automation',
+    status: 'Public code',
+    image: 'https://images.pexels.com/photos/29505140/pexels-photo-29505140.jpeg?auto=compress&cs=tinysrgb&w=800',
+    githubUrl: 'https://github.com/FranklinMburu/Autonomous-content-studio'
+  },
+  {
+    id: '16',
+    title: 'AI Email Cleaner',
+    description: 'A human-controlled Gmail cleanup tool for large inboxes. It sorts mail from metadata first, previews every change before it runs, and takes no destructive action without the user’s approval.',
+    achievements: [
+      'Metadata-first categorisation over Gmail OAuth',
+      'Dry-run previews before any action runs',
+      'Starred and important emails are protected',
+      'Audit log of every action; archive, label and trash can be undone, permanent delete is blocked'
+    ],
+    techStack: ['Node.js', 'Express', 'React', 'SQLite', 'Gmail API', 'OAuth'],
+    category: 'Full-Stack',
+    status: 'Public code',
+    image: 'https://images.pexels.com/photos/5386485/pexels-photo-5386485.jpeg?auto=compress&cs=tinysrgb&w=800',
+    githubUrl: 'https://github.com/FranklinMburu/Ai-Email_cleaner'
+  },
+  {
+    id: '17',
+    title: 'ailayer: Shared LLM Gateway',
+    description: 'A dependency-free Python package with one ask() call that routes each request across Gemini, Groq, NVIDIA and local Ollama by tier, and falls back to another model or provider when one fails. Free tiers only.',
+    achievements: [
+      'Tiered routing (bulk, standard, critical, private) with automatic fallback',
+      'Per-model pacing, retries on server errors and a cooldown after rate limits',
+      'JSON validation with one repair round; reasoning traces stripped from open models',
+      'Usage logging that never records prompts, outputs or keys',
+      'Key probe tool, offline tests against a fake server and a blind evaluation harness'
+    ],
+    techStack: ['Python', 'Gemini', 'Groq', 'NVIDIA', 'Ollama', 'JSON validation'],
+    category: 'AI/ML',
+    status: 'In Development',
+    image: 'https://images.pexels.com/photos/6466143/pexels-photo-6466143.jpeg?auto=compress&cs=tinysrgb&w=800',
+    slug: 'ailayer',
+    caseStudy: ailayerCaseStudy
+  },
   {
     id: '1',
     title: 'AI Trading Agent (ICT/SMC Strategy)',
@@ -129,7 +197,9 @@ export const projects: Project[] = [
     status: 'Public code',
     image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
     githubUrl: 'https://github.com/FranklinMburu/mini-agentic-ai',
-    featured: true
+    featured: true,
+    slug: 'mini-agentic-ai',
+    caseStudy: miniAgenticCaseStudy
   },
   {
     id: '10',
@@ -199,6 +269,11 @@ export const projects: Project[] = [
     image: '/assets/images/nairobi-flood-cat-model.webp',
     liveUrl: 'https://nairobi-flood-cat-model.vercel.app',
     githubUrl: 'https://github.com/FranklinMburu/Nairobi-flood-cat-model',
-    featured: true
+    featured: true,
+    slug: 'nairobi-flood-cat-model',
+    caseStudy: floodCaseStudy
   }
 ];
+
+/** Projects with a case study, in the order of the list above. */
+export const caseStudies = projects.filter((project) => project.slug && project.caseStudy);

@@ -3,7 +3,8 @@ import Link from '../components/Link';
 import Reveal from '../components/Reveal';
 import { BrowserFrame, PhoneFrame } from '../components/websites/Frames';
 import { DesktopShot, PhoneShot } from '../components/websites/WebsiteVisuals';
-import { websites } from '../data/websites';
+import { websites, isClientWork } from '../data/websites';
+import { ClientWorkBadge } from '../components/websites/ClientWorkBadge';
 import { useDocumentTitle } from '../lib/router';
 import NotFoundPage from './NotFoundPage';
 
@@ -31,6 +32,7 @@ const WebsiteDetailPage = ({ slug }: { slug: string }) => {
           </Link>
           <div className="animate-rise flex flex-wrap items-end justify-between gap-8">
             <div>
+              {isClientWork(site) && <ClientWorkBadge className="mb-5" />}
               <h1 className="mb-4 font-black leading-[0.95] text-ink" style={{ fontSize: 'clamp(48px, 7vw, 88px)', letterSpacing: '-0.04em' }}>
                 {site.client}
               </h1>

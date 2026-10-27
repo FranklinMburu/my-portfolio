@@ -8,11 +8,12 @@ import type { MockVariant } from '../components/websites/SiteMock';
  * the status is not shown on the page). Each is live on its own Vercel project from
  * github.com/FranklinMburu/showcase-websites; screenshots are in /public/assets/websites/<slug>/.
  *
- * To add client work: add an entry with status 'Live', the real client name,
- * url and screenshots. Client work should go above the showcase sites.
+ * Client work has status 'Live', the real client name, url and screenshots, and goes above
+ * the showcase sites. It is labelled "Client work" on the gallery, the scroll story and its
+ * detail page (see isClientWork).
  */
 
-export type WebsiteCategory = 'Business' | 'Online store' | 'Landing page' | 'Web app';
+export type WebsiteCategory = 'Business' | 'Non-profit' | 'Online store' | 'Landing page' | 'Web app';
 
 export interface Website {
   slug: string;
@@ -56,7 +57,30 @@ const shots = (slug: string) => ({
   gallery: [2, 3, 4].map((n) => `/assets/websites/${slug}/page-${n}.webp`)
 });
 
+export const isClientWork = (site: Pick<Website, 'status'>) => site.status === 'Live';
+
 export const websites: Website[] = [
+  {
+    slug: 'furaha',
+    client: 'Furaha Ministries',
+    statement: 'A giving site for a children’s ministry in Kenya, told through real photographs of the children it serves.',
+    category: 'Non-profit',
+    year: '2026',
+    status: 'Live',
+    url: 'https://meetfuraha.org',
+    displayUrl: 'meetfuraha.org',
+    role: 'Build and deployment',
+    location: 'Kenya',
+    summary:
+      'A React and Vite site deployed by GitHub Actions over FTP to the ministry’s cPanel hosting. I fixed a failing deployment caused by a missing package-lock.json, set up npm caching, and reviewed the site structure and donation tiers, using the ministry’s own photographs.',
+    image: '/assets/websites/furaha/desktop.webp',
+    mobileImage: '/assets/websites/furaha/mobile.webp',
+    mobileImage2: '/assets/websites/furaha/mobile-2.webp',
+    mock: 'saas',
+    stage: '#efe2cc',
+    glow: '#b5583f',
+    phoneFirst: true
+  },
   {
     slug: 'keja',
     client: 'Keja',
