@@ -1,12 +1,22 @@
-import { GraduationCap, Award } from 'lucide-react';
+import { GraduationCap, Award, ExternalLink } from 'lucide-react';
 
 const Education = () => {
-  const education = [
+  const education: {
+    institution: string;
+    degree: string;
+    period: string;
+    description: string;
+    link?: { label: string; href: string };
+  }[] = [
     {
       institution: 'Moringa School',
-      degree: 'Software Development Diploma',
-      period: '2024',
-      description: 'Comprehensive training in full-stack development, software engineering principles, and modern development practices.'
+      degree: 'Software Engineering — Certificate of Completion',
+      period: 'November 2025',
+      description: 'One-year full-stack program with curriculum content from Flatiron School: back-end and front-end engineering, building APIs, test-driven development, computer science fundamentals and Git.',
+      link: {
+        label: 'Verify certificate',
+        href: 'https://moringa.my.salesforce-sites.com/certificateStatus?id=a0PQ200000JsKJv'
+      }
     },
     {
       institution: 'KCSE',
@@ -44,6 +54,17 @@ const Education = () => {
                   </div>
                 </div>
                 <p className="text-muted text-sm leading-relaxed">{edu.description}</p>
+                {edu.link && (
+                  <a
+                    href={edu.link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary-cyan transition-colors hover:text-primary-blue"
+                  >
+                    <span>{edu.link.label}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
               </div>
             ))}
           </div>

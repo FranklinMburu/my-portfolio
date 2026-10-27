@@ -44,7 +44,7 @@ const About = () => {
               </p>
               <p className="text-body text-lg leading-relaxed">
                 Currently serving as <span className="text-signal font-semibold">Software Engineer</span> at
-                <span className="text-signal font-semibold"> United Legal Group</span>, building scalable multi-tenant CRM systems with emphasis on backend engineering, security, and performance. Previously, I served as Senior Head of ICT at Stafford Schools, where I led digital transformation initiatives and developed custom AI-powered educational solutions.
+                <span className="text-signal font-semibold"> United Legal Group</span>, building scalable multi-tenant CRM systems with emphasis on backend engineering, security, and performance. Previously, I served as Senior Head of ICT at Stafford Schools (2022–2025), where I led backend development and digital transformation, including M-Pesa payment and reconciliation systems.
               </p>
             </div>
 

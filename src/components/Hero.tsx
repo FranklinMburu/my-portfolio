@@ -506,9 +506,9 @@ const Hero = () => {
             </div>
             <div className="text-center">
               <div className="text-xl sm:text-2xl md:text-3xl font-bold text-accent-purple mb-1">
-                <CountUp value="1 Year" delay={countDelay} run={countStats} />
+                <CountUp value="4 Years" delay={countDelay} run={countStats} />
               </div>
-              <div className="text-xs sm:text-sm md:text-base text-text-gray">ICT Leadership</div>
+              <div className="text-xs sm:text-sm md:text-base text-text-gray">ICT Leadership &amp; Production Experience</div>
             </div>
           </div>
 
