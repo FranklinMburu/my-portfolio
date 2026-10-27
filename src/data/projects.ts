@@ -17,7 +17,8 @@ export const projects: Project[] = [
     status: 'Live',
     image: 'https://images.pexels.com/photos/5439455/pexels-photo-5439455.jpeg?auto=compress&cs=tinysrgb&w=800',
     liveUrl: 'https://job-app-os-kappa.vercel.app/',
-    githubUrl: 'https://github.com/FranklinMburu/job-app-OS'
+    githubUrl: 'https://github.com/FranklinMburu/job-app-OS',
+    featured: true
   },
   {
     id: '15',
